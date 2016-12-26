@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { render } from 'react-dom';
 import { combineReducers } from 'redux-immutable';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
@@ -11,7 +11,7 @@ const store = createStore(combineReducers({
   timer: timerReducer,
 }));
 
-ReactDOM.render(
+render(
   <Provider store={store}>
     <div>
       <TimerClock />

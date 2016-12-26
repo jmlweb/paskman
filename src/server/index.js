@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
-import Dog from '../shared/dog';
+import Timer from '../shared/timer';
 
-const toby = new Dog('Toby');
+const currentTimer = new Timer(false);
 
-console.log(toby.bark());
+console.log(currentTimer.status());

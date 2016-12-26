@@ -1,0 +1,80 @@
+{
+  "name": "paskman",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:jmlweb/paskman.git",
+  "author": "<josemanuel@jmlweb.es>",
+  "license": "MIT",
+  "scripts": {
+    "start": "gulp",
+    "test": "gulp test"
+  },
+  "dependencies": {
+    "babel-polyfill": "^6.20.0",
+    "gulp-flatten": "^0.3.1",
+    "immutable": "^3.8.1",
+    "react": "^15.4.1",
+    "react-dom": "^15.4.1",
+    "react-redux": "^5.0.1",
+    "redux": "^3.6.0",
+    "redux-actions": "^1.2.0",
+    "redux-immutable": "^3.0.9"
+  },
+  "devDependencies": {
+    "babel-eslint": "^7.1.1",
+    "babel-loader": "^6.2.10",
+    "babel-preset-flow": "^1.0.0",
+    "babel-preset-latest": "^6.16.0",
+    "babel-preset-react": "^6.16.0",
+    "browser-sync": "^2.18.5",
+    "chai": "^3.5.0",
+    "del": "^2.2.2",
+    "eslint": "^3.12.2",
+    "eslint-config-airbnb": "^13.0.0",
+    "eslint-plugin-flowtype": "^2.29.1",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^2.2.3",
+    "eslint-plugin-react": "^6.8.0",
+    "gulp": "^3.9.1",
+    "gulp-babel": "^6.1.2",
+    "gulp-eslint": "^3.0.1",
+    "gulp-flowtype": "^1.0.0",
+    "gulp-mocha": "^3.0.1",
+    "mocha": "^3.2.0",
+    "sinon": "^1.17.6",
+    "sinon-chai": "^2.8.0",
+    "webpack-stream": "^3.2.0"
+  },
+  "babel": {
+    "presets": [
+      "latest",
+      "react",
+      "flow"
+    ]
+  },
+  "eslintConfig": {
+    "parser": "babel-eslint",
+    "extends": [
+      "airbnb",
+      "plugin:flowtype/recommended"
+    ],
+    "plugins": [
+      "import",
+      "flowtype"
+    ],
+    "env": {
+      "browser": true
+    },
+    "rules": {
+      "new-cap": [
+        2,
+        {
+          "capIsNewExceptions": [
+            "Map",
+            "List"
+          ]
+        }
+      ]
+    }
+  }
+}

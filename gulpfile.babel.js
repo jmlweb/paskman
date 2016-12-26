@@ -36,7 +36,7 @@ gulp.task('lint', () =>
   ])
   .pipe(eslint())
   .pipe(eslint.format())
-  .pipe(eslint.failAfterError())
+  // .pipe(eslint.failAfterError())
   .pipe(flow({ abort: true })),
 );
 

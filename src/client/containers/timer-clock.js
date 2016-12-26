@@ -1,9 +1,3 @@
-import { connect } from 'react-redux';
-import Message from '../components/message';
+import Clock from '../components/clock';
 
-const mapStateToProps = state => ({
-  message: state.getIn(['timer', 'isEnabled']) ? 'Timer enabled' : 'Timer disabled',
-  amount: state.getIn(['timer', 'amount']),
-});
-
-export default connect(mapStateToProps)(Message);
+export default Clock;

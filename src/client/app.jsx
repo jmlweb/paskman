@@ -1,22 +1,16 @@
 import React from 'react';
 import { render } from 'react-dom';
-import { combineReducers } from 'redux-immutable';
 import { createStore } from 'redux';
-import { Provider } from 'react-redux';
+import { combineReducers } from 'redux-immutable';
 import timerReducer from './reducers/timer-reducer';
-import TimerClock from './containers/timer-clock';
-import TimerButton from './containers/timer-button';
+import Root from './containers/root';
+
 
 const store = createStore(combineReducers({
   timer: timerReducer,
 }));
 
 render(
-  <Provider store={store}>
-    <div>
-      <TimerClock />
-      <TimerButton />
-    </div>
-  </Provider>,
+  <Root store={store} />,
   document.querySelector('.app'),
 );

@@ -6,7 +6,8 @@
   "author": "<josemanuel@jmlweb.es>",
   "license": "MIT",
   "scripts": {
-    "start": "gulp",
+    "start": "gulp main",
+    "devel": "gulp",
     "test": "gulp test"
   },
   "dependencies": {

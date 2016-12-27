@@ -11,6 +11,7 @@ import mocha from 'gulp-mocha';
 import flatten from 'gulp-flatten';
 import browserSync from 'browser-sync';
 import webpackConfig from './webpack.config.babel';
+import webpackConfigSw from './webpack.config.sw.babel';
 
 const server = browserSync.create('development');
 
@@ -20,6 +21,7 @@ const paths = {
   serverSrcJs: 'src/server/**/*.js?(x)',
   sharedSrcJs: 'src/shared/**/*.js?(x)',
   clientEntryPoint: 'src/client/app.jsx',
+  swEntryPoint: 'src/client/sw.js',
   gulpFile: 'gulpfile.babel.js',
   webpackFile: 'webpack.config.babel.js',
   libDir: 'lib',
@@ -62,7 +64,14 @@ gulp.task('html', () =>
   .pipe(gulp.dest(paths.distDir)),
 );
 
-gulp.task('main', ['test', 'html'], () =>
+gulp.task('sw', () =>
+  gulp.src(paths.swEntryPoint)
+    .pipe(webpack(webpackConfigSw))
+    .pipe(gulp.dest(paths.distDir))
+    .pipe(server.stream({ once: true })),
+);
+
+gulp.task('main', ['test', 'html', 'sw'], () =>
   gulp.src(paths.clientEntryPoint)
     .pipe(webpack(webpackConfig))
     .pipe(gulp.dest(paths.distDir))
@@ -70,13 +79,15 @@ gulp.task('main', ['test', 'html'], () =>
 );
 
 gulp.task('main-watch', ['main'], server.reload);
+gulp.task('html-watch', ['html'], server.reload);
 
-gulp.task('watch', () => {
+gulp.task('watch', ['main'], () => {
   server.init({
     server: paths.distDir,
-    https: true,
+    // https: true,
   });
   gulp.watch(paths.allSrcJs, ['main-watch']);
+  gulp.watch(paths.srcHtml, ['html-watch']);
 });
 
 gulp.task('default', ['watch', 'main']);

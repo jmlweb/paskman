@@ -1,32 +1,44 @@
 import * as Immutable from 'immutable';
 import {
-  TOGGLE_ENABLED,
-  SET_AMOUNT,
-  SET_STATE,
+  TOGGLE_ACTIVE,
+  SET_MODE,
+  ADD_TO_TABLE,
+  POMODORO_RESET,
 } from '../actions/timer-actions';
 import {
-  POMODORO_MIN,
-  POMODORO_STATE,
+  WORKING_MODE,
+  RESTING_MODE,
 } from '../constants/timer-constants';
-import { minToMil } from '../utils/parse-time';
 
-const initialState = Immutable.Map({
-  isEnabled: false,
-  amount: minToMil(POMODORO_MIN),
-  state: POMODORO_STATE,
+const mockup = {};
+const tableMockup = Immutable.Map({
+  [WORKING_MODE]: Immutable.List(),
+  [RESTING_MODE]: Immutable.List(),
 });
 
-const timerReducer = (state = initialState, action) => {
+
+mockup.isActive = false;
+mockup.mode = WORKING_MODE;
+mockup.table = tableMockup;
+
+const initialState = Immutable.Map(mockup);
+
+const pomodoroReducer = (state = initialState, action) => {
   switch (action.type) {
-    case TOGGLE_ENABLED:
-      return state.set('isEnabled', !state.get('isEnabled'));
-    case SET_AMOUNT:
-      return state.set('amount', action.payload);
-    case SET_STATE:
-      return state.set('state', action.payload);
+    case TOGGLE_ACTIVE:
+      return state.set('isActive', !state.get('isActive'));
+    case SET_MODE:
+      return state.set('mode', action.payload);
+    case ADD_TO_TABLE:
+      return state.set(
+        'table',
+        state.get('table').set(action.payload.mode, action.payload.table),
+      );
+    case POMODORO_RESET:
+      return state.merge(mockup);
     default:
       return state;
   }
 };
 
-export default timerReducer;
+export default pomodoroReducer;

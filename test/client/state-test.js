@@ -4,8 +4,8 @@ import { createStore } from 'redux';
 import { combineReducers } from 'redux-immutable';
 import { should } from 'chai';
 import { describe, it, beforeEach } from 'mocha';
-import timerReducer from '../../client/reducers/timer-reducer';
-import { toggleEnabled } from '../../client/actions/timer-actions';
+import timerReducer from '../../src/client/reducers/timer-reducer';
+import { toggleActive } from '../../src/client/actions/timer-actions';
 
 should();
 let store;
@@ -19,9 +19,9 @@ describe('App State', () => {
     });
     describe('toggleEnabled', () => {
       it('should make isEnabled go from false to true and vice versa', () => {
-        store.getState().getIn(['timer', 'isEnabled']).should.be.false;
-        store.dispatch(toggleEnabled());
-        store.getState().getIn(['timer', 'isEnabled']).should.be.true;
+        store.getState().getIn(['timer', 'isActive']).should.be.false;
+        store.dispatch(toggleActive());
+        store.getState().getIn(['timer', 'isActive']).should.be.true;
       });
     });
   });

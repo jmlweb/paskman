@@ -1,4 +1,5 @@
-const CACHE_VERSION = 'v1';
+// const CACHE_VERSION = 'v1';
+const CACHE_VERSION = new Date().getTime();
 
 const CACHE_NAME = `paskman-cache-${CACHE_VERSION}`;
 const urlsToCache = [
@@ -19,9 +20,6 @@ self.addEventListener('fetch', (event) => {
   event.respondWith(
     caches.match(event.request)
       .then((response) => {
-        if (event.request.url.indexOf('browser') > -1) {
-          return false;
-        }
         // Cache hit - return response
         if (response) {
           return response;

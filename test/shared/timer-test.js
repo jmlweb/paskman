@@ -4,7 +4,7 @@ import chai from 'chai';
 import { stub } from 'sinon';
 import sinonChai from 'sinon-chai';
 import { describe, it } from 'mocha';
-import Timer from '../../shared/timer';
+import Timer from '../../src/shared/timer';
 
 chai.should();
 chai.use(sinonChai);

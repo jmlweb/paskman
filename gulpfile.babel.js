@@ -27,6 +27,7 @@ const paths = {
   libDir: 'lib',
   distDir: 'dist',
   clientBundle: 'dist/client-bundle.js?(.map)',
+  allSrcTests: 'test/**/*.js',
   allLibTests: 'lib/test/**/*.js',
   extrasSrc: 'src/client/extras/**',
 };
@@ -54,7 +55,13 @@ gulp.task('build', ['lint', 'clean'], () =>
     .pipe(gulp.dest(paths.libDir)),
 );
 
-gulp.task('test', ['build'], () =>
+gulp.task('build-tests', ['build'], () =>
+  gulp.src(paths.allSrcTests)
+    .pipe(babel())
+    .pipe(gulp.dest(paths.libDir)),
+);
+
+gulp.task('test', ['build-tests'], () =>
   gulp.src(paths.allLibTests)
     .pipe(mocha()),
 );

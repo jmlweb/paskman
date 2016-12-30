@@ -4,6 +4,9 @@ logs
 npm-debug.log*
 yarn-error.log*
 
+#Cache
+.eslintcache
+
 # Runtime data
 pids
 *.pid
@@ -14,6 +17,7 @@ pids
 
 # Dependency directories
 node_modules
+!app/node_modules
 
 # Optional npm cache directory
 .npm
@@ -21,9 +25,16 @@ node_modules
 # Optional REPL history
 .node_repl_history
 
-# Dist directory
-/lib
-/dist
-
 # DS_Store
 .DS_Store
+
+#IDE
+.idea/
+
+#Tests
+/reports
+
+#Builds
+config/BUILD
+app/node_modules/public/js/bundle.*
+build/

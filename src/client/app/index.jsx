@@ -1,5 +1,5 @@
 import React from 'react';
-import Timer from '../../timer/containers/timer';
+import Timer from '../timer/containers/timer';
 
 function App() {
   return (

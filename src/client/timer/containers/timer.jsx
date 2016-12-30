@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import moment from 'moment';
 import * as Immutable from 'immutable';
 import Clock from '../components/clock';
-import TimerButton from './timer-button';
+import TimerButton from '../components/timer-button';
 import {
   toggleActive,
   toggleMode,

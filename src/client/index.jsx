@@ -1,14 +1,10 @@
 import React from 'react';
 import { render } from 'react-dom';
 import { createStore } from 'redux';
-import { combineReducers } from 'redux-immutable';
-import timerReducer from './timer/reducer';
 import Root from './root/containers/root';
+import rootReducer from './root/reducer';
 
-
-const store = createStore(combineReducers({
-  timer: timerReducer,
-}));
+const store = createStore(rootReducer);
 
 render(
   <Root store={store} />,

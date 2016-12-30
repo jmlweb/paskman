@@ -4,7 +4,7 @@ import React, {
 import {
   Provider,
 } from 'react-redux';
-import App from '../../app/containers/app';
+import App from '../app';
 
 function Root(props) {
   return (

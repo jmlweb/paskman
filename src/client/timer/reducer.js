@@ -4,11 +4,11 @@ import {
   TOGGLE_MODE,
   ADD_TO_TABLE,
   POMODORO_RESET,
-} from '../actions/timer-actions';
+} from './actions';
 import {
   WORKING_MODE,
   RESTING_MODE,
-} from '../constants/timer-constants';
+} from './constants';
 
 const mockup = {};
 const tableMockup = Immutable.Map({

@@ -12,15 +12,15 @@ import {
   toggleMode,
   addToTable,
   pomodoroReset,
-} from '../actions/timer-actions';
-import { minToMil } from '../utils/parse-time';
+} from '../actions';
+import { minToMil } from '../../utils/parse-time';
 import {
   WORKING_MIN,
   RESTING_MIN,
   PAUSE_BETWEEN,
   WORKING_MODE,
   INTERVAL_TIME,
-} from '../constants/timer-constants';
+} from '../constants';
 
 function getElapsedTime(timeTable) {
   const now = moment().startOf('second');

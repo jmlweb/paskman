@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import Button from '../components/button';
+import Button from '../../button/components/button';
 
 function getLabel(isActive, isToggling) {
   if (isToggling) {

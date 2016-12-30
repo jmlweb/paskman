@@ -9,7 +9,7 @@ import Clock from '../components/clock';
 import TimerButton from './timer-button';
 import {
   toggleActive,
-  setMode,
+  toggleMode,
   addToTable,
   pomodoroReset,
 } from '../actions/timer-actions';
@@ -19,7 +19,6 @@ import {
   RESTING_MIN,
   PAUSE_BETWEEN,
   WORKING_MODE,
-  RESTING_MODE,
   INTERVAL_TIME,
 } from '../constants/timer-constants';
 
@@ -57,6 +56,7 @@ class Timer extends Component {
         props.mode,
         props.table,
       ),
+      isToggling: false,
     };
   }
 
@@ -66,6 +66,9 @@ class Timer extends Component {
 
   componentWillUnmount() {
     clearInterval(this.interval);
+    if (this.props.isActive) {
+      this.toggleAction();
+    }
   }
 
   toggleAction() {
@@ -104,18 +107,28 @@ class Timer extends Component {
           ),
         });
         if (this.state.amountTime <= INTERVAL_TIME) {
+          this.setState({
+            isToggling: true,
+          });
           this.toggleAction();
+          clearInterval(this.interval);
           if (this.props.mode === WORKING_MODE) {
-            this.props.setMode(RESTING_MODE);
+            this.props.toggleMode();
           } else {
             this.props.pomodoroReset();
           }
-          if (!PAUSE_BETWEEN) {
-            this.toggleAction();
-          }
+          setTimeout(() => {
+            this.checkInterval();
+            if (!PAUSE_BETWEEN) {
+              this.toggleAction();
+            }
+            this.setState({
+              isToggling: false,
+            });
+          }, INTERVAL_TIME * 2);
         }
       }
-    }, 500);
+    }, INTERVAL_TIME);
   }
 
   render() {
@@ -126,6 +139,7 @@ class Timer extends Component {
         />
         <TimerButton
           isActive={this.props.isActive}
+          isToggling={this.state.isToggling}
           toggleAction={this.toggleAction}
         />
       </div>
@@ -142,7 +156,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch =>
   ({
     toggleActive: () => { dispatch(toggleActive()); },
-    setMode: (newMode) => { dispatch(setMode(newMode)); },
+    toggleMode: () => { dispatch(toggleMode()); },
     addToTable: (newTableMode) => { dispatch(addToTable(newTableMode)); },
     pomodoroReset: () => { dispatch(pomodoroReset()); },
   });
@@ -156,7 +170,7 @@ Timer.propTypes = {
     PropTypes.any,
   ),
   toggleActive: PropTypes.func,
-  setMode: PropTypes.func,
+  toggleMode: PropTypes.func,
   addToTable: PropTypes.func,
   pomodoroReset: PropTypes.func,
 };

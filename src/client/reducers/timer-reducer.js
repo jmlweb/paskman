@@ -1,7 +1,7 @@
 import * as Immutable from 'immutable';
 import {
   TOGGLE_ACTIVE,
-  SET_MODE,
+  TOGGLE_MODE,
   ADD_TO_TABLE,
   POMODORO_RESET,
 } from '../actions/timer-actions';
@@ -27,8 +27,8 @@ const pomodoroReducer = (state = initialState, action) => {
   switch (action.type) {
     case TOGGLE_ACTIVE:
       return state.set('isActive', !state.get('isActive'));
-    case SET_MODE:
-      return state.set('mode', action.payload);
+    case TOGGLE_MODE:
+      return state.set('mode', state.get('mode') === WORKING_MODE ? RESTING_MODE : WORKING_MODE);
     case ADD_TO_TABLE:
       return state.set(
         'table',

@@ -1,12 +1,12 @@
 import React from 'react';
 import { match } from 'react-router';
 
-import renderLayout from 'server/render-layout';
-import render from 'server/render';
-import settings from 'server/settings';
+import renderLayout from '../../render-layout';
+import render from '../../render';
+import settings from '../../settings';
 
-import configureStore from 'shared/configure-store';
-import createRoutes from 'shared/routes';
+import configureStore from '../../../shared/configure-store';
+import createRoutes from '../../../shared/routes';
 
 const store = configureStore();
 const routes = createRoutes(React);

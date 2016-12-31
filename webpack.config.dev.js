@@ -10,7 +10,7 @@ module.exports = Object.assign({}, defaultConfig, {
   plugins: [
     new webpack.NoErrorsPlugin(),
     new BrowserSyncPlugin({
-      proxy: 'http://localhost:3000',
+      proxy: 'http://localhost:9000',
     }),
   ],
   module: {

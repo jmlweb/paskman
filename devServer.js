@@ -1,4 +1,3 @@
-// import open from 'open';
 import log from 'server/log';
 import settings from 'server/settings';
 import app from 'server/app';
@@ -23,7 +22,6 @@ app.use(require('webpack-dev-middleware')(compiler, {
 const serverURL = `http://${NODE_HOST}:${NODE_PORT}`;
 const logAndOpen = () => {
   log.info(`Listening at ${serverURL}`);
-  //open(serverURL);
 };
 
 app.listen(NODE_PORT, NODE_HOST, (err) => err ? console.error(err) : logAndOpen());

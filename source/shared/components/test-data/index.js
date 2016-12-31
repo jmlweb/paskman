@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import createTitle from 'shared/components/title';
+import createTitle from '../title';
 
 const createApp = React => ({ dispatch, books }) => {
   const Title = createTitle(React);

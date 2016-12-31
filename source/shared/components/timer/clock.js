@@ -1,11 +1,12 @@
 import { PropTypes } from 'react';
+import { toClock } from '../../utils/parse-time';
 
 export default React => props => Object.assign(
   {},
-  <h1 {...props}>{props.title}</h1>,
+  <div>{toClock(props.amount)}</div>,
   {
     propTypes: {
-      title: PropTypes.string,
+      amount: PropTypes.number,
     },
   },
 );

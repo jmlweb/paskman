@@ -1,8 +1,12 @@
 import { PropTypes } from 'react';
+import createNavbar from '../../components/navbar';
 
 export default React => props => Object.assign(
   {},
-  <div>{props.children}</div>,
+  <div>
+    {createNavbar(React)}
+    {props.children}
+  </div>,
   {
     propTypes: {
       children: PropTypes.oneOfType([

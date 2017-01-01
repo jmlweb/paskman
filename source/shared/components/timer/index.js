@@ -11,7 +11,6 @@ import {
   addToTable,
   reset,
 } from '../../reducers/pomodoro/actions';
-import { minToMil } from '../../utils/parse-time';
 import {
   WORKING_MIN,
   RESTING_MIN,
@@ -21,15 +20,19 @@ import {
 } from '../../constants/pomodoro';
 import createTimerClock from './clock';
 import createTimerButton from './button';
+import { minToMil } from '../../utils/parse-time';
 
 const TimerClock = createTimerClock(React);
 const TimerButton = createTimerButton(React);
 
+function getModeTime(mode) {
+  return mode === WORKING_MODE ? minToMil(WORKING_MIN) : minToMil(RESTING_MIN);
+}
+
 function getElapsedTime(timeTable) {
-  const now = moment().startOf('second');
   const differencesArr = timeTable.map((timeItem) => {
-    const timeStart = moment(timeItem.get('start')).startOf('second') || now;
-    const timeEnd = moment(timeItem.get('end')).startOf('second') || now;
+    const timeStart = moment(timeItem.get('start')).startOf('second');
+    const timeEnd = moment(timeItem.get('end')).startOf('second');
     return timeEnd.diff(timeStart);
   }).toJS();
   if (differencesArr.length) {
@@ -43,7 +46,7 @@ function getElapsedTime(timeTable) {
 
 function calculateAmountTime(mode, table) {
   const elapsedTime = getElapsedTime(table.get(mode));
-  const modeTime = mode === WORKING_MODE ? minToMil(WORKING_MIN) : minToMil(RESTING_MIN);
+  const modeTime = getModeTime(mode);
   if (elapsedTime > modeTime) {
     return mode === WORKING_MODE ? minToMil(RESTING_MIN) : minToMil(WORKING_MIN);
   }
@@ -55,7 +58,7 @@ class Timer extends Component {
     super(props);
     this.toggleAction = this.toggleAction.bind(this);
     this.state = {
-      amountTime: 0,
+      amountTime: getModeTime(props.mode),
       isToggling: false,
     };
   }

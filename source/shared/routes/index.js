@@ -1,6 +1,6 @@
 import { Router, Route, IndexRoute } from 'react-router';
 import createApp from '../layouts/app';
-import createHome from '../layouts/home';
+import createHome from '../pages/home';
 import createTestData from '../components/test-data';
 
 export default (React, history) =>

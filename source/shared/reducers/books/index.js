@@ -1,3 +1,5 @@
+import * as Immutable from 'immutable';
+
 const initialState = [
   { id: 1, text: 'Book 1', count: 2 },
   { id: 2, text: 'Book 2', count: 3 },

@@ -75,8 +75,10 @@ class Timer extends Component {
     const type = this.props.isActive ? 'end' : 'start';
     const pushIfStart = (table) => {
       if (type === 'start') {
-        const newList = table.get(this.props.mode).push(Immutable.Map());
-        return table.set(this.props.mode, newList);
+        const newList = Immutable.List(table.get(this.props.mode)).push(Immutable.Map({}));
+        return table.merge({
+          [this.props.mode]: newList,
+        });
       }
       return table;
     };
@@ -91,6 +93,7 @@ class Timer extends Component {
       tableMode.set(position - 1, newModeValue),
     ).get(this.props.mode);
     this.props.toggleActive();
+    console.log(newTable);
     this.props.addToTable({
       mode: this.props.mode,
       table: newTable,
@@ -132,7 +135,6 @@ class Timer extends Component {
   }
 
   render() {
-    console.log(this.state);
     return (
       <div>
         <TimerClock
@@ -149,7 +151,7 @@ class Timer extends Component {
 }
 
 const mapStateToProps = state => ({
-  isAction: state.pomodoro.isActive,
+  isActive: state.pomodoro.isActive,
   mode: state.pomodoro.mode,
   table: state.pomodoro.table,
 });

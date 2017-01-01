@@ -23,7 +23,6 @@ const store = createStore(
 // Create an enhanced history that syncs navigation events with the store
 const history = syncHistoryWithStore(browserHistory, store);
 
-
 // Required for replaying actions from devtools to work
 // reduxRouterMiddleware.listenForReplays(store) @todo Investigar
 

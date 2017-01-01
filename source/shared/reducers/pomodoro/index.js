@@ -26,13 +26,18 @@ const initialState = Immutable.Map(mockup);
 const pomodoroReducer = (state = initialState, action) => {
   switch (action.type) {
     case POMODORO_TOGGLE_ACTIVE:
-      return state.set('isActive', !state.get('isActive'));
+      return {
+        isActive: !state.isActive,
+      };
     case POMODORO_TOGGLE_MODE:
-      return state.set('mode', state.get('mode') === WORKING_MODE ? RESTING_MODE : WORKING_MODE);
+      return Object.assign({}, state, {
+        mode: state.mode === WORKING_MODE ? RESTING_MODE : WORKING_MODE,
+      });
     case POMODORO_ADD_TO_TABLE:
-      return state.set(
-        'table',
-        state.get('table').set(action.payload.mode, action.payload.table),
+      return Object.assign(
+        {},
+        state.table,
+        state.table.set(action.payload.mode, action.payload.table),
       );
     case POMODORO_RESET:
       return state.merge(mockup);

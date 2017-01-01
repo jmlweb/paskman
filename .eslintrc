@@ -19,7 +19,8 @@
       {
         "capIsNewExceptions": [
           "Map",
-          "List"
+          "List",
+          "Record",
         ]
       }
     ]

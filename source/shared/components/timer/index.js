@@ -31,7 +31,7 @@ function getElapsedTime(timeTable) {
     const timeStart = moment(timeItem.get('start')).startOf('second') || now;
     const timeEnd = moment(timeItem.get('end')).startOf('second') || now;
     return timeEnd.diff(timeStart);
-  });
+  }).toJS();
   if (differencesArr.length) {
     const reduced = differencesArr.reduce((total, n) => total + n);
     if (!isNaN(reduced) && reduced > 0) {
@@ -42,7 +42,7 @@ function getElapsedTime(timeTable) {
 }
 
 function calculateAmountTime(mode, table) {
-  const elapsedTime = getElapsedTime(table[mode]);
+  const elapsedTime = getElapsedTime(table.get(mode));
   const modeTime = mode === WORKING_MODE ? minToMil(WORKING_MIN) : minToMil(RESTING_MIN);
   if (elapsedTime > modeTime) {
     return mode === WORKING_MODE ? minToMil(RESTING_MIN) : minToMil(WORKING_MIN);
@@ -150,7 +150,6 @@ class Timer extends Component {
 }
 
 const mapStateToProps = state => {
-  console.log(state);
   return ({
     isActive: state.pomodoro.get('isActive'),
     mode: state.pomodoro.get('mode'),

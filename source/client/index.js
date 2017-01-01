@@ -4,9 +4,16 @@ import { createStore, combineReducers } from 'redux';
 import { Provider } from 'react-redux';
 import { browserHistory } from 'react-router';
 import { syncHistoryWithStore, routerReducer } from 'react-router-redux';
-
+import * as Immutable from 'immutable';
 import reducers from '../shared/reducers';
 import createRoutes from '../shared/routes';
+import pomodoroMockup from '../shared/reducers/pomodoro/mockup';
+
+let state = null;
+if (window.BOOTSTRAP_CLIENT_STATE) {
+  state = window.BOOTSTRAP_CLIENT_STATE;
+  state.pomodoro = Immutable.fromJS(Object.assign({}, pomodoroMockup, state.pomodoro));
+}
 
 // Add the reducer to your store on the `routing` key
 const store = createStore(
@@ -15,7 +22,7 @@ const store = createStore(
     routing: routerReducer,
   }),
   // hydrating server.
-  window.BOOTSTRAP_CLIENT_STATE,
+  state,
   /* eslint-disable no-underscore-dangle */
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
   /* eslint-enable */

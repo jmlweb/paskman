@@ -1,6 +1,5 @@
 import React from 'react';
 import { match } from 'react-router';
-
 import renderLayout from '../../render-layout';
 import render from '../../render';
 import settings from '../../settings';

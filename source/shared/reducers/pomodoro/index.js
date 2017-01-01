@@ -9,38 +9,24 @@ import {
   WORKING_MODE,
   RESTING_MODE,
 } from '../../constants/pomodoro';
+import pomodoroMockup from './mockup';
 
-const mockup = {};
-const tableMockup = Immutable.Map({
-  [WORKING_MODE]: Immutable.List(),
-  [RESTING_MODE]: Immutable.List(),
-});
-
-
-mockup.isActive = false;
-mockup.mode = WORKING_MODE;
-mockup.table = tableMockup;
-
-const initialState = Immutable.Map(mockup);
+const initialState = Immutable.Map(pomodoroMockup);
 
 const pomodoro = (state = initialState, action) => {
   switch (action.type) {
     case POMODORO_TOGGLE_ACTIVE:
-      return {
-        isActive: !state.isActive,
-      };
+      return state.merge({
+        isActive: !state.get('isActive'),
+      });
     case POMODORO_TOGGLE_MODE:
-      return Object.assign({}, state, {
-        mode: state.mode === WORKING_MODE ? RESTING_MODE : WORKING_MODE,
+      return state.merge({
+        mode: state.get('mode') === WORKING_MODE ? RESTING_MODE : WORKING_MODE,
       });
     case POMODORO_ADD_TO_TABLE:
-      return Object.assign(
-        {},
-        state.table,
-        state.table.set(action.payload.mode, action.payload.table),
-      );
+      return state.set('table', state.get('table').set(action.payload.mode, action.payload.table));
     case POMODORO_RESET:
-      return state.merge(mockup);
+      return state.merge(pomodoroMockup);
     default:
       return state;
   }

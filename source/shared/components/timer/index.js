@@ -93,7 +93,6 @@ class Timer extends Component {
       tableMode.set(position - 1, newModeValue),
     ).get(this.props.mode);
     this.props.toggleActive();
-    console.log(newTable);
     this.props.addToTable({
       mode: this.props.mode,
       table: newTable,
@@ -150,11 +149,14 @@ class Timer extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  isActive: state.pomodoro.isActive,
-  mode: state.pomodoro.mode,
-  table: state.pomodoro.table,
-});
+const mapStateToProps = state => {
+  console.log(state);
+  return ({
+    isActive: state.pomodoro.get('isActive'),
+    mode: state.pomodoro.get('mode'),
+    table: state.pomodoro.get('table'),
+  });
+};
 
 const mapDispatchToProps = dispatch =>
   ({

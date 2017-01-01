@@ -37,4 +37,4 @@ node_modules
 #Builds
 config/BUILD
 app/node_modules/public/js/bundle.*
-build/
+public/

@@ -16,6 +16,9 @@ const store = createStore(
   }),
   // hydrating server.
   window.BOOTSTRAP_CLIENT_STATE,
+  /* eslint-disable no-underscore-dangle */
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
+  /* eslint-enable */
 );
 
 // Create an enhanced history that syncs navigation events with the store

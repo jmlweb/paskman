@@ -4,6 +4,14 @@ import webpack from 'webpack';
 import BrowserSyncPlugin from 'browser-sync-webpack-plugin';
 import defaultConfig from './webpack.config.defaults.babel';
 
+const jsDevInclude = [
+  path.join(__dirname, 'source'),
+  path.join(__dirname, 'app-home.js'),
+];
+
+const newModule = Object.assign({}, defaultConfig.module);
+newModule.loaders[1].include = jsDevInclude;
+
 export default Object.assign({}, defaultConfig, {
   devtool: 'eval',
   plugins: [
@@ -12,14 +20,5 @@ export default Object.assign({}, defaultConfig, {
       proxy: 'http://localhost:9000',
     }),
   ],
-  module: {
-    loaders: [{
-      test: /\.js$/,
-      loaders: ['babel'],
-      include: [
-        path.join(__dirname, 'source'),
-        path.join(__dirname, 'app-home.js'),
-      ],
-    }],
-  },
+  module: newModule,
 });

@@ -1,5 +1,4 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import path from 'path';
 import webpack from 'webpack';
 import defaultConfig from './webpack.config.defaults.babel';
 
@@ -18,11 +17,4 @@ export default Object.assign({}, defaultConfig, {
       },
     }),
   ],
-  module: {
-    loaders: [{
-      test: /\.js$/,
-      loaders: ['babel'],
-      include: path.join(__dirname, 'source'),
-    }],
-  },
 });

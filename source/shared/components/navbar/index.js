@@ -1,3 +1,6 @@
 import createLogo from '../logo';
 
-export default React => () => <div>{createLogo(React)}</div>;
+export default React => () => {
+  const Logo = createLogo(React);
+  return (<div><Logo /></div>);
+};

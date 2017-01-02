@@ -1,1 +1,5 @@
-export default React => () => <div>SVG Logo</div>;
+// import svgLogo from './logo.png';
+// const svgLogo = 'Milogo';
+const svgLogo = require('./logo.png');
+
+export default React => () => <img src={svgLogo} alt="" />;

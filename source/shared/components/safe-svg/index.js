@@ -13,12 +13,17 @@ const getExt = () => {
   return 'svg';
 };
 
-export default React => props => Object.assign(
-  {},
-  <img {...props} src={`/img/${props.filename}.${getExt()}`} alt="" />,
-  {
-    propTypes: {
-      filename: PropTypes.string,
+export default React => (props) => {
+  const { filename, altText, ...rest } = props;
+  return Object.assign(
+    {},
+    <img {...rest} src={`/img/${filename}.${getExt()}`} alt={altText || ''} />,
+    {
+      propTypes: {
+        action: PropTypes.func.isRequired,
+        actionLabel: PropTypes.string.isRequired,
+      },
     },
-  },
-);
+  );
+};
+

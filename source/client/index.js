@@ -5,6 +5,7 @@ import { Provider } from 'react-redux';
 import { browserHistory } from 'react-router';
 import { syncHistoryWithStore, routerReducer } from 'react-router-redux';
 import * as Immutable from 'immutable';
+import { StyleSheet } from 'aphrodite';
 import reducers from '../shared/reducers';
 import createRoutes from '../shared/routes';
 import pomodoroMockup from '../shared/reducers/pomodoro/mockup';
@@ -32,6 +33,8 @@ const store = createStore(
 const history = syncHistoryWithStore(browserHistory, store);
 
 const routes = createRoutes(React, history);
+
+StyleSheet.rehydrate(window.BOOTSTRAP_CLASSNAMES);
 
 // Required for replaying actions from devtools to work
 // reduxRouterMiddleware.listenForReplays(store);

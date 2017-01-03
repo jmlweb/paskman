@@ -12,10 +12,10 @@
     "clean": "rimraf public",
     "build:webpack": "webpack --config webpack.config.prod.babel.js",
     "build:webpack:dev": "webpack --config webpack.config.dev.babel.js --watch",
-    "build": "npm run clean && npm run imagemin && npm run build:webpack",
-    "build:dev": "npm run clean && npm run imagemin && npm run build:webpack:dev",
-    "start": "better-npm-run start",
-    "server": "better-npm-run server",
+    "build": "clear && npm run clean && npm run imagemin && npm run build:webpack",
+    "build:dev": "clear && npm run clean && npm run imagemin && npm run build:webpack:dev",
+    "start": "clear && better-npm-run start",
+    "server": "clear && better-npm-run server",
     "test": "better-npm-run test",
     "test:e2e": "better-npm-run test:e2e",
     "lint": "eslint --cache .",
@@ -52,6 +52,7 @@
     }
   },
   "dependencies": {
+    "aphrodite": "^1.1.0",
     "bunyan-request-logger": "^1.1.0",
     "connect-cache-control": "^1.0.0",
     "express": "^4.14.0",

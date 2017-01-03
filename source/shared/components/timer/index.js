@@ -152,14 +152,11 @@ class Timer extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  console.log(state);
-  return ({
-    isActive: state.pomodoro.get('isActive'),
-    mode: state.pomodoro.get('mode'),
-    table: state.pomodoro.get('table'),
-  });
-};
+const mapStateToProps = state => ({
+  isActive: state.pomodoro.get('isActive'),
+  mode: state.pomodoro.get('mode'),
+  table: state.pomodoro.get('table'),
+});
 
 const mapDispatchToProps = dispatch =>
   ({

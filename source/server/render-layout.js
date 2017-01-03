@@ -15,10 +15,10 @@ export default ({ settings, rootMarkup, initialState }) =>
       </head>
       <body>
         <div id='root'>${rootMarkup}</div>
+        <script src="/index.js"></script>
         <script>
           window.BOOTSTRAP_CLIENT_STATE = ${JSON.stringify(initialState)}
         </script>
-        <script src="/public/index.js"></script>
       </body>
     </html>
   `;

@@ -1,5 +1,8 @@
-// import svgLogo from './logo.png';
-// const svgLogo = 'Milogo';
-const svgLogo = require('./logo.png');
+import createSafeSVG from '../safe-svg';
 
-export default React => () => <img src={svgLogo} alt="" />;
+export default React => () => {
+  const SafeSVG = createSafeSVG(React);
+  return (
+    <SafeSVG name="logo" />
+  );
+};

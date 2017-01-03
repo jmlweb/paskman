@@ -153,6 +153,7 @@ class Timer extends Component {
 }
 
 const mapStateToProps = state => {
+  console.log(state);
   return ({
     isActive: state.pomodoro.get('isActive'),
     mode: state.pomodoro.get('mode'),

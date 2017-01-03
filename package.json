@@ -12,8 +12,8 @@
     "clean": "rimraf public",
     "build:webpack": "webpack --config webpack.config.prod.babel.js",
     "build:webpack:dev": "webpack --config webpack.config.dev.babel.js --watch",
-    "build": "npm run clean && npm run build:webpack",
-    "build:dev": "npm run clean && npm run build:webpack:dev",
+    "build": "npm run clean && npm run imagemin && npm run build:webpack",
+    "build:dev": "npm run clean && npm run imagemin && npm run build:webpack:dev",
     "start": "better-npm-run start",
     "server": "better-npm-run server",
     "test": "better-npm-run test",
@@ -21,7 +21,8 @@
     "lint": "eslint --cache .",
     "watch": "watch \"clear && npm run lint -s && npm run test -s\" source",
     "check": "npm run lint && npm run test && npm outdated --depth=0",
-    "update": "updtr"
+    "update": "updtr",
+    "imagemin": "imagemin source/static/* -o=public && imagemin source/static/img/* -o=public/img"
   },
   "betterScripts": {
     "start": {
@@ -80,16 +81,13 @@
     "browser-sync": "^2.18.5",
     "browser-sync-webpack-plugin": "^1.1.3",
     "cheerio": "^0.22.0",
-    "copy-webpack-plugin": "^4.0.1",
-    "cross-env": "^3.1.3",
     "eslint": "^3.12.2",
     "eslint-config-airbnb": "^13.0.0",
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-jsx-a11y": "^2.2.3",
     "eslint-plugin-react": "^6.8.0",
     "estraverse-fb": "^1.3.1",
-    "file-loader": "^0.9.0",
-    "image-webpack-loader": "^3.1.0",
+    "imagemin-cli": "^3.0.0",
     "nightwatch-autorun": "^3.1.0",
     "open": "^0.0.5",
     "react-transform-catch-errors": "^1.0.2",

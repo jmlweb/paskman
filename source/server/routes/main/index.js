@@ -9,7 +9,6 @@ import createRoutes from '../../../shared/routes';
 
 const store = configureStore();
 const routes = createRoutes(React);
-const initialState = store.getState();
 
 export default (req, res) => {
   match({ routes, location: req.url }, (error, redirectLocation, renderProps) => {
@@ -19,6 +18,7 @@ export default (req, res) => {
       res.redirect(302, redirectLocation.pathname + redirectLocation.search);
     } else if (renderProps) {
       const rootMarkup = render(React)(renderProps, store);
+      const initialState = store.getState();
       res.status(200).send(renderLayout({ settings, rootMarkup, initialState }));
     } else {
       res.status(404).send('Not found');

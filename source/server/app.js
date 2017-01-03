@@ -12,11 +12,8 @@ app.use(log.requestLogger());
 
 app.get('/log.gif/:message', noCache, log.route());
 
-const staticDir = path.join(settings.APP_HOME, '/static');
 const buildDir = path.join(settings.APP_HOME, '/public');
-
-app.use('/public', express.static(buildDir));
-app.use('/', express.static(staticDir));
+app.use('/', express.static(buildDir));
 
 app.use('/', mainRoute);
 

@@ -1,9 +1,8 @@
 import { PropTypes } from 'react';
-import createNavbar from '../../components/navbar';
+import Navbar from '../../components/navbar';
 
-export default React => (props) => {
-  const Navbar = createNavbar(React);
-  return Object.assign(
+export default React => props =>
+  Object.assign(
     {},
     <div>
       <Navbar />
@@ -18,4 +17,3 @@ export default React => (props) => {
       },
     },
   );
-};

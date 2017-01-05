@@ -1,16 +1,11 @@
-import createTitle from '../../components/title';
 import Timer from '../../components/timer';
 
-const createHome = React => () => {
-  const Title = createTitle(React);
-  return (
+const createHome = React => () =>
+  (
     <div>
-      <Title title="Home" />
       <Timer />
-      <div>Soy la home</div>
     </div>
   );
-};
 
 // Connect props to component
 export default (React) => {

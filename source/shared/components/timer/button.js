@@ -14,6 +14,7 @@ function getButton(React, { toggleAction, isActive, isToggling }) {
     <Button
       action={toggleAction}
       actionLabel={getLabel(isActive, isToggling)}
+      icon="timer"
     />
   );
 }

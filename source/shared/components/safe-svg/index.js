@@ -1,5 +1,3 @@
-import { PropTypes } from 'react';
-
 const supportsSvg = () =>
   document && document.implementation.hasFeature(
     'http://www.w3.org/TR/SVG11/feature#Image',
@@ -13,17 +11,18 @@ const getExt = () => {
   return 'svg';
 };
 
-export default React => (props) => {
-  const { filename, altText, ...rest } = props;
-  return Object.assign(
-    {},
-    <img {...rest} src={`/img/${filename}.${getExt()}`} alt={altText || ''} />,
-    {
-      propTypes: {
-        action: PropTypes.func.isRequired,
-        actionLabel: PropTypes.string.isRequired,
-      },
-    },
-  );
-};
+export default (React) => {
+  const { string } = React.PropTypes;
 
+  const safeSvg = (props) => {
+    const { filename, altText, ...rest } = props;
+    return <img {...rest} src={`/img/${filename}.${getExt()}`} alt={altText || ''} />;
+  };
+
+  safeSvg.propTypes = {
+    filename: string.isRequired,
+    altText: string,
+  };
+
+  return safeSvg;
+};

@@ -18,6 +18,7 @@ import {
   WORKING_MODE,
   INTERVAL_TIME,
 } from '../../constants/pomodoro';
+import createTimerLayout from './layout';
 import createTimerClock from './clock';
 import createTimerButton from './button';
 import { minToMil } from '../../utils/parse-time';
@@ -74,32 +75,13 @@ class Timer extends Component {
     }
   }
 
-  toggleAction() {
-    const type = this.props.isActive ? 'end' : 'start';
-    const pushIfStart = (table) => {
-      if (type === 'start') {
-        const newList = Immutable.List(table.get(this.props.mode)).push(Immutable.Map({}));
-        return table.merge({
-          [this.props.mode]: newList,
-        });
-      }
-      return table;
-    };
-    const pushedTable = pushIfStart(Immutable.Map(this.props.table));
-    const tableMode = pushedTable.get(this.props.mode);
-    const position = tableMode.size;
-    const newModeValue = tableMode.get(position - 1).merge({
-      [type]: Date.now(),
-    });
-    const newTable = pushedTable.set(
-      this.props.mode,
-      tableMode.set(position - 1, newModeValue),
-    ).get(this.props.mode);
-    this.props.toggleActive();
-    this.props.addToTable({
-      mode: this.props.mode,
-      table: newTable,
-    });
+  getMsg() {
+    let msg = '';
+    if (!this.props.isActive && !this.state.isToggling) {
+      msg = 'PAUSED. ';
+    }
+    msg += `You're ${this.props.mode === WORKING_MODE ? 'WORKING' : 'RESTING'} now.`;
+    return msg;
   }
 
   checkInterval() {
@@ -133,21 +115,54 @@ class Timer extends Component {
           }, INTERVAL_TIME * 2);
         }
       }
-    }, INTERVAL_TIME);
+    }, INTERVAL_TIME / 2);
+  }
+
+  toggleAction() {
+    const type = this.props.isActive ? 'end' : 'start';
+    const pushIfStart = (table) => {
+      if (type === 'start') {
+        const newList = Immutable.List(table.get(this.props.mode)).push(Immutable.Map({}));
+        return table.merge({
+          [this.props.mode]: newList,
+        });
+      }
+      return table;
+    };
+    const pushedTable = pushIfStart(Immutable.Map(this.props.table));
+    const tableMode = pushedTable.get(this.props.mode);
+    const position = tableMode.size;
+    const newModeValue = tableMode.get(position - 1).merge({
+      [type]: Date.now(),
+    });
+    const newTable = pushedTable.set(
+      this.props.mode,
+      tableMode.set(position - 1, newModeValue),
+    ).get(this.props.mode);
+    this.props.toggleActive();
+    this.props.addToTable({
+      mode: this.props.mode,
+      table: newTable,
+    });
   }
 
   render() {
+    const timerClock = (
+      <TimerClock
+        msg={this.getMsg()}
+        amount={this.state.amountTime}
+      />
+    );
+    const timerButton = (
+      <TimerButton
+        isActive={this.props.isActive}
+        isToggling={this.state.isToggling}
+        toggleAction={this.toggleAction}
+      />
+    );
+    const TimerLayout = createTimerLayout(React);
     return (
-      <div>
-        <TimerClock
-          amount={this.state.amountTime}
-        />
-        <TimerButton
-          isActive={this.props.isActive}
-          isToggling={this.state.isToggling}
-          toggleAction={this.toggleAction}
-        />
-      </div>
+      <TimerLayout clock={timerClock} button={timerButton} />
     );
   }
 }

@@ -78,14 +78,14 @@ class Timer extends Component {
   getProgress() {
     const timeStart = getModeTime(this.props.mode);
     const progress = 1 - (this.state.amountTime / timeStart);
-    return Math.round(progress * 10000, 10) / 10000;
+    return Math.ceil(progress * 10000, 10) / 10000;
   }
 
   checkInterval() {
     let lastCents;
     this.interval = setInterval(() => {
       const amountTime = calculateAmountTime(this.props.mode, this.props.table);
-      const currentCents = parseInt(amountTime / 100, 10);
+      const currentCents = parseInt(amountTime / 10, 10);
       if (lastCents !== currentCents) {
         this.setState({
           amountTime: Math.ceil(amountTime * 100) / 100,
@@ -113,37 +113,6 @@ class Timer extends Component {
         });
       }
     }, INTERVAL_TIME);
-    // this.interval = setInterval(() => {
-    //   if (this.props.isActive) {
-    //     this.setState({
-    //       amountTime: calculateAmountTime(
-    //         this.props.mode,
-    //         this.props.table,
-    //       ),
-    //     });
-    //     if (this.state.amountTime <= INTERVAL_TIME) {
-    //       this.setState({
-    //         isToggling: true,
-    //       });
-    //       this.toggleAction();
-    //       clearInterval(this.interval);
-    //       if (this.props.mode === 'working') {
-    //         this.props.toggleMode();
-    //       } else {
-    //         this.props.reset();
-    //       }
-    //       setTimeout(() => {
-    //         this.checkInterval();
-    //         if (!PAUSE_BETWEEN) {
-    //           this.toggleAction();
-    //         }
-    //         this.setState({
-    //           isToggling: false,
-    //         });
-    //       }, 0);
-    //     }
-    //   }
-    // }, INTERVAL_TIME);
   }
 
   toggleAction() {

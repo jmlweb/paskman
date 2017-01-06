@@ -1,18 +1,5 @@
 import { Circle } from 'react-progressbar.js';
-import { StyleSheet, css } from 'aphrodite/no-important';
 import baseStyles from '../../constants/styles';
-
-const styles = StyleSheet.create({
-  clock: {
-    padding: baseStyles.spacing.lg,
-    paddingBottom: baseStyles.spacing.md,
-  },
-  button: {
-    display: 'flex',
-    justifyContent: 'center',
-    padding: baseStyles.spacing.lg,
-  },
-});
 
 export default (React) => {
   const {
@@ -21,12 +8,14 @@ export default (React) => {
   } = React.PropTypes;
 
   const options = {
-    strokeWidth: 2,
+    color: baseStyles.colors.sweetPink,
+    strokeWidth: 6,
+    trailColor: baseStyles.colors.whiteSmoke,
   };
 
   const containerStyle = {
-    width: '200px',
-    height: '200px',
+    width: '260px',
+    height: '260px',
   };
 
   const circle = (props) => {

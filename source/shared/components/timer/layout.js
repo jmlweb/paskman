@@ -5,6 +5,12 @@ import createTimerClock from './clock';
 import createTimerButton from './button';
 
 const styles = StyleSheet.create({
+  circleWrapper: {
+    position: 'relative',
+    width: '260px',
+    height: '260px',
+    margin: '0 auto',
+  },
   circle: {
     padding: baseStyles.spacing.lg,
     paddingBottom: baseStyles.spacing.md,
@@ -12,6 +18,14 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   clock: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    position: 'absolute',
+    top: 0,
+    right: 0,
+    bottom: 0,
+    left: 0,
     padding: baseStyles.spacing.lg,
     paddingBottom: baseStyles.spacing.md,
   },
@@ -39,16 +53,18 @@ export default (React) => {
 
     return (
       <div {...rest}>
-        <div className={css(styles.circle)}>
-          <TimerCircle
-            progress={progress}
-          />
-        </div>
-        <div className={css(styles.clock)}>
-          <TimerClock
-            msg={msg}
-            amount={amountTime}
-          />
+        <div className={css(styles.circleWrapper)}>
+          <div className={css(styles.circle)}>
+            <TimerCircle
+              progress={progress}
+            />
+          </div>
+          <div className={css(styles.clock)}>
+            <TimerClock
+              msg={msg}
+              amount={amountTime}
+            />
+          </div>
         </div>
         <div className={css(styles.button)}>
           <TimerButton

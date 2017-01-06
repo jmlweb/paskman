@@ -11,6 +11,7 @@
   "plugins": [
     "import",
     "react",
+    "compat",
   ],
   "rules": {
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
@@ -20,9 +21,18 @@
         "capIsNewExceptions": [
           "Map",
           "List",
-          "Record",
         ]
       }
-    ]
+    ],
+    "compat/compat": 2,
+  },
+  "settings": {
+    "targets": [
+      "chrome >= 50",
+      "firefox",
+      "edge",
+      "safari >= 9"
+    ],
+    "compiler": "babel"
   }
 }

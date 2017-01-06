@@ -19,12 +19,7 @@ import {
   INTERVAL_TIME,
 } from '../../constants/pomodoro';
 import createTimerLayout from './layout';
-import createTimerClock from './clock';
-import createTimerButton from './button';
 import { minToMil } from '../../utils/parse-time';
-
-const TimerClock = createTimerClock(React);
-const TimerButton = createTimerButton(React);
 
 function getModeTime(mode) {
   return mode === WORKING_MODE ? minToMil(WORKING_MIN) : minToMil(RESTING_MIN);
@@ -32,8 +27,8 @@ function getModeTime(mode) {
 
 function getElapsedTime(timeTable) {
   const differencesArr = timeTable.map((timeItem) => {
-    const timeStart = moment(timeItem.get('start')).startOf('second');
-    const timeEnd = moment(timeItem.get('end')).startOf('second');
+    const timeStart = moment(timeItem.get('start'));
+    const timeEnd = moment(timeItem.get('end'));
     return timeEnd.diff(timeStart);
   }).toJS();
   if (differencesArr.length) {
@@ -84,6 +79,12 @@ class Timer extends Component {
     return msg;
   }
 
+  getProgress() {
+    const timeStart = getModeTime(this.props.mode);
+    const progress = parseFloat((timeStart - this.state.amountTime) / 10000);
+    return progress > 1 ? 1 : progress;
+  }
+
   checkInterval() {
     this.interval = setInterval(() => {
       if (this.props.isActive) {
@@ -112,10 +113,10 @@ class Timer extends Component {
             this.setState({
               isToggling: false,
             });
-          }, INTERVAL_TIME * 2);
+          }, 0);
         }
       }
-    }, INTERVAL_TIME / 2);
+    }, INTERVAL_TIME);
   }
 
   toggleAction() {
@@ -147,22 +148,17 @@ class Timer extends Component {
   }
 
   render() {
-    const timerClock = (
-      <TimerClock
+    console.log(this.getProgress());
+    const TimerLayout = createTimerLayout(React);
+    return (
+      <TimerLayout
         msg={this.getMsg()}
-        amount={this.state.amountTime}
-      />
-    );
-    const timerButton = (
-      <TimerButton
+        amountTime={this.state.amountTime}
+        progress={this.getProgress()}
         isActive={this.props.isActive}
         isToggling={this.state.isToggling}
         toggleAction={this.toggleAction}
       />
-    );
-    const TimerLayout = createTimerLayout(React);
-    return (
-      <TimerLayout clock={timerClock} button={timerButton} />
     );
   }
 }

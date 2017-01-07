@@ -1,16 +1,15 @@
 import * as Immutable from 'immutable';
 import {
-  WORKING_MODE,
-  RESTING_MODE,
+  MODES,
 } from '../../constants/pomodoro';
 
 const PomodoroTableMockup = Immutable.Map({
-  [WORKING_MODE]: Immutable.List(),
-  [RESTING_MODE]: Immutable.List(),
+  [MODES.working.name]: Immutable.List(),
+  [MODES.resting.name]: Immutable.List(),
 });
 
 export default {
   isActive: false,
-  mode: WORKING_MODE,
+  mode: MODES.working.name,
   table: PomodoroTableMockup,
 };

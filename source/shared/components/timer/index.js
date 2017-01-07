@@ -15,6 +15,7 @@ import {
   PAUSE_BETWEEN,
   INTERVAL_TIME,
   MODES,
+  TIMEOUT_TIME,
 } from '../../constants/pomodoro';
 import createTimerLayout from './layout';
 import { minToMil } from '../../utils/parse-time';
@@ -44,8 +45,10 @@ function calculateAmountTime(mode, table) {
   if (elapsedTime > modeTime) {
     return 0;
   }
-  return modeTime - elapsedTime;
+  return Math.floor((modeTime - elapsedTime) / 500) * 500;
 }
+
+const TimerLayout = createTimerLayout(React);
 
 class Timer extends Component {
   constructor(props) {
@@ -78,17 +81,17 @@ class Timer extends Component {
   getProgress() {
     const timeStart = getModeTime(this.props.mode);
     const progress = 1 - (this.state.amountTime / timeStart);
-    return Math.ceil(progress * 10000, 10) / 10000;
+    return Math.ceil(progress * 500, 10) / 500;
   }
 
   checkInterval() {
     let lastCents;
     this.interval = setInterval(() => {
       const amountTime = calculateAmountTime(this.props.mode, this.props.table);
-      const currentCents = parseInt(amountTime / 10, 10);
+      const currentCents = parseInt(amountTime / 100, 10);
       if (lastCents !== currentCents) {
         this.setState({
-          amountTime: Math.ceil(amountTime * 100) / 100,
+          amountTime: Math.floor(amountTime * 100) / 100,
         });
         lastCents = currentCents;
       }
@@ -149,7 +152,6 @@ class Timer extends Component {
   }
 
   render() {
-    const TimerLayout = createTimerLayout(React);
     return (
       <TimerLayout
         msg={this.getMsg()}

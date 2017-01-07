@@ -6,8 +6,7 @@ import {
   POMODORO_RESET,
 } from './actions';
 import {
-  WORKING_MODE,
-  RESTING_MODE,
+  MODES,
 } from '../../constants/pomodoro';
 import pomodoroMockup from './mockup';
 
@@ -21,7 +20,7 @@ const pomodoro = (state = initialState, action) => {
       });
     case POMODORO_TOGGLE_MODE:
       return state.merge({
-        mode: state.get('mode') === WORKING_MODE ? RESTING_MODE : WORKING_MODE,
+        mode: state.get('mode') === MODES.working.name ? MODES.resting.name : MODES.working.name,
       });
     case POMODORO_ADD_TO_TABLE:
       return state.set('table', state.get('table').set(action.payload.mode, action.payload.table));

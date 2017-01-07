@@ -2,7 +2,7 @@ import { createStore, compose, applyMiddleware, combineReducers } from 'redux';
 import thunkMiddleware from 'redux-thunk';
 import createLogger from 'redux-logger';
 import { routerReducer } from 'react-router-redux';
-import reducers from './reducers';
+import reducers from './modules';
 
 const logger = createLogger();
 const rootReducer = combineReducers(Object.assign({}, reducers, {

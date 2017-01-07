@@ -1,4 +1,4 @@
-import Timer from '../../components/timer';
+import Timer from '../../containers/timer';
 
 const createHome = React => () =>
   (

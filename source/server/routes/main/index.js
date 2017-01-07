@@ -7,7 +7,7 @@ import renderLayout from '../../render-layout';
 // import render from '../../render';
 import settings from '../../settings';
 
-import configureStore from '../../../shared/configure-store';
+import configureStore from '../../../shared/redux';
 import createRoutes from '../../../shared/routes';
 
 const store = configureStore();

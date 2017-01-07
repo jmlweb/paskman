@@ -10,20 +10,15 @@ import {
   toggleMode,
   addToTable,
   reset,
-} from '../../reducers/pomodoro/actions';
+} from '../../redux/modules/pomodoro';
 import {
   PAUSE_BETWEEN,
   INTERVAL_TIME,
-  MODES,
   REINIT_TIMEOUT,
   RELOAD_TIMEOUT,
 } from '../../constants/pomodoro';
-import createTimerLayout from './layout';
+import createTimerLayout from './components/layout';
 import { minToMil } from '../../utils/parse-time';
-
-function getModeTime(mode) {
-  return minToMil(MODES[mode].minutes);
-}
 
 function getElapsedTime(timeTable) {
   const differencesArr = timeTable.map((timeItem) => {
@@ -42,7 +37,7 @@ function getElapsedTime(timeTable) {
 
 function calculateAmountTime(mode, table) {
   const elapsedTime = getElapsedTime(table.get(mode));
-  const modeTime = getModeTime(mode);
+  const modeTime = this.getModeTime();
   if (elapsedTime > modeTime) {
     return 0;
   }
@@ -58,7 +53,7 @@ class Timer extends Component {
     this.addToTable = this.addToTable.bind(this);
     this.timeFinished = this.timeFinished.bind(this);
     this.state = {
-      amountTime: getModeTime(props.mode),
+      amountTime: this.getModeTime(),
       isToggling: false,
     };
   }
@@ -69,8 +64,12 @@ class Timer extends Component {
     }
   }
 
+  getModeTime() {
+    return minToMil(this.props.modes[this.props.mode]);
+  }
+
   getProgress() {
-    const timeStart = getModeTime(this.props.mode);
+    const timeStart = this.getModeTime();
     const progress = 1 - (this.state.amountTime / timeStart);
     return parseInt(progress * 100, 10) / 100;
   }
@@ -100,7 +99,7 @@ class Timer extends Component {
     });
     this.addToTable();
     this.props.toggleActive();
-    if (this.props.mode === MODES.working.name) {
+    if (this.props.mode === this.props.modes.working.name) {
       this.props.toggleMode();
     } else {
       this.props.reset();
@@ -172,6 +171,7 @@ const mapStateToProps = state => ({
   isActive: state.pomodoro.get('isActive'),
   mode: state.pomodoro.get('mode'),
   table: state.pomodoro.get('table'),
+  modes: state.settings.get('modes'),
 });
 
 const mapDispatchToProps = dispatch =>
@@ -188,6 +188,9 @@ Timer.propTypes = {
   isActive: PropTypes.bool,
   mode: PropTypes.string,
   table: PropTypes.objectOf(
+    PropTypes.any,
+  ),
+  modes: PropTypes.objectOf(
     PropTypes.any,
   ),
   toggleActive: PropTypes.func,

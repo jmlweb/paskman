@@ -1,5 +1,5 @@
 import { StyleSheet, css } from 'aphrodite/no-important';
-import baseStyles from '../../constants/styles';
+import baseStyles from '../../../constants/styles';
 import createTimerCircle from './circle';
 import createTimerClock from './clock';
 import createTimerButton from './button';

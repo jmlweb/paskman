@@ -1,7 +1,7 @@
-import books from './books';
 import pomodoro from './pomodoro';
+import settings from './settings';
 
 export default {
   pomodoro,
-  books,
+  settings,
 };

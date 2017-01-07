@@ -15,7 +15,8 @@ import {
   PAUSE_BETWEEN,
   INTERVAL_TIME,
   MODES,
-  TIMEOUT_TIME,
+  REINIT_TIMEOUT,
+  RELOAD_TIMEOUT,
 } from '../../constants/pomodoro';
 import createTimerLayout from './layout';
 import { minToMil } from '../../utils/parse-time';
@@ -45,7 +46,7 @@ function calculateAmountTime(mode, table) {
   if (elapsedTime > modeTime) {
     return 0;
   }
-  return Math.floor((modeTime - elapsedTime) / 500) * 500;
+  return modeTime - elapsedTime;
 }
 
 const TimerLayout = createTimerLayout(React);
@@ -54,6 +55,8 @@ class Timer extends Component {
   constructor(props) {
     super(props);
     this.toggleAction = this.toggleAction.bind(this);
+    this.addToTable = this.addToTable.bind(this);
+    this.timeFinished = this.timeFinished.bind(this);
     this.state = {
       amountTime: getModeTime(props.mode),
       isToggling: false,
@@ -61,27 +64,15 @@ class Timer extends Component {
   }
 
   componentWillUnmount() {
-    if (this.interval) {
-      clearInterval(this.interval);
-    }
     if (this.props.isActive) {
       this.toggleAction();
     }
   }
 
-  getMsg() {
-    let msg = '';
-    if (!this.props.isActive && !this.state.isToggling) {
-      msg = 'PAUSED. ';
-    }
-    msg += `You're ${MODES[this.props.mode].name.toUpperCase()} now.`;
-    return msg;
-  }
-
   getProgress() {
     const timeStart = getModeTime(this.props.mode);
     const progress = 1 - (this.state.amountTime / timeStart);
-    return Math.ceil(progress * 500, 10) / 500;
+    return parseInt(progress * 100, 10) / 100;
   }
 
   checkInterval() {
@@ -91,34 +82,43 @@ class Timer extends Component {
       const currentCents = parseInt(amountTime / 100, 10);
       if (lastCents !== currentCents) {
         this.setState({
-          amountTime: Math.floor(amountTime * 100) / 100,
+          amountTime: Math.floor(amountTime * 1000) / 1000,
         });
         lastCents = currentCents;
       }
       if (amountTime <= 0) {
-        this.setState({
-          isToggling: true,
-        });
-        this.toggleAction();
-        if (this.props.mode === 'working') {
-          this.props.toggleMode();
-        } else {
-          this.props.reset();
-        }
-        this.setState({
-          amountTime: calculateAmountTime(this.props.mode, this.props.table),
-        });
-        if (!PAUSE_BETWEEN) {
-          this.toggleAction();
-        }
-        this.setState({
-          isToggling: false,
-        });
+        this.timeFinished();
       }
     }, INTERVAL_TIME);
   }
 
-  toggleAction() {
+  timeFinished() {
+    clearInterval(this.interval);
+    this.setState({
+      isToggling: true,
+      amountTime: 0,
+    });
+    this.addToTable();
+    this.props.toggleActive();
+    if (this.props.mode === MODES.working.name) {
+      this.props.toggleMode();
+    } else {
+      this.props.reset();
+    }
+    setTimeout(() => {
+      this.setState({
+        amountTime: calculateAmountTime(this.props.mode, this.props.table),
+        isToggling: false,
+      });
+      if (!PAUSE_BETWEEN) {
+        setTimeout(() => {
+          this.toggleAction(true);
+        }, REINIT_TIMEOUT);
+      }
+    }, RELOAD_TIMEOUT);
+  }
+
+  addToTable() {
     const type = this.props.isActive ? 'end' : 'start';
     const pushIfStart = (table) => {
       if (type === 'start') {
@@ -139,12 +139,16 @@ class Timer extends Component {
       this.props.mode,
       tableMode.set(position - 1, newModeValue),
     ).get(this.props.mode);
-    this.props.toggleActive();
     this.props.addToTable({
       mode: this.props.mode,
       table: newTable,
     });
-    if (this.props.isActive) {
+  }
+
+  toggleAction(auto = false) {
+    this.addToTable();
+    this.props.toggleActive();
+    if (this.props.isActive && !auto) {
       clearInterval(this.interval);
     } else {
       this.checkInterval();
@@ -154,7 +158,6 @@ class Timer extends Component {
   render() {
     return (
       <TimerLayout
-        msg={this.getMsg()}
         amountTime={this.state.amountTime}
         progress={this.getProgress()}
         isActive={this.props.isActive}

@@ -18,20 +18,20 @@ export default ({ settings, html, css, initialState }) =>
         <style data-aphrodite>${css.content}</style>
       </head>
       <body>
-        <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script>
-        <script>
-         WebFont.load({
-            google: {
-              families: ['Dosis:400,500,700']
-            }
-          });
-        </script>
         <div id='root'>${html}</div>
         <script>
           window.BOOTSTRAP_CLIENT_STATE = ${JSON.stringify(initialState)}
           window.BOOTSTRAP_CLASSNAMES = ${JSON.stringify(css.renderedClassNames)};
         </script>
         <script src="/index.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script>
+        <script>
+         WebFont && WebFont.load({
+            google: {
+              families: ['Dosis:400,500,700']
+            }
+          });
+        </script>
       </body>
     </html>
   `;

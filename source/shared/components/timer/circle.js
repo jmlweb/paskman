@@ -4,7 +4,6 @@ import baseStyles from '../../constants/styles';
 export default (React) => {
   const {
     number,
-    string,
   } = React.PropTypes;
 
   const options = {
@@ -19,11 +18,10 @@ export default (React) => {
   };
 
   const circle = (props) => {
-    const { progress, text } = props;
+    const { progress } = props;
     return (
       <Circle
         progress={progress}
-        text={text}
         options={options}
         containerStyle={containerStyle}
       />
@@ -32,7 +30,6 @@ export default (React) => {
 
   circle.propTypes = {
     progress: number.isRequired,
-    text: string,
   };
 
   return circle;

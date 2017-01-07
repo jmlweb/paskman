@@ -38,7 +38,6 @@ const styles = StyleSheet.create({
 
 export default (React) => {
   const {
-    string,
     number,
     bool,
     func,
@@ -49,7 +48,7 @@ export default (React) => {
   const TimerButton = createTimerButton(React);
 
   const layout = (props) => {
-    const { msg, amountTime, progress, isActive, isToggling, toggleAction, ...rest } = props;
+    const { amountTime, progress, isActive, isToggling, toggleAction, ...rest } = props;
 
     return (
       <div {...rest}>
@@ -61,7 +60,6 @@ export default (React) => {
           </div>
           <div className={css(styles.clock)}>
             <TimerClock
-              msg={msg}
               amount={amountTime}
             />
           </div>
@@ -78,7 +76,6 @@ export default (React) => {
   };
 
   layout.propTypes = {
-    msg: string.isRequired,
     amountTime: number.isRequired,
     progress: number.isRequired,
     isActive: bool,

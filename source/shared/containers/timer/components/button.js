@@ -1,4 +1,4 @@
-import createButton from '../button';
+import createButton from '../../../components/button';
 
 function getLabel(isActive, isToggling) {
   if (isToggling) {

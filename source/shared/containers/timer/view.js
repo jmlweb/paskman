@@ -1,8 +1,8 @@
 import { StyleSheet, css } from 'aphrodite/no-important';
-import baseStyles from '../../../constants/styles';
-import createTimerCircle from './circle';
-import createTimerClock from './clock';
-import createTimerButton from './button';
+import baseStyles from '../../constants/styles';
+import createCircle from '../../components/circle';
+import createClock from '../../components/clock';
+import createTimerButton from './components/button';
 
 const styles = StyleSheet.create({
   circleWrapper: {
@@ -43,8 +43,8 @@ export default (React) => {
     func,
   } = React.PropTypes;
 
-  const TimerCircle = createTimerCircle(React);
-  const TimerClock = createTimerClock(React);
+  const Circle = createCircle(React);
+  const Clock = createClock(React);
   const TimerButton = createTimerButton(React);
 
   const layout = (props) => {
@@ -54,12 +54,12 @@ export default (React) => {
       <div {...rest}>
         <div className={css(styles.circleWrapper)}>
           <div className={css(styles.circle)}>
-            <TimerCircle
+            <Circle
               progress={progress}
             />
           </div>
           <div className={css(styles.clock)}>
-            <TimerClock
+            <Clock
               amount={amountTime}
             />
           </div>

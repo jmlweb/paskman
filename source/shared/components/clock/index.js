@@ -1,6 +1,6 @@
 import { StyleSheet, css } from 'aphrodite/no-important';
-import { toClock } from '../../../utils/parse-time';
-import baseStyles from '../../../constants/styles';
+import { toClock } from '../../utils/parse-time';
+import baseStyles from '../../constants/styles';
 
 const styles = StyleSheet.create({
   clock: {

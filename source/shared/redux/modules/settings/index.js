@@ -29,7 +29,7 @@ export const settingsMockup = {
 };
 
 /* REDUCER */
-const initialState = Immutable.Map(settingsMockup);
+const initialState = Immutable.fromJS(settingsMockup);
 
 const settings = (state = initialState, action) => {
   switch (action.type) {

@@ -1,19 +1,25 @@
-import { PropTypes } from 'react';
-import Navbar from '../../components/navbar';
+import Topbar from '../../containers/topbar';
 
-export default React => props =>
-  Object.assign(
-    {},
+export default (React) => {
+  const {
+    oneOfType,
+    arrayOf,
+    node,
+  } = React.PropTypes;
+
+  const app = props => (
     <div>
-      <Navbar />
+      <Topbar />
       {props.children}
-    </div>,
-    {
-      propTypes: {
-        children: PropTypes.oneOfType([
-          PropTypes.arrayOf(PropTypes.node),
-          PropTypes.node,
-        ]),
-      },
-    },
+    </div>
   );
+
+  app.propTypes = {
+    children: oneOfType([
+      arrayOf(node),
+      node,
+    ]),
+  };
+
+  return app;
+};

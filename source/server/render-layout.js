@@ -12,6 +12,14 @@ export default ({ settings, html, css, initialState }) =>
         <link rel="manifest" href="/manifest.json">
         <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
         <meta name="theme-color" content="#ffffff">
+        <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script>
+        <script>
+         WebFont && WebFont.load({
+            google: {
+              families: ['Dosis:400,500,700']
+            }
+          });
+        </script>
         <style>
           html{-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}body{margin:0;font:16px/1 Dosis, sans-serif;-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased}blockquote,figure,h1,h2,h3,h4,ol,p,ul{margin:0;padding:0}li,main{display:block}h1,h2,h3,h4{font-size:inherit}strong{font-weight:700}a,button{color:inherit;transition:.3s}a{text-decoration:none}button{overflow:visible;border:0;font:inherit;-webkit-font-smoothing:inherit;letter-spacing:inherit;background:0 0;cursor:pointer}::-moz-focus-inner{padding:0;border:0}:focus{outline:0}img{max-width:100%;height:auto;border:0}button{outline: 0}
         </style>
@@ -24,14 +32,6 @@ export default ({ settings, html, css, initialState }) =>
           window.BOOTSTRAP_CLASSNAMES = ${JSON.stringify(css.renderedClassNames)};
         </script>
         <script src="/index.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script>
-        <script>
-         WebFont && WebFont.load({
-            google: {
-              families: ['Dosis:400,500,700']
-            }
-          });
-        </script>
       </body>
     </html>
   `;

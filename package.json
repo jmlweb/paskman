@@ -68,6 +68,7 @@
     "redux-actions": "^1.2.0",
     "redux-logger": "^2.7.4",
     "redux-thunk": "^2.1.0",
+    "reselect": "^2.5.4",
     "tinycolor2": "^1.4.1"
   },
   "devDependencies": {

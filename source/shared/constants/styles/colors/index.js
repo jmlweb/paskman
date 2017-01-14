@@ -4,5 +4,5 @@ export default {
   heath: '#502c2c',
   blueBayoux: '#5b7f80',
   foam: '#d2fdfe',
-  whiteSmoke: '#f5f5f5',
+  whiteSmoke: '#eee',
 };

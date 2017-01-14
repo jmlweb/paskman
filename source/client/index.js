@@ -9,6 +9,7 @@ import { StyleSheet } from 'aphrodite';
 import reducers from '../shared/redux/modules';
 import createRoutes from '../shared/routes';
 import { pomodoroMockup } from '../shared/redux/modules/pomodoro';
+import { settingsMockup } from '../shared/redux/modules/settings';
 
 let state = null;
 if (window.BOOTSTRAP_CLIENT_STATE) {

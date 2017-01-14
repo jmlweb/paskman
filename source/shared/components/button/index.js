@@ -29,7 +29,8 @@ const styles = StyleSheet.create({
 
 export default (React) => {
   const {
-    string, func,
+    string,
+    func,
   } = React.PropTypes;
 
   const SafeSVG = createSafeSVG(React);

@@ -11,7 +11,7 @@ export const settingsSetMode = createAction(SETTINGS_SET_MODE);
 export const settingsSetPauseBetween = createAction(SETTINGS_SET_PAUSE_BETWEEN);
 
 /* DEFAULTS */
-const PAUSE_BETWEEN = false;
+const PAUSE_BETWEEN = true;
 export const MODES = {
   working: {
     name: 'working',

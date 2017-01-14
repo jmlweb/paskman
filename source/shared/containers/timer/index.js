@@ -17,7 +17,6 @@ import {
   elapsedTimeSelector,
 } from '../../redux/modules/pomodoro';
 import {
-  PAUSE_BETWEEN,
   INTERVAL_TIME,
   REINIT_TIMEOUT,
   RELOAD_TIMEOUT,

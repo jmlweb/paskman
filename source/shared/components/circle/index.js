@@ -1,5 +1,7 @@
 import { Circle } from 'react-progressbar.js';
-import baseStyles from '../../constants/styles';
+import baseTheme from '../../with-styles/base-theme';
+
+const { color } = baseTheme;
 
 export default (React) => {
   const {
@@ -7,9 +9,9 @@ export default (React) => {
   } = React.PropTypes;
 
   const options = {
-    color: baseStyles.colors.sweetPink,
+    color: color.sweetPink,
     strokeWidth: 6,
-    trailColor: baseStyles.colors.whiteSmoke,
+    trailColor: color.whiteSmoke,
   };
 
   const containerStyle = {

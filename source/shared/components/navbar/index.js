@@ -1,62 +1,77 @@
-import { IndexLink, Link } from 'react-router'
-import { StyleSheet, css } from 'aphrodite/no-important';
+import { IndexLink, Link } from 'react-router';
+import { css, withStyles } from '../../with-styles';
 import createLogo from '../logo';
-import baseStyles from '../../constants/styles';
-
+import { createFlexBox } from '../../layouts/flex';
 
 export default (React) => {
   const {
     bool,
     func,
+    objectOf,
+    any,
   } = React.PropTypes;
 
   const Logo = createLogo(React);
+  const FlexBox = createFlexBox(React);
 
   const navbar = (props) => {
-    const { isOpen, toggleOpen } = props;
-    const btnClassNames = css(
-      styles.transition,
-      isOpen && styles.rotated,
-    );
+    const { isOpen, toggleOpen, styles } = props;
     const menuClassNames = css(
       styles.menu,
       styles.transition,
       isOpen && styles.expanded,
-    )
+    );
+    const btnClassNames = css(
+      styles.transition,
+      isOpen && styles.rotated,
+    );
     return (
-      <header className={css([styles.header, styles.flex])}>
-        <IndexLink className={css(styles.flex)} to="/">
-          <Logo />
-          <span className={css(styles.logoText)}>PASKMAN</span>
-        </IndexLink>
-        <div className={css(styles.flex)}>
-          <nav className={menuClassNames}>
-            <IndexLink className={css(styles.menuItem)} to="/">Home</IndexLink>
-            <Link className={css(styles.menuItem)} to="/settings">Settings</Link>
-          </nav>
-          <button onClick={toggleOpen} className={css(styles.triggerMenu)}>
-            <img className={btnClassNames} src="/img/trigger-menu.svg" alt="Menu" />
-          </button>
-        </div>
+      <header {...css([styles.header])}>
+        <FlexBox items="itemsCenter">
+          <IndexLink {...css(styles.logoLink)} to="/">
+            <FlexBox items="itemsCenter">
+              <Logo />
+              <span {...css(styles.logoText)}>PASKMAN</span>
+            </FlexBox>
+          </IndexLink>
+          <FlexBox items="itemsCenter">
+            <nav {...menuClassNames}>
+              <IndexLink {...css(styles.menuItem)} to="/">Home</IndexLink>
+              <Link {...css(styles.menuItem)} to="/settings">Settings</Link>
+            </nav>
+            <button onClick={toggleOpen} {...css(styles.triggerMenu)}>
+              <img {...btnClassNames} src="/img/trigger-menu.svg" alt="Menu" />
+            </button>
+          </FlexBox>
+        </FlexBox>
       </header>
     );
   };
 
-  const styles = StyleSheet.create({
+  navbar.propTypes = {
+    isOpen: bool.isRequired,
+    toggleOpen: func.isRequired,
+    styles: objectOf(any),
+  };
+
+  return withStyles(({ color, font, spacing, unit }) => ({
     header: {
-      backgroundColor: baseStyles.colors.sweetPink,
-      padding: baseStyles.spacing.sm,
+      backgroundColor: color.sweetPink,
+      padding: spacing.sm,
     },
     flex: {
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'space-between',
     },
+    logoLink: {
+      display: 'inline-block',
+    },
     logoText: {
-      marginLeft: baseStyles.spacing.xs,
-      fontSize: '24px',
-      fontWeight: 700,
-      color: baseStyles.colors.heath,
+      marginLeft: spacing.xs,
+      fontSize: unit(4),
+      fontWeight: font.bold,
+      color: color.heath,
     },
     transition: {
       transition: '0.4s ease-in-out',
@@ -65,26 +80,19 @@ export default (React) => {
       transform: 'rotate(90deg)',
     },
     menu: {
-      marginRight: '20px',
+      marginRight: spacing.lg,
       overflow: 'hidden',
       maxWidth: 0,
     },
     expanded: {
-      maxWidth: '1000px',
+      maxWidth: unit(120),
     },
     menuItem: {
-      marginLeft: '30px',
+      marginLeft: spacing.xl,
       lineHeight: 1.4,
-      fontWeight: 700,
-      color: baseStyles.colors.heath,
+      fontWeight: font.bold,
+      color: color.heath,
       textTransform: 'uppercase',
     },
-  });
-
-  navbar.propTypes = {
-    isOpen: bool.isRequired,
-    toggleOpen: func.isRequired,
-  };
-
-  return navbar;
+  }))(navbar);
 };

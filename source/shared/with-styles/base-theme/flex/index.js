@@ -1,0 +1,15 @@
+export default {
+  display: 'flex',
+  row: 'row',
+  rowReverse: 'row-reverse',
+  column: 'column',
+  columnReverse: 'column-reverse',
+  spaceBetween: 'space-between',
+  start: 'flex-start',
+  end: 'flex-end',
+  center: 'center',
+  wrap: 'wrap',
+  noWrap: 'no-wrap',
+  stretch: 'stretch',
+  baseline: 'baseline',
+};

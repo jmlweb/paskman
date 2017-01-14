@@ -1,9 +1,9 @@
 export default (React) => {
   const {
+    number,
     objectOf,
-    bool,
-    func,
     any,
+    bool,
   } = React.PropTypes;
 
   const settingsForm = (props) => {
@@ -19,6 +19,8 @@ export default (React) => {
   };
 
   settingsForm.propTypes = {
+    workingMode: number,
+    restingMode: number,
     modes: objectOf(any),
     pauseBetween: bool,
   };

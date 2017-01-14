@@ -1,28 +1,30 @@
-import { StyleSheet, css } from 'aphrodite/no-important';
+import { css, withStyles } from '../../with-styles';
 import { toClock } from '../../utils/parse-time';
-import baseStyles from '../../constants/styles';
-
-const styles = StyleSheet.create({
-  clock: {
-    textAlign: 'center',
-    fontSize: '36px',
-    color: baseStyles.colors.heath,
-    fontWeight: 500,
-  },
-});
 
 export default (React) => {
-  const { number } = React.PropTypes;
+  const {
+    number,
+    objectOf,
+    any,
+  } = React.PropTypes;
 
-  const clock = props => (
-    <div className={css(styles.clock)}>
-      {toClock(props.amount)}
+  const clock = ({ styles, amount }) => (
+    <div {...css(styles.clock)}>
+      {toClock(amount)}
     </div>
   );
 
   clock.propTypes = {
     amount: number,
+    styles: objectOf(any),
   };
 
-  return clock;
+  return withStyles(({ color, font, unit }) => ({
+    clock: {
+      textAlign: 'center',
+      fontSize: unit(6),
+      color: color.heath,
+      fontWeight: font.medium,
+    },
+  }))(clock);
 };

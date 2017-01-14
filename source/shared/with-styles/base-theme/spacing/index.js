@@ -1,8 +1,10 @@
+import unit from '../unit';
+
 export default {
-  xs: '5px',
-  sm: '10px',
-  md: '15px',
-  lg: '20px',
-  xl: '30px',
-  xxl: '50px',
+  xs: unit(1),
+  sm: unit(2),
+  md: unit(3),
+  lg: unit(4),
+  xl: unit(5),
+  xxl: unit(6),
 };

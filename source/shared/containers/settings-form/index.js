@@ -1,6 +1,6 @@
-import React, { 
+import React, {
   Component,
-  PropTypes, 
+  PropTypes,
 } from 'react';
 import * as Immutable from 'immutable';
 import { connect } from 'react-redux';
@@ -22,10 +22,10 @@ class SettingsForm extends Component {
 
   render() {
     return (
-      <SettingsFormView 
-        workingMode={this.props.modes.get('working').get('minutes')} 
-        restingMode={this.props.modes.get('resting').get('minutes')} 
-        pauseBetween={this.props.pauseBetween} 
+      <SettingsFormView
+        workingMode={this.props.modes.get('working').get('minutes')}
+        restingMode={this.props.modes.get('resting').get('minutes')}
+        pauseBetween={this.props.pauseBetween}
       />
     );
   }
@@ -38,8 +38,15 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch =>
   ({
-    settingsSetMode: ({mode, value}) => { dispatch(settingsSetMode({mode, value})); },
+    settingsSetMode: ({ mode, value }) => { dispatch(settingsSetMode({ mode, value })); },
     settingsSetPauseBetween: (newValue) => { dispatch(settingsSetPauseBetween(newValue)); },
   });
+
+SettingsForm.propTypes = {
+  modes: PropTypes.objectOf(PropTypes.any),
+  pauseBetween: PropTypes.bool,
+  settingsSetMode: PropTypes.func,
+  settingsSetPauseBetween: PropTypes.func,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(SettingsForm);

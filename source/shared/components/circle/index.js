@@ -14,24 +14,25 @@ export default (React) => {
     trailColor: color.whiteSmoke,
   };
 
-  const containerStyle = {
-    width: '260px',
-    height: '260px',
-  };
+  const getContainerStyle = (size = 260) => ({
+    width: `${size}px`,
+    height: `${size}px`,
+  });
 
   const circle = (props) => {
-    const { progress } = props;
+    const { progress, size } = props;
     return (
       <Circle
         progress={progress}
         options={options}
-        containerStyle={containerStyle}
+        containerStyle={getContainerStyle(size)}
       />
     );
   };
 
   circle.propTypes = {
     progress: number.isRequired,
+    size: number,
   };
 
   return circle;

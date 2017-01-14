@@ -1,6 +1,9 @@
-// import { StyleSheet, css } from 'aphrodite/no-important';
-import tinycolor from 'tinycolor2';
 import { css, withStyles } from '../../with-styles';
+import {
+  lighten,
+  darken,
+  desaturate,
+} from '../../utils/color-functions';
 import createSafeSVG from '../safe-svg';
 
 export default (React) => {
@@ -41,23 +44,24 @@ export default (React) => {
     styles: objectOf(any),
   };
 
-  return withStyles(({ color, spacing }) => ({
+  return withStyles(({ color, flex, spacing, unit }) => ({
     button: {
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-      minWidth: '160px',
+      display: flex.display,
+      justifyContent: flex.center,
+      alignItems: flex.center,
+      minWidth: unit(7),
       backgroundColor: color.foam,
-      border: '2px solid rgba(36,69,69,0.40)',
+      border: `2px solid ${lighten(color.blueBayoux, 20)}`,
       padding: `${spacing.sm} ${spacing.md}`,
       color: color.blueBayoux,
-      fontSize: '18px',
+      fontSize: unit(3),
       fontWeight: 700,
       textTransform: 'uppercase',
       transition: '0.2s ease-out',
       ':hover': {
-        backgroundColor: tinycolor(color.foam).desaturate(25).toString(),
-        color: tinycolor(color.blueBayoux).darken(10).toString(),
+        backgroundColor: desaturate(color.foam, 25),
+        color: darken(color.blueBayoux, 10),
+        border: `2px solid ${lighten(color.blueBayoux, 10)}`,
       },
     },
     img: {

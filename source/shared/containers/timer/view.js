@@ -1,14 +1,16 @@
 import { StyleSheet, css } from 'aphrodite/no-important';
-import baseStyles from '../../constants/styles';
+import baseStyles from '../../with-styles/base-theme';
 import createCircle from '../../components/circle';
 import createClock from '../../components/clock';
 import createTimerButton from './components/button';
 
+const circleSize = 280;
+
 const styles = StyleSheet.create({
   circleWrapper: {
     position: 'relative',
-    width: '260px',
-    height: '260px',
+    width: `${circleSize}px`,
+    height: `${circleSize}px`,
     margin: '0 auto',
   },
   circle: {
@@ -55,6 +57,7 @@ export default (React) => {
         <div className={css(styles.circleWrapper)}>
           <div className={css(styles.circle)}>
             <Circle
+              size={circleSize}
               progress={progress}
             />
           </div>

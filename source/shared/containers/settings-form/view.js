@@ -1,3 +1,5 @@
+import createCheckboxInput from '../../components/checkboxInput';
+
 export default (React) => {
   const {
     number,
@@ -14,15 +16,32 @@ export default (React) => {
       pauseBetween,
       handleWorkingChange,
       handleRestingChange,
-      setPauseBetween,
+      handlePauseBetweenChange,
+      update,
       ...rest
     } = props;
 
+    const CheckboxInput = createCheckboxInput(React);
+
     return (
       <div {...rest}>
-        <input value={workingMode} onChange={handleWorkingChange} />
-        <input value={restingMode} onChange={handleRestingChange} />
-        <p>{pauseBetween && 'Sí'}</p>
+        <p>
+          <label htmlFor="workingMode">Working cycle minutes</label>
+          <input id="workingMode" type="number" value={workingMode} onChange={handleWorkingChange} />
+        </p>
+        <p>
+          <label htmlFor="restingMode">Resting cycle minutes</label>
+          <input id="restingMode" type="number" value={restingMode} onChange={handleRestingChange} />
+        </p>
+        <CheckboxInput
+          label="Pause timer between pomodoros"
+          id="pauseBetween"
+          checked={pauseBetween}
+          onChange={handlePauseBetweenChange}
+        />
+        <p>
+          <button onClick={update}>Submit</button>
+        </p>
       </div>
     );
   };
@@ -34,7 +53,8 @@ export default (React) => {
     pauseBetween: bool,
     handleWorkingChange: func,
     handleRestingChange: func,
-    setPauseBetween: func,
+    handlePauseBetweenChange: func,
+    update: func,
   };
 
   return settingsForm;

@@ -2,10 +2,10 @@ import React, {
   Component,
   PropTypes,
 } from 'react';
+import * as Immutable from 'immutable';
 import { connect } from 'react-redux';
 import {
-  settingsSetMode,
-  settingsSetPauseBetween,
+  settingsSet,
 } from '../../redux/modules/settings';
 import createSettingsFormView from './view';
 
@@ -16,8 +16,9 @@ class SettingsForm extends Component {
     super(props);
     this.handleWorkingChange = this.handleWorkingChange.bind(this);
     this.handleRestingChange = this.handleRestingChange.bind(this);
+    this.handlePauseBetweenChange = this.handlePauseBetweenChange.bind(this);
     this.setMode = this.setMode.bind(this);
-    this.setPauseBetween = this.setPauseBetween.bind(this);
+    this.update = this.update.bind(this);
     this.state = {
       msg: 'Settings',
       workingMode: this.props.modes.get('working').get('minutes'),
@@ -31,17 +32,19 @@ class SettingsForm extends Component {
     this.setState({
       [`${mode}Mode`]: parsedValue,
     });
-    this.props.setMode({
-      mode,
-      value: {
-        name: this.props.modes.get(mode).get('name'),
-        minutes: parsedValue,
-      },
-    });
   }
 
-  setPauseBetween(newValue) {
-
+  update() {
+    const modes = Immutable.fromJS(this.props.modes);
+    const newWorkingMode = modes.get('working').set('minutes', this.state.workingMode);
+    const newRestingMode = modes.get('resting').set('minutes', this.state.restingMode);
+    this.props.update({
+      modes: modes.merge({
+        working: newWorkingMode,
+        resting: newRestingMode,
+      }),
+      pauseBetween: this.state.pauseBetween,
+    });
   }
 
   handleWorkingChange(e) {
@@ -52,6 +55,12 @@ class SettingsForm extends Component {
     this.setMode('resting', e.target.value);
   }
 
+  handlePauseBetweenChange() {
+    this.setState({
+      pauseBetween: !this.state.pauseBetween,
+    });
+  }
+
   render() {
     return (
       <SettingsFormView
@@ -60,7 +69,8 @@ class SettingsForm extends Component {
         pauseBetween={this.state.pauseBetween}
         handleWorkingChange={this.handleWorkingChange}
         handleRestingChange={this.handleRestingChange}
-        setPauseBetween={this.setPauseBetween}
+        handlePauseBetweenChange={this.handlePauseBetweenChange}
+        update={this.update}
       />
     );
   }
@@ -73,15 +83,13 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch =>
   ({
-    setMode: ({ mode, value }) => { dispatch(settingsSetMode({ mode, value })); },
-    setPauseBetween: (newValue) => { dispatch(settingsSetPauseBetween(newValue)); },
+    update: (newValue) => { dispatch(settingsSet(newValue)); },
   });
 
 SettingsForm.propTypes = {
   modes: PropTypes.objectOf(PropTypes.any),
   pauseBetween: PropTypes.bool,
-  setMode: PropTypes.func,
-  setPauseBetween: PropTypes.func,
+  update: PropTypes.func,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(SettingsForm);

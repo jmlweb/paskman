@@ -15,8 +15,11 @@ export default (React) => {
   const { string } = React.PropTypes;
 
   const safeSvg = (props) => {
-    const { filename, altText, ...rest } = props;
-    return <img {...rest} src={`/img/${filename}.${getExt()}`} alt={altText || ''} />;
+    const { filename, ...rest } = props;
+    if (!rest.alt) {
+      rest.alt = ' ';
+    }
+    return <img {...rest} src={`/img/${filename}.${getExt()}`} role="presentation" />;
   };
 
   safeSvg.propTypes = {

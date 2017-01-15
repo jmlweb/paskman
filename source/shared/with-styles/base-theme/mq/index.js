@@ -2,5 +2,12 @@ import sizes from '../sizes';
 
 const sizesKeys = Object.keys(sizes);
 
-const minWidthMedia = (size) => `@media (min-width: ${size}px)`;
-const maxWidthMedia = (size) => `@media (max-width: ${size}px)`;
+const mq = {};
+
+const minWidthMedia = size => `@media (min-width: ${size}px)`;
+
+sizesKeys.forEach((sizeKey) => {
+  mq[sizeKey] = minWidthMedia(sizes[sizeKey]);
+});
+
+export default mq;

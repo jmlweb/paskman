@@ -9,10 +9,10 @@ const jsDevInclude = [
   path.join(__dirname, 'app-home.js'),
 ];
 
-const newModule = Object.assign({}, defaultConfig.module);
+const newModule = { ...defaultConfig.module };
 newModule.loaders[1].include = jsDevInclude;
 
-export default Object.assign({}, defaultConfig, {
+export default { ...defaultConfig,
   devtool: 'eval',
   plugins: [
     new webpack.NoErrorsPlugin(),
@@ -21,4 +21,4 @@ export default Object.assign({}, defaultConfig, {
     }),
   ],
   module: newModule,
-});
+};

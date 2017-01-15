@@ -35,7 +35,7 @@ const settings = (state = initialState, action) => {
   switch (action.type) {
     case SETTINGS_SET_MODE:
       return state.merge({
-        modes: state.get('modes').set(action.payload.mode, action.payload.value),
+        modes: state.get('modes').set(action.payload.mode, action.payload.value).toJS(),
       });
     case SETTINGS_SET_PAUSE_BETWEEN:
       return state.merge({

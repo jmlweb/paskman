@@ -1,9 +1,9 @@
 import * as Immutable from 'immutable';
-import { 
-  createActions, 
+import {
+  createActions,
   handleActions,
 } from 'redux-actions';
-import { createSelector } from 'reselect'
+import { createSelector } from 'reselect';
 import moment from 'moment';
 import {
   MODES,
@@ -35,7 +35,7 @@ export const {
   TOGGLE_MODE,
   ADD_TO_TABLE,
   PUSH_TIME,
-  RESET
+  RESET,
 );
 
 /* DEFAULTS */
@@ -85,8 +85,8 @@ export const elapsedTimeSelector = createSelector(
         return reduced;
       }
     }
-    return 0;  
-  }
+    return 0;
+  },
 );
 
 export const amountTimeSelector = createSelector(
@@ -97,26 +97,24 @@ export const amountTimeSelector = createSelector(
       return 0;
     }
     return modeTarget - elapsedTime;
-  }
-)
+  },
+);
 
 
 /* REDUCER */
 const initialState = Immutable.Map(pomodoroMockup);
 
 const pomodoro = handleActions({
-  [configLoaded]: (state, action) => state.merge({
+  [configLoaded]: state => state.merge({
     hasConfig: true,
   }),
   [setTarget]: (state, action) => state.merge({
     target: action.payload,
   }),
-  [toggleActive]: (state, action) => {
-    return state.set('isActive', !state.get('isActive'));
-  },
-  [toggleMode]: (state, action) => state.set(
-    'mode', 
-    state.get('mode') === MODES.working.name ? MODES.resting.name : MODES.working.name
+  [toggleActive]: state => state.set('isActive', !state.get('isActive')),
+  [toggleMode]: state => state.set(
+    'mode',
+    state.get('mode') === MODES.working.name ? MODES.resting.name : MODES.working.name,
   ),
   [pushTime]: (state, action) => {
     const type = state.get('isActive') ? 'end' : 'start';
@@ -124,14 +122,14 @@ const pomodoro = handleActions({
     const pushedMode = type === 'start' ? mode.push(Immutable.Map({})) : mode;
     const pushedSize = pushedMode.size - 1;
     const appendedMode = pushedMode.set(
-      pushedSize, 
-      pushedMode.get(pushedSize).set(type, action.payload)
+      pushedSize,
+      pushedMode.get(pushedSize).set(type, action.payload),
     );
     return state.merge({
       table: state.get('table').set(state.get('mode'), appendedMode),
     });
   },
-  [reset]: (state, action) =>  state.merge(pomodoroMockup),
+  [reset]: state => state.merge(pomodoroMockup),
 }, initialState);
 
 export default pomodoro;

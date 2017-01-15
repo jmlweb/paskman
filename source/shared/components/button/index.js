@@ -24,11 +24,15 @@ export default (React) => {
   };
 
   const button = (props) => {
-    const { styles, action, actionLabel, icon, ...rest } = props;
+    const { styles, size = 'md', action, actionLabel, icon, ...rest } = props;
     delete rest.theme;
+    const buttonStyles = css(
+      styles.button,
+      styles[size],
+    );
     return (
       <button
-        {...css(styles.button)}
+        {...buttonStyles}
         {...rest}
         onClick={action}
       >
@@ -38,23 +42,36 @@ export default (React) => {
   };
 
   button.propTypes = {
+    size: string,
     action: func.isRequired,
     actionLabel: string.isRequired,
     icon: string,
     styles: objectOf(any),
   };
 
-  return withStyles(({ color, flex, spacing, unit }) => ({
+  return withStyles(({ color, flex, mq, spacing, unit }) => ({
+    md: {
+      minWidth: unit(7),
+      padding: `${spacing.sm} ${spacing.md}`,
+      fontSize: unit(3),
+    },
+    lg: {
+      minWidth: unit(7),
+      padding: `${spacing.md} ${spacing.md}`,
+      fontSize: unit(3.4),
+      [mq.md]: {
+        minWidth: unit(9),
+        padding: `${spacing.md} ${spacing.lg}`,
+        fontSize: unit(4),
+      },
+    },
     button: {
       display: flex.display,
       justifyContent: flex.center,
       alignItems: flex.center,
-      minWidth: unit(7),
       backgroundColor: color.foam,
       border: `2px solid ${lighten(color.blueBayoux, 20)}`,
-      padding: `${spacing.sm} ${spacing.md}`,
       color: color.blueBayoux,
-      fontSize: unit(3),
       fontWeight: 700,
       textTransform: 'uppercase',
       transition: '0.2s ease-out',

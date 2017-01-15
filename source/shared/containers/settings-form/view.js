@@ -4,15 +4,24 @@ export default (React) => {
     objectOf,
     any,
     bool,
+    func,
   } = React.PropTypes;
 
   const settingsForm = (props) => {
-    const { workingMode, restingMode, pauseBetween, ...rest } = props;
+    const {
+      workingMode,
+      restingMode,
+      pauseBetween,
+      handleWorkingChange,
+      handleRestingChange,
+      setPauseBetween,
+      ...rest
+    } = props;
 
     return (
       <div {...rest}>
-        <p>{workingMode}</p>
-        <p>{restingMode}</p>
+        <input value={workingMode} onChange={handleWorkingChange} />
+        <input value={restingMode} onChange={handleRestingChange} />
         <p>{pauseBetween && 'Sí'}</p>
       </div>
     );
@@ -23,6 +32,9 @@ export default (React) => {
     restingMode: number,
     modes: objectOf(any),
     pauseBetween: bool,
+    handleWorkingChange: func,
+    handleRestingChange: func,
+    setPauseBetween: func,
   };
 
   return settingsForm;

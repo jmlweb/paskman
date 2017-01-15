@@ -11,7 +11,7 @@
   "scripts": {
     "clean": "rimraf public",
     "build:webpack": "webpack --config webpack.config.prod.babel.js",
-    "build:webpack:dev": "webpack --config webpack.config.dev.babel.js --watch",
+    "build:webpack:dev": "webpack --config webpack.config.dev.babel.js --watch --progress",
     "build": "clear && npm run clean && npm run imagemin && npm run build:webpack",
     "build:dev": "clear && npm run clean && npm run imagemin && npm run build:webpack:dev",
     "start": "clear && better-npm-run start",

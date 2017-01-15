@@ -2,7 +2,6 @@ import React, {
   Component,
   PropTypes,
 } from 'react';
-import * as Immutable from 'immutable';
 import { connect } from 'react-redux';
 import moment from 'moment';
 import {
@@ -82,6 +81,37 @@ class Timer extends Component {
     return 0;
   }
 
+  getToggledMode() {
+    const { mode, modes } = this.props;
+    return mode === modes.get('working').name ? modes.get('resting').name : modes.get('working').name;
+  }
+
+  timeFinished() {
+    clearInterval(this.interval);
+    this.setState({
+      isToggling: true,
+      amountTime: 0,
+    });
+    this.pushTime();
+    this.props.toggleActive();
+    if (this.props.mode === this.props.modes.get('working').get('name')) {
+      this.props.toggleMode();
+    } else {
+      this.props.reset();
+    }
+    setTimeout(() => {
+      this.setState({
+        amountTime: this.calculateAmountTime(),
+        isToggling: false,
+      });
+      if (!this.props.pauseBetween) {
+        setTimeout(() => {
+          this.toggleAction(true);
+        }, REINIT_TIMEOUT);
+      }
+    }, RELOAD_TIMEOUT);
+  }
+
   calculateAmountTime() {
     const elapsedTime = this.getElapsedTime();
     const modeTime = this.props.modeTarget;
@@ -106,37 +136,6 @@ class Timer extends Component {
         this.timeFinished();
       }
     }, INTERVAL_TIME);
-  }
-
-  timeFinished() {
-    clearInterval(this.interval);
-    this.setState({
-      isToggling: true,
-      amountTime: 0,
-    });
-    this.pushTime();
-    this.props.toggleActive();
-    if (this.props.mode === this.props.modes.get('working').get('name')) {
-      this.props.toggleMode();
-    } else {
-      this.props.reset();
-    }
-    setTimeout(() => {
-      this.setState({
-        amountTime: this.calculateAmountTime(),
-        isToggling: false,
-      });
-      if (!PAUSE_BETWEEN) {
-        setTimeout(() => {
-          this.toggleAction(true);
-        }, REINIT_TIMEOUT);
-      }
-    }, RELOAD_TIMEOUT);
-  }
-
-  getToggledMode() {
-    const { mode, modes } = this.props;
-    return mode === modes.get('working').name ? modes.get('resting').name : modes.get('working').name;
   }
 
   pushTime() {
@@ -172,6 +171,7 @@ const mapStateToProps = state => ({
   isActive: state.pomodoro.get('isActive'),
   mode: state.pomodoro.get('mode'),
   modes: state.settings.get('modes'),
+  pauseBetween: state.settings.get('pauseBetween'),
   target: state.pomodoro.get('target'),
   modeTarget: modeTargetSelector(state),
   modeTable: modeTableSelector(state),
@@ -182,7 +182,7 @@ const mapDispatchToProps = dispatch =>
   ({
     setTarget: (newTarget) => { dispatch(setTarget(newTarget)); },
     toggleActive: () => { dispatch(toggleActive()); },
-    toggleMode: (newMode) => { dispatch(toggleMode()); },
+    toggleMode: () => { dispatch(toggleMode()); },
     pushTime: (newTime) => { dispatch(pushTime(newTime)); },
     reset: () => { dispatch(reset()); },
     configLoaded: () => { dispatch(configLoaded()); },
@@ -193,14 +193,17 @@ export default connect(mapStateToProps, mapDispatchToProps)(Timer);
 Timer.propTypes = {
   isActive: PropTypes.bool,
   mode: PropTypes.string,
+  hasConfig: PropTypes.bool,
+  pauseBetween: PropTypes.bool,
   modes: PropTypes.objectOf(
     PropTypes.any,
   ),
-  target: PropTypes.objectOf(
+  modeTarget: PropTypes.number,
+  modeTable: PropTypes.objectOf(
     PropTypes.any,
   ),
-  modeTarget: PropTypes.number,
   setTarget: PropTypes.func,
+  configLoaded: PropTypes.func,
   toggleActive: PropTypes.func,
   toggleMode: PropTypes.func,
   pushTime: PropTypes.func,

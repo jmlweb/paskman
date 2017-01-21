@@ -24,7 +24,7 @@ export default (React) => {
   };
 
   const button = (props) => {
-    const { styles, size = 'md', action, actionLabel, icon, ...rest } = props;
+    const { styles, size = 'md', actionLabel, icon, ...rest } = props;
     delete rest.theme;
     const buttonStyles = css(
       styles.button,
@@ -34,7 +34,6 @@ export default (React) => {
       <button
         {...buttonStyles}
         {...rest}
-        onClick={action}
       >
         {getIcon(icon, styles)} {actionLabel}
       </button>
@@ -43,7 +42,7 @@ export default (React) => {
 
   button.propTypes = {
     size: string,
-    action: func.isRequired,
+    onClick: func,
     actionLabel: string.isRequired,
     icon: string,
     styles: objectOf(any),

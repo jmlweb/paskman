@@ -15,7 +15,7 @@ export default (React) => {
 
   const Button = createButton(React);
   const timerButton = ({ toggleAction, isActive, isToggling }) =>
-    <Button size="lg" action={toggleAction} actionLabel={getLabel(isActive, isToggling)} icon="timer" />;
+    <Button size="lg" onClick={toggleAction} actionLabel={getLabel(isActive, isToggling)} icon="timer" />;
 
   timerButton.propTypes = {
     isActive: bool,

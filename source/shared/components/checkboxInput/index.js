@@ -10,31 +10,28 @@ export default (React) => {
   } = React.PropTypes;
 
   const checkboxInput = (props) => {
-    const { styles, label, checked, onChange, id = Date.now().toString(), ...rest } = props;
+    const { styles, checked, onChange, id = Date.now().toString(), ...rest } = props;
     delete rest.theme;
     return (
-      <div>
-        <input
-          id={id}
-          type="checkbox"
-          checked={checked}
-          onChange={onChange}
-        />
-        {label && <label {...css(styles.label)} htmlFor={id}>{label}</label>}
-      </div>
+      <input
+        id={id}
+        type="checkbox"
+        checked={checked}
+        onChange={onChange}
+        {...css(styles.input)}
+      />
     );
   };
 
   checkboxInput.propTypes = {
-    label: string,
     checked: bool.isRequired,
-    onChange: func,
+    onChange: func.isRequired,
     id: string.isRequired,
     styles: objectOf(any),
   };
 
   return withStyles(({ spacing }) => ({
-    label: {
+    input: {
       marginRight: spacing.xs,
     },
   }))(checkboxInput);

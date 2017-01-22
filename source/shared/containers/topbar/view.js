@@ -1,7 +1,8 @@
 import { IndexLink, Link } from 'react-router';
 import { css, withStyles } from '../../with-styles';
-import createLogo from '../logo';
+import createLogo from '../../components/logo';
 import { createFlexBox } from '../../layouts/flex';
+import { lighten } from '../../utils/color-functions';
 
 export default (React) => {
   const {
@@ -22,6 +23,7 @@ export default (React) => {
       isOpen && styles.expanded,
     );
     const btnClassNames = css(
+      styles.btn,
       styles.transition,
       isOpen && styles.rotated,
     );
@@ -34,15 +36,15 @@ export default (React) => {
               <span {...css(styles.logoText)}>PASKMAN</span>
             </FlexBox>
           </IndexLink>
-          <FlexBox items="itemsCenter">
+          <div {...css(styles.menuWrapper)}>
             <nav {...menuClassNames}>
-              <IndexLink {...css(styles.menuItem)} to="/">Home</IndexLink>
-              <Link {...css(styles.menuItem)} to="/settings">Settings</Link>
+              <IndexLink onClick={toggleOpen} {...css(styles.menuItem)} to="/">Home</IndexLink>
+              <Link onClick={toggleOpen} {...css(styles.menuItem)} to="/settings">Settings</Link>
             </nav>
             <button onClick={toggleOpen} {...css(styles.triggerMenu)}>
               <img {...btnClassNames} src="/img/trigger-menu.svg" alt="Menu" />
             </button>
-          </FlexBox>
+          </div>
         </FlexBox>
       </header>
     );
@@ -54,10 +56,13 @@ export default (React) => {
     styles: objectOf(any),
   };
 
-  return withStyles(({ color, font, spacing, unit }) => ({
+  return withStyles(({ color, font, mq, spacing, unit }) => ({
     header: {
       backgroundColor: color.sweetPink,
       padding: spacing.sm,
+      [mq.lg]: {
+        padding: `${spacing.sm} ${spacing.md}`,
+      },
     },
     flex: {
       display: 'flex',
@@ -76,23 +81,59 @@ export default (React) => {
     transition: {
       transition: '0.4s ease-in-out',
     },
+    btn: {
+      [mq.lg]: {
+        display: 'none',
+      },
+    },
     rotated: {
       transform: 'rotate(90deg)',
     },
+    menuWrapper: {
+      display: 'flex',
+    },
     menu: {
-      marginRight: spacing.lg,
+      right: 0,
+      position: 'absolute',
       overflow: 'hidden',
-      maxWidth: 0,
+      maxHeight: 0,
+      top: '63px',
+      width: '100%',
+      borderBottom: `3px solid ${lighten(color.heath, 40)}`,
+      zIndex: 9,
+      [mq.lg]: {
+        position: 'static',
+        maxHeight: unit(120),
+        borderBottom: 0,
+        width: 'auto',
+        marginRight: `-${spacing.sm}`,
+      },
+
     },
     expanded: {
-      maxWidth: unit(120),
+      maxHeight: unit(120),
     },
     menuItem: {
-      marginLeft: spacing.xl,
+      background: color.heath,
+      color: '#fff',
+      display: 'block',
       lineHeight: 1.4,
       fontWeight: font.bold,
-      color: color.heath,
       textTransform: 'uppercase',
+      padding: spacing.sm,
+      textAlign: 'center',
+      width: '100%',
+      borderBottom: `1px solid ${lighten(color.heath, 25)}`,
+      [mq.lg]: {
+        display: 'inline-block',
+        background: 'transparent',
+        color: color.heath,
+        borderBottom: 0,
+        width: 'auto',
+        ':last-child': {
+          marginRight: `-${spacing.sm}`,
+        },
+      },
     },
   }))(navbar);
 };

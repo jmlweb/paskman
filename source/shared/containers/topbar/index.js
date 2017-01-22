@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import createNavbar from '../../components/navbar';
+import createTopbarView from './view';
 
-const Navbar = createNavbar(React);
+const TopbarView = createTopbarView(React);
 
 export default class Topbar extends Component {
   constructor(props) {
@@ -20,7 +20,7 @@ export default class Topbar extends Component {
 
   render() {
     return (
-      <Navbar isOpen={this.state.isOpen} toggleOpen={this.toggleOpen} />
+      <TopbarView isOpen={this.state.isOpen} toggleOpen={this.toggleOpen} />
     );
   }
 }

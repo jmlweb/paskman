@@ -28,7 +28,7 @@ class SettingsForm extends Component {
   }
 
   setMode(mode, value) {
-    const parsedValue = value ? parseFloat(value) : 0;
+    const parsedValue = value ? parseFloat(value) : '';
     this.setState({
       [`${mode}Mode`]: parsedValue,
     });

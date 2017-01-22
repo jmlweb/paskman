@@ -1,6 +1,7 @@
 import { css, withStyles } from '../../with-styles';
 import createCircle from '../../components/circle';
 import createClock from '../../components/clock';
+import createProgress from '../../components/progress';
 import createTimerButton from './components/button';
 import { createFlexBox } from '../../layouts/flex';
 
@@ -18,6 +19,7 @@ export default (React) => {
   const FlexBox = createFlexBox(React);
   const Circle = createCircle(React);
   const Clock = createClock(React);
+  const Progress = createProgress(React);
   const TimerButton = createTimerButton(React);
 
   const layout = (props) => {
@@ -26,6 +28,11 @@ export default (React) => {
     return (
       <div {...rest}>
         <div {...css(styles.circleWrapper)}>
+          <div {...css(styles.progress)}>
+            <Progress
+              amount={progress}
+            />
+          </div>
           <div {...css(styles.circle)}>
             <Circle
               size={circleSize}
@@ -60,27 +67,38 @@ export default (React) => {
     toggleAction: func.isRequired,
   };
 
-  return withStyles(({ spacing }) => ({
+  return withStyles(({ mq, spacing }) => ({
     circleWrapper: {
       position: 'relative',
-      width: `${circleSize}px`,
-      height: `${circleSize}px`,
       margin: '0 auto',
+      [mq.md]: {
+        width: `${circleSize}px`,
+        height: `${circleSize}px`,
+      },
     },
     circle: {
-      padding: spacing.lg,
-      paddingBottom: spacing.md,
-      display: 'flex',
-      justifyContent: 'center',
+      display: 'none',
+      [mq.md]: {
+        padding: `${spacing.lg} ${spacing.lg} ${spacing.md}`,
+        display: 'flex',
+        justifyContent: 'center',
+      },
+    },
+    progress: {
+      padding: `${spacing.lg} ${spacing.lg} ${spacing.xs}`,
+      [mq.md]: {
+        display: 'none',
+      },
     },
     clock: {
-      position: 'absolute',
-      top: 0,
-      right: 0,
-      bottom: 0,
-      left: 0,
-      padding: spacing.lg,
-      paddingBottom: spacing.md,
+      padding: `${spacing.lg} ${spacing.lg} ${spacing.md}`,
+      [mq.md]: {
+        position: 'absolute',
+        top: 0,
+        right: 0,
+        bottom: 0,
+        left: 0,
+      },
     },
     button: {
       display: 'flex',

@@ -33,7 +33,7 @@ export default (React) => {
     };
 
     const inputStyle = {
-      width: '40px',
+      width: '50px',
       textAlign: 'center',
       marginRight: '20px',
     };

@@ -4,7 +4,6 @@ import {
   handleActions,
 } from 'redux-actions';
 import { createSelector } from 'reselect';
-import moment from 'moment';
 import {
   MODES,
 } from '../settings';
@@ -18,7 +17,6 @@ const TOGGLE_MODE = 'TOGGLE_MODE';
 const ADD_TO_TABLE = 'ADD_TO_TABLE';
 const PUSH_TIME = 'PUSH_TIME';
 const RESET = 'RESET';
-
 
 export const {
   configLoaded,
@@ -70,36 +68,6 @@ export const modeTableSelector = createSelector(
   tableSelector,
   (mode, table) => table.get(mode),
 );
-
-export const elapsedTimeSelector = createSelector(
-  modeTableSelector,
-  (modeTable) => {
-    const differencesArr = modeTable.map((timeItem) => {
-      const timeStart = moment(timeItem.get('start'));
-      const timeEnd = moment(timeItem.get('end'));
-      return timeEnd.diff(timeStart);
-    }).toJS();
-    if (differencesArr.length) {
-      const reduced = differencesArr.reduce((total, n) => total + n);
-      if (!isNaN(reduced) && reduced > 0) {
-        return reduced;
-      }
-    }
-    return 0;
-  },
-);
-
-export const amountTimeSelector = createSelector(
-  modeTargetSelector,
-  elapsedTimeSelector,
-  (modeTarget, elapsedTime) => {
-    if (elapsedTime > modeTarget) {
-      return 0;
-    }
-    return modeTarget - elapsedTime;
-  },
-);
-
 
 /* REDUCER */
 const initialState = Immutable.Map(pomodoroMockup);

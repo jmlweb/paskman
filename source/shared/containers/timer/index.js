@@ -13,7 +13,6 @@ import {
   reset,
   modeTargetSelector,
   modeTableSelector,
-  elapsedTimeSelector,
 } from '../../redux/modules/pomodoro';
 import {
   INTERVAL_TIME,
@@ -175,7 +174,6 @@ const mapStateToProps = state => ({
   target: state.pomodoro.get('target'),
   modeTarget: modeTargetSelector(state),
   modeTable: modeTableSelector(state),
-  elapsedTime: elapsedTimeSelector(state),
 });
 
 const mapDispatchToProps = dispatch =>

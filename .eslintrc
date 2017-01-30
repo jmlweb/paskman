@@ -27,12 +27,6 @@
     "compat/compat": 2,
   },
   "settings": {
-    "targets": [
-      "chrome >= 50",
-      "firefox",
-      "edge",
-      "safari >= 9"
-    ],
     "compiler": "babel"
   }
 }

@@ -1,12 +1,14 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import express from 'express';
 import webpack from 'webpack';
 import webpackDevMiddleware from 'webpack-dev-middleware';
 import {
-  createIsomorphicWebpack
+  createIsomorphicWebpack,
 } from 'isomorphic-webpack';
 import {
-  renderToString
+  renderToString,
 } from 'react-dom/server';
+import Helmet from 'react-helmet';
 import webpackConfiguration from '../webpack.configuration';
 
 const compiler = webpack(webpackConfiguration);
@@ -24,15 +26,19 @@ app.use(webpackDevMiddleware(compiler, {
     colors: true,
     hash: false,
     timings: false,
-    version: false
-  }
+    version: false,
+  },
 }));
 
 const {
   createCompilationPromise,
-  evalBundleCode
+  evalBundleCode,
 } = createIsomorphicWebpack(webpackConfiguration, {
-  useCompilationPromise: true
+  useCompilationPromise: true,
+  nodeExternalsWhitelist: [
+    /^react-router/,
+    /^history/,
+  ],
 });
 
 app.use(async (req, res, next) => {
@@ -41,26 +47,44 @@ app.use(async (req, res, next) => {
   next();
 });
 
-const renderFullPage = (body) => {
-  // eslint-disable-next-line no-restricted-syntax
-  return `
-  <!doctype html>
-  <html>
-    <head></head>
+const renderFullPage = (head, body) =>
+  `<!doctype html>
+  <html ${head.htmlAttributes.toString()}>
+    <head>${head.title.toString()}${head.meta.toString()}${head.style.toString()}</head>
     <body>
-      <div id='app'>${body}</div>
+      <div style="opacity: 0; transition: opacity: 0.7s;" id='app'>${body}</div>
       <script src='/static/app.js'></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script>
+      <script>
+       WebFont && WebFont.load({
+          google: {
+            families: ['Dosis:400,500,700']
+          }
+        });
+      </script>
     </body>
-  </html>
-  `;
-};
+  </html>`;
 
-app.get('/', (req, res) => {
-  const requestUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
-
-  const app = renderToString(evalBundleCode(requestUrl).default);
-
-  res.send(renderFullPage(app));
+app.get('/*', (req, res) => {
+  const requestUrl = `${req.protocol}://${req.get('host')}${req.originalUrl}`;
+  const appRender = renderToString(evalBundleCode(requestUrl).default);
+  const head = Helmet.rewind();
+  res.send(renderFullPage(head, appRender));
 });
+
+// app.get('/*', (req, res) => {
+//   const requestUrl = `${req.protocol}://${req.get('host')}${req.originalUrl}`;
+//   evalCode(requestUrl);
+//   const appRender = renderToString(frontApp.default);
+//   const head = Helmet.rewind();
+//   res.send(renderFullPage(head, appRender));
+// });
+
+// app.get('/*', (req, res) => {
+//   evalBundleCode(`${req.protocol}://${req.get('host')}${req.originalUrl}`);
+//   const appBody = renderToString(require('../app').default);
+//   const head = Helmet.rewind();
+//   res.send(renderFullPage(head, appBody));
+// });
 
 app.listen(8000);

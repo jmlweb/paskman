@@ -1,0 +1,47 @@
+@import "settings/colors";
+@import "settings/sizes";
+@import "settings/spacing";
+
+.tasksInfoBar {
+  display: flex;
+  flex: 12;
+  background: #fff;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid $hawkesBlue;
+}
+
+.info {
+  padding-left: $spacing-sm;
+}
+
+.infoText {
+  font-size: 15px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: $chetwodeBlue;
+  margin: 0;
+  padding: 2px 0;
+  @media(min-width: $size-md) {
+    display: inline-block;
+    margin-right: $spacing-md;
+  }
+}
+
+.strong {
+  color: $downRiver;
+}
+
+.btn {
+  background: $mystic;
+  border: 0;
+  margin: 0;
+  display: flex;
+  width: 12vh;
+  height: 12vh;
+  align-items: center;
+  justify-content: center;
+  &:hover {
+    background: $hawkesBlue;
+  }
+}

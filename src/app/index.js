@@ -1,11 +1,19 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import style from './style.scss';
+import { render } from 'react-dom';
+import { browserHistory } from 'react-router';
+import { syncHistoryWithStore } from 'react-router-redux';
+import configureStore from './redux';
+import Root from './containers/root';
 
-const app = <div className={style.greetings}>Hello, World 2!</div>;
+const store = configureStore();
+const history = syncHistoryWithStore(browserHistory, store);
+
+const app = <Root store={store} history={history} />;
 
 if (typeof ISOMORPHIC_WEBPACK === 'undefined') {
-  ReactDOM.render(app, document.getElementById('app'));
+  const appWrapper = document.getElementById('app');
+  appWrapper.style.opacity = 1;
+  render(app, appWrapper);
 }
 
 export default app;

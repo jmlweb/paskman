@@ -1,0 +1,50 @@
+@import 'settings/colors';
+@import "settings/timings";
+
+.menu {
+  background: $saintPatrickBlue;
+  bottom: 0;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  left: 0;
+  margin: 0;
+  max-height: 0;
+  overflow: hidden;
+  padding: 0;
+  position: fixed;
+  right: 0;
+  top: 10vh;
+  transition: max-height 0.4s $easeInBack;
+  &.open {
+    max-height: 90vh;
+    // transition: max-height 0.4s $easeOutBack;
+    li {
+      opacity: 1;
+    }
+  }
+  li {
+    align-items: center;
+    border-bottom: 2px solid $chetwodeBlue;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.4s $easeInOutQuad;
+    &:last-child {
+      border-bottom: 2px solid transparent;
+    }
+  }
+  a {
+    color: #fff;
+    font-size: 22px;
+    text-decoration: none;
+  }
+}
+
+.icon {
+  fill: #ffffff;
+  margin-right: 4px;
+  margin-top: -5px;
+}

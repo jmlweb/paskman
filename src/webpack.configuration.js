@@ -32,8 +32,20 @@ export default {
         test: /\.js$/,
       },
       {
-        loader: 'raw-loader',
         test: /\.svg$/,
+        use: [
+          {
+            loader: 'raw-loader',
+          },
+          {
+            loader: 'svgo-loader',
+            options: {
+              plugins: [
+                { removeTitle: true },
+              ],
+            },
+          },
+        ],
       },
       {
         loaders: [

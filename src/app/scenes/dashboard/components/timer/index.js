@@ -1,6 +1,6 @@
 import React from 'react';
-import Btn from '../btn';
-import Clock from '../clock';
+import Btn from '../../../../components/btn';
+import Clock from '../../../../components/clock';
 import Progress from '../progress';
 import style from './style.scss';
 

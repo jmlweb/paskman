@@ -1,6 +1,6 @@
 import React from 'react';
 import MainView from './view';
-import Topbar from '../../containers/topbar';
+import Topbar from '../../components/topbar';
 
 const {
   objectOf,

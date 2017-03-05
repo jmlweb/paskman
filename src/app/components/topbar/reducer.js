@@ -14,17 +14,17 @@ export const menuToggleOpen = createAction(MENU_TOGGLE_OPEN);
 /**
  * DEFAULTS
  */
-const menuMockup = {
-  open: false,
+const topbarMockup = {
+  menuOpen: false,
 };
 
 /**
  * REDUCER
  */
-const initialState = Immutable.Map(menuMockup);
+const initialState = Immutable.Map(topbarMockup);
 
-const menu = handleActions({
-  [menuToggleOpen]: state => state.set('open', !state.get('open')),
+const topbar = handleActions({
+  [menuToggleOpen]: state => state.set('menuOpen', !state.get('menuOpen')),
 }, initialState);
 
-export default menu;
+export default topbar;

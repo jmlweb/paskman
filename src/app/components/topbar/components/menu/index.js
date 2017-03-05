@@ -1,6 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
-import SvgIcon from '../../../../components/svgicon';
+import SvgIcon from '../../../svgicon';
 import backlogSvg from './backlog.svg';
 import timerSvg from './timer.svg';
 import settingsSvg from './settings.svg';

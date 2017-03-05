@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {
   menuToggleOpen,
-} from '../../redux/modules/menu';
+} from './reducer';
 import TopbarView from './view';
 
 const { bool, func } = React.PropTypes;
@@ -20,6 +20,9 @@ class Topbar extends Component {
   toggleMenu() {
     this.props.menuToggleOpen();
   }
+  /**
+   * Handles touch events on menu
+   */
   handleTouchMove(e) {
     const currentY = e.touches[0].clientY;
     clearTimeout(this.interval);
@@ -50,7 +53,7 @@ class Topbar extends Component {
 
 function mapStateToProps(state) {
   return {
-    menuOpen: state.menu.get('open'),
+    menuOpen: state.components.topbar.get('menuOpen'),
   };
 }
 

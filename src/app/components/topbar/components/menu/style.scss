@@ -15,10 +15,10 @@
   position: fixed;
   right: 0;
   top: 10vh;
-  transition: max-height 0.4s $easeInBack;
+  transition: max-height 0.3s $easeInBack;
+  z-index: 5;
   &.open {
     max-height: 90vh;
-    // transition: max-height 0.4s $easeOutBack;
     li {
       opacity: 1;
     }

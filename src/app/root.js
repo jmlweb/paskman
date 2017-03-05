@@ -6,7 +6,7 @@ import {
   connect,
 } from 'react-redux';
 import { Router } from 'react-router';
-import createRoutes from '../../routes';
+import createRoutes from './routes';
 
 const {
   objectOf,

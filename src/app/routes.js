@@ -4,9 +4,9 @@ import {
   IndexRoute,
 } from 'react-router';
 
-import Main from './pages/main';
-import Dashboard from './pages/dashboard';
-import Backlog from './pages/backlog';
+import Main from './scenes/main';
+import Dashboard from './scenes/dashboard';
+import Backlog from './scenes/backlog';
 
 export default () => (
   <Route path="/" component={Main}>

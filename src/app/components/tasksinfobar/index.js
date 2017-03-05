@@ -1,4 +1,5 @@
 import React from 'react';
+import Clock from '../clock';
 import SvgIcon from '../svgicon';
 import style from './style.scss';
 import addSvg from './add.svg';
@@ -11,7 +12,7 @@ export default function () {
           <span className={style.strong}>No</span> tasks pending in your list
         </p>
         <p className={style.infoText}>
-          <span className={style.strong}>00:00:00</span> planned
+          <span className={style.strong}><Clock amount={0} /></span> planned
         </p>
       </div>
       <button className={style.btn}>

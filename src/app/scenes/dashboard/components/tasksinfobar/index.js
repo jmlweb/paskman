@@ -15,19 +15,16 @@ function getTasksPending(tasksPending) {
   return tasksPending;
 }
 
-const TaskInfoBar = props => (
+const TaskInfoBar = ({ tasks, amount }) => (
   <div className={style.tasksInfoBar}>
     <div className={style.info}>
       <p className={style.infoText}>
-        <span
-          className={style.strong}
-        >
-          {getTasksPending(props.tasks)}
-        </span>
-        tasks pending in your list
+        <span className={style.strong}>
+          {getTasksPending(tasks)}
+        </span> tasks pending in your list
       </p>
       <p className={style.infoText}>
-        <span className={style.strong}><Clock amount={props.amount} /></span> planned
+        <span className={style.strong}><Clock amount={amount} /></span> planned
       </p>
     </div>
     <button className={style.btn}>

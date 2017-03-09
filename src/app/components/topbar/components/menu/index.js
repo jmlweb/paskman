@@ -1,5 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
+import { Link } from 'react-router';
 import SvgIcon from '../../../svgicon';
 import backlogSvg from './backlog.svg';
 import timerSvg from './timer.svg';
@@ -13,21 +14,21 @@ const {
   number,
 } = React.PropTypes;
 
-const Menu = props =>
+const Menu = ({ menuOpen, handleTouchMove, lastY, toggleMenu, opacity }) =>
   <ul
-    className={classNames(style.menu, props.menuOpen && style.open)}
-    onTouchMove={props.handleTouchMove}
-    style={{ height: props.lastY }}
+    className={classNames(style.menu, menuOpen && style.open)}
+    onTouchMove={handleTouchMove}
+    style={{ height: lastY }}
   >
-    <li>
-      <a href="/">
-        <SvgIcon className={style.icon} svg={timerSvg} /> Timer
-      </a>
+    <li style={{ opacity }}>
+      <Link to="/" onClick={toggleMenu}>
+        <SvgIcon className={style.icon} svg={timerSvg} /> Dashboard
+      </Link>
     </li>
-    <li>
-      <a href="/">
+    <li style={{ opacity }}>
+      <Link to="/backlog" onClick={toggleMenu}>
         <SvgIcon className={style.icon} svg={backlogSvg} /> Backlog
-      </a>
+      </Link>
     </li>
     <li>
       <a href="/">
@@ -44,7 +45,9 @@ const Menu = props =>
 Menu.propTypes = {
   menuOpen: bool.isRequired,
   handleTouchMove: func.isRequired,
+  toggleMenu: func.isRequired,
   lastY: number.isRequired,
+  opacity: number.isRequired,
 };
 
 export default Menu;

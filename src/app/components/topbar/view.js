@@ -12,7 +12,7 @@ const {
   number,
 } = React.PropTypes;
 
-function TopbarView(props) {
+function TopbarView({ toggleMenu, menuOpen, handleTouchMove, lastY, opacity }) {
   return (
     <div className={style.topbar}>
       <div className={style.wrapper}>
@@ -20,14 +20,16 @@ function TopbarView(props) {
         <div className={style.nav}>
           <button
             className={style.btn}
-            onClick={props.toggleMenu}
+            onClick={toggleMenu}
           >
-            <SvgIcon svg={props.menuOpen ? openSvg : closedSvg} />
+            <SvgIcon svg={menuOpen ? openSvg : closedSvg} />
           </button>
           <Menu
-            menuOpen={props.menuOpen}
-            handleTouchMove={props.handleTouchMove}
-            lastY={props.lastY}
+            menuOpen={menuOpen}
+            toggleMenu={toggleMenu}
+            handleTouchMove={handleTouchMove}
+            lastY={lastY}
+            opacity={opacity}
           />
         </div>
       </div>
@@ -35,11 +37,16 @@ function TopbarView(props) {
   );
 }
 
+TopbarView.defaultProps = {
+  opacity: 1,
+};
+
 TopbarView.propTypes = {
   menuOpen: bool.isRequired,
   toggleMenu: func.isRequired,
   handleTouchMove: func.isRequired,
   lastY: number.isRequired,
+  opacity: number,
 };
 
 export default TopbarView;

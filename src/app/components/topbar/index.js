@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {
   menuToggleOpen,
-} from './reducer';
+} from './duck';
 import TopbarView from './view';
 
 const { bool, func } = React.PropTypes;
@@ -18,6 +18,12 @@ class Topbar extends Component {
     };
   }
   toggleMenu() {
+    if (!this.props.menuOpen) {
+      this.setState({
+        opacity: 1,
+        lastY: 9999,
+      });
+    }
     this.props.menuToggleOpen();
   }
   /**
@@ -25,19 +31,27 @@ class Topbar extends Component {
    */
   handleTouchMove(e) {
     const currentY = e.touches[0].clientY;
+    const windowHeight = window.outerHeight;
     clearTimeout(this.interval);
     this.setState({
       lastY: currentY,
+      opacity: (currentY / windowHeight) - 0.2,
     });
     this.interval = setTimeout(() => {
-      const windowHeight = window.outerHeight;
       this.setState({
         lastY: 9999,
       });
       if (currentY <= windowHeight / 1.5) {
+        this.setState({
+          opacity: 0,
+        });
         this.toggleMenu();
+      } else {
+        this.setState({
+          opacity: 1,
+        });
       }
-    }, 200);
+    }, 100);
   }
   render() {
     return (
@@ -46,6 +60,7 @@ class Topbar extends Component {
         toggleMenu={this.toggleMenu}
         handleTouchMove={this.handleTouchMove}
         lastY={this.state.lastY}
+        opacity={this.state.opacity}
       />
     );
   }

@@ -4,11 +4,10 @@
 
 .tasksInfoBar {
   display: flex;
-  flex: 12;
   background: #fff;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 2px solid $hawkesBlue;
+  border-bottom: 1px solid $mystic;
 }
 
 .info {
@@ -16,12 +15,13 @@
 }
 
 .infoText {
-  font-size: 15px;
+  font-size: 1.5rem;
   font-weight: 700;
   text-transform: uppercase;
-  color: $chetwodeBlue;
+  color: rgba($saintPatrickBlue, 0.5);
   margin: 0;
-  padding: 2px 0;
+  padding: 0;
+  line-height: 1.2;
   @media(min-width: $size-md) {
     display: inline-block;
     margin-right: $spacing-md;
@@ -29,7 +29,7 @@
 }
 
 .strong {
-  color: $downRiver;
+  color: $saintPatrickBlue;
 }
 
 .btn {
@@ -38,7 +38,7 @@
   margin: 0;
   display: flex;
   width: 12vh;
-  height: 12vh;
+  height: 62px;
   align-items: center;
   justify-content: center;
   &:hover {

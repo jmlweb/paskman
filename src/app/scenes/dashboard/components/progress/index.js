@@ -1,35 +1,27 @@
 import React from 'react';
-import { Circle } from 'react-progressbar.js';
+import CircleProgress from './circleprogress';
+import LinearProgress from './linearprogress';
 
 const {
   number,
+  string,
 } = React.PropTypes;
 
-const options = {
-  color: '#333333',
-  strokeWidth: 6,
-  trailColor: '#eeeeee',
+const Progress = ({ type, progress }) => {
+  if (type === 'linear') {
+    return <LinearProgress progress={progress} />;
+  }
+  return <CircleProgress progress={progress} />;
 };
-
-const getContainerStyle = (size = 260) => ({
-  width: `${size}px`,
-  height: `${size}px`,
-});
-
-const Progress = props => (
-  <Circle
-    progress={props.progress}
-    options={options}
-    containerStyle={getContainerStyle()}
-  />
-);
 
 Progress.defaultProps = {
   progress: 0,
+  type: 'circle',
 };
 
 Progress.propTypes = {
   progress: number,
+  type: string,
 };
 
 export default Progress;

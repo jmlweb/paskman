@@ -5,24 +5,24 @@ import style from './style.scss';
 
 const { string } = React.PropTypes;
 
-const SvgIcon = (props) => {
+const SvgIcon = ({ svg, className }) => {
   const wrapper = document.createElement('span');
-  wrapper.innerHTML = props.svg;
-  const svg = wrapper.childNodes[0];
+  wrapper.innerHTML = svg;
+  const svgEl = wrapper.childNodes[0];
   const iconClass = {
     [`${style.svgIcon}`]: true,
   };
-  if (props.className) {
-    iconClass[props.className] = true;
+  if (className) {
+    iconClass[className] = true;
   }
 
   return (
     <svg
       className={classNames(iconClass)}
-      xmlns={svg.getAttribute('xmlns')}
-      width={svg.getAttribute('width')}
-      height={svg.getAttribute('height')}
-      dangerouslySetInnerHTML={{ __html: svg.innerHTML }}
+      xmlns={svgEl.getAttribute('xmlns')}
+      width={svgEl.getAttribute('width')}
+      height={svgEl.getAttribute('height')}
+      dangerouslySetInnerHTML={{ __html: svgEl.innerHTML }}
     />
   );
 };

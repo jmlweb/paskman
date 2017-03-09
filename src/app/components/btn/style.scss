@@ -1,0 +1,18 @@
+@import "settings/colors";
+
+.btn {
+  color: $richBlue;
+  font-size: 1.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  border: 3px solid $richBlue;
+  background: #fff;
+  padding: 15px 30px;
+  border-radius: 30px;
+}
+
+.primary {
+  background: $sweetPink;
+  color: $saintPatrickBlue;
+  border-color: $saintPatrickBlue;
+}

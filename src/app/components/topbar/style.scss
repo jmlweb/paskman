@@ -1,5 +1,6 @@
-@import 'settings/colors';
+@import "settings/colors";
 @import "settings/spacing";
+@import "settings/topbar";
 
 .topbar {
   background: $sweetPink;
@@ -9,9 +10,8 @@
 .wrapper {
   align-items: center;
   display: flex;
-  height: 10vh;
+  height: $topbar-height;
   justify-content: space-between;
-  min-height: 56px;
   padding: 0 $spacing-sm;
 }
 
@@ -20,7 +20,7 @@
   background: transparent;
   border: 0;
   display: inline-flex;
-  height: 10vh;
+  height: $topbar-height;
   justify-content: center;
   margin: 0;
   margin-right: $spacing-sm * -1;

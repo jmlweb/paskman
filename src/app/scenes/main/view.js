@@ -1,13 +1,16 @@
 import React from 'react';
 import Helmet from 'react-helmet';
+import Topbar from '../../components/topbar';
 import style from './style.scss';
 
 const {
+  oneOfType,
   arrayOf,
+  objectOf,
   any,
 } = React.PropTypes;
 
-function MainView(props) {
+function MainView({ children }) {
   return (
     <div className={style.main}>
       <Helmet
@@ -25,13 +28,17 @@ function MainView(props) {
           },
         ]}
       />
-      {props.children}
+      <Topbar />
+      {children}
     </div>
   );
 }
 
 MainView.propTypes = {
-  children: arrayOf(any),
+  children: oneOfType([
+    arrayOf(any),
+    objectOf(any),
+  ]),
 };
 
 MainView.defaultProps = {

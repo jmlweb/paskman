@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import topbar from './topbar/reducer';
+import topbar from './topbar/duck';
 
 export default combineReducers({
   topbar,

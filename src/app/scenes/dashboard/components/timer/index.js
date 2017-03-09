@@ -17,17 +17,17 @@ const getBtnText = (enabled) => {
   return 'Start';
 };
 
-const Timer = props => (
+const Timer = ({ progress, amount, state, enabled }) => (
   <div className={style.timer}>
     <div className={style.info}>
-      <Progress progress={props.progress} />
+      <Progress type="circle" progress={progress} />
       <div className={style.text}>
-        <div className={style.info}><Clock amount={props.amount} /></div>
-        <div className={style.info}>{props.state}</div>
+        <div className={style.clock}><Clock amount={amount} /></div>
+        <div className={style.state}>{state}</div>
       </div>
     </div>
-    <div className="btn">
-      <Btn>{`${getBtnText(props.enabled)} Timer`}</Btn>
+    <div className={style.btn}>
+      <Btn color="primary">{`${getBtnText(enabled)} Timer`}</Btn>
     </div>
   </div>
 );

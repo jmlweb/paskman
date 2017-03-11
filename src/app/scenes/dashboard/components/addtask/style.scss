@@ -1,0 +1,60 @@
+@import "settings/colors";
+@import "settings/timings";
+
+.modal {
+  position: fixed;
+  top: 100%;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: #fff;
+  transition: top 0.4s $easeInOutQuad;
+  &.active {
+    top: 0;
+  }
+}
+
+.topbar {
+  height: 4rem;
+  background: $sweetPink;
+  color: $saintPatrickBlue;
+  display: flex;
+  padding: 1rem 2rem;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.title {
+  margin: 0;
+}
+
+.close {
+
+}
+
+.content {
+  padding: 2rem;
+}
+
+.group {
+  margin-bottom: 1.5rem;
+}
+
+.label {
+  display: block;
+}
+
+.fieldName {
+  display: block;
+  width: 100%;
+  border: 1px solid #ccc;
+  font-size: 1.7rem;
+  box-sizing: border-box;
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+
+.btn {
+  text-align: center;
+  padding: 1rem;
+}

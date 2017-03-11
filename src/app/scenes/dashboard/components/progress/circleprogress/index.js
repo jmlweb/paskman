@@ -13,6 +13,10 @@ const defaultCircleSize = 200;
 const relation = defaultCircleSize / defaultHeight;
 
 class CircleProgress extends React.Component {
+  static propTypes = {
+    progress: number.isRequired,
+    dimensions: objectOf(any).isRequired,
+  };
   constructor(props) {
     super(props);
     this.state = {
@@ -34,11 +38,6 @@ class CircleProgress extends React.Component {
     );
   }
 }
-
-CircleProgress.propTypes = {
-  progress: number.isRequired,
-  dimensions: objectOf(any).isRequired,
-};
 
 function mapStateToProps(state) {
   return {

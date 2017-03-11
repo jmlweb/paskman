@@ -1,46 +1,30 @@
-import React from 'react';
-import Clock from '../../../../components/clock';
-import SvgIcon from '../../../../components/svgicon';
-import style from './style.scss';
-import addSvg from './add.svg';
+import React, { Component, PropTypes } from 'react';
+import { connect } from 'react-redux';
+import {
+  dashboardToggleTasksModal,
+} from '../../duck';
+import TaskInfoBarView from './view';
 
-const {
-  number,
-} = React.PropTypes;
+const { func } = PropTypes;
 
-function getTasksPending(tasksPending) {
-  if (tasksPending === 0) {
-    return 'No';
+class TasksInfoBar extends Component {
+  static propTypes = {
+    dashboardToggleTasksModal: func.isRequired,
   }
-  return tasksPending;
+  constructor(props) {
+    super(props);
+    this.toggleModal = this.toggleModal.bind(this);
+  }
+  toggleModal() {
+    this.props.dashboardToggleTasksModal();
+  }
+  render() {
+    return (
+      <TaskInfoBarView toggleModal={this.toggleModal} />
+    );
+  }
 }
 
-const TaskInfoBar = ({ tasks, amount }) => (
-  <div className={style.tasksInfoBar}>
-    <div className={style.info}>
-      <p className={style.infoText}>
-        <span className={style.strong}>
-          {getTasksPending(tasks)}
-        </span> tasks pending in your list
-      </p>
-      <p className={style.infoText}>
-        <span className={style.strong}><Clock amount={amount} /></span> planned
-      </p>
-    </div>
-    <button className={style.btn}>
-      <SvgIcon svg={addSvg} />
-    </button>
-  </div>
-);
-
-TaskInfoBar.defaultProps = {
-  amount: 0,
-  tasks: 0,
-};
-
-TaskInfoBar.propTypes = {
-  amount: number,
-  tasks: number,
-};
-
-export default TaskInfoBar;
+export default connect(null, {
+  dashboardToggleTasksModal,
+})(TasksInfoBar);

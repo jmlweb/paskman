@@ -1,13 +1,17 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import {
   menuToggleOpen,
 } from './duck';
 import TopbarView from './view';
 
-const { bool, func } = React.PropTypes;
+const { bool, func } = PropTypes;
 
 class Topbar extends Component {
+  static propTypes = {
+    menuOpen: bool.isRequired,
+    menuToggleOpen: func.isRequired,
+  }
   constructor(props) {
     super(props);
     this.toggleMenu = this.toggleMenu.bind(this);
@@ -75,8 +79,3 @@ function mapStateToProps(state) {
 export default connect(mapStateToProps, {
   menuToggleOpen,
 })(Topbar);
-
-Topbar.propTypes = {
-  menuOpen: bool.isRequired,
-  menuToggleOpen: func.isRequired,
-};

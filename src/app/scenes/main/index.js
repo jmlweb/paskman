@@ -12,6 +12,10 @@ const {
 } = React.PropTypes;
 
 class Main extends React.Component {
+  static propTypes = {
+    children: objectOf(any).isRequired,
+    mainSetDimensions: func.isRequired,
+  };
   constructor(props) {
     super(props);
     this.state = {
@@ -53,11 +57,6 @@ class Main extends React.Component {
     );
   }
 }
-
-Main.propTypes = {
-  children: objectOf(any).isRequired,
-  mainSetDimensions: func.isRequired,
-};
 
 export default connect(null, {
   mainSetDimensions,

@@ -14,11 +14,17 @@ const {
 } = React.PropTypes;
 
 class Root extends Component {
-
+  static propTypes = {
+    store: objectOf(any),
+    history: objectOf(any),
+  };
+  static defaultProps = {
+    store: {},
+    history: {},
+  };
   componentWillMount() {
     this.routes = createRoutes();
   }
-
   render() {
     const { store, history } = this.props;
     return (
@@ -35,13 +41,3 @@ function mapStateToProps() {
 
 export default connect(() => (mapStateToProps), {
 })(Root);
-
-Root.defaultProps = {
-  store: {},
-  history: {},
-};
-
-Root.propTypes = {
-  store: objectOf(any),
-  history: objectOf(any),
-};

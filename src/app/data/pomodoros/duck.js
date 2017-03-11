@@ -8,9 +8,9 @@ import shortid from 'shortid';
 /**
  * ACTIONS
  */
-const POMODOROS_CREATE = 'POMODOROS/CREATE';
+const POMODOROS_ADD = 'POMODOROS/ADD';
 
-export const pomodorosCreate = createAction(POMODOROS_CREATE);
+export const pomodorosAdd = createAction(POMODOROS_ADD);
 
 /**
  * DEFAULTS
@@ -39,7 +39,7 @@ const pomodorosMockup = [];
 const initialState = Immutable.Map(pomodorosMockup);
 
 const pomodoros = handleActions({
-  [pomodorosCreate]: (state, action) => state.push(
+  [pomodorosAdd]: (state, action) => state.push(
     Immutable.fromJS(pomodoroMockup).merge(
       { ...action.payload, id: shortid.generate(), created: Date.now() },
     ),

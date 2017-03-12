@@ -1,6 +1,8 @@
 import React from 'react';
 import classNames from 'classnames';
 import Btn from '../../../../components/btn';
+import closeSvg from './close.svg';
+import SvgIcon from '../../../../components/svgicon';
 import style from './style.scss';
 
 const {
@@ -21,7 +23,7 @@ const AddTask = ({
   <div className={classNames(style.modal, tasksModalOpen && style.active)}>
     <div className={style.topbar}>
       <h3 className={style.title}>Add new task</h3>
-      <button className={style.close} onClick={toggleModal}>X</button>
+      <button className={style.close} onClick={toggleModal}><SvgIcon svg={closeSvg} /></button>
     </div>
     <div className={style.content}>
       <form className={style.form} onSubmit={handleSubmit}>

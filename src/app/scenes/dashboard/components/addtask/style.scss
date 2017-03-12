@@ -1,39 +1,54 @@
 @import "settings/colors";
+@import "settings/spacing";
 @import "settings/timings";
+@import "settings/topbar";
 
 .modal {
-  position: fixed;
-  top: 100%;
-  left: 0;
-  bottom: 0;
-  right: 0;
   background: #fff;
-  transition: top 0.4s $easeInOutQuad;
+  border-radius: 50%;
+  bottom: 50%;
+  left: 50%;
+  opacity: 0;
+  overflow: hidden;
+  position: fixed;
+  right: 50%;
+  top: 50%;
+  transition: all 0.5s $easeInOutBack;
+  z-index: -1;
+  transform: translateY(-100vh);
+  box-shadow: 0 0 8px rgba(#000, 0.3);
   &.active {
+    border-radius: 0;
+    bottom: 0;
+    left: 0;
+    opacity: 1;
+    right: 0;
     top: 0;
+    z-index: 2;
+    transform: translateY(0);
   }
 }
 
 .topbar {
-  height: 4rem;
+  align-items: center;
   background: $sweetPink;
   color: $saintPatrickBlue;
   display: flex;
-  padding: 1rem 2rem;
+  height: $topbar-height;
   justify-content: space-between;
-  align-items: center;
+  padding: 0 $spacing-sm;
 }
 
 .title {
   margin: 0;
+  line-height: 0.9;
 }
 
 .close {
-
 }
 
 .content {
-  padding: 2rem;
+  padding: $spacing-sm;
 }
 
 .group {
@@ -45,16 +60,16 @@
 }
 
 .fieldName {
-  display: block;
-  width: 100%;
   border: 1px solid #ccc;
-  font-size: 1.7rem;
-  box-sizing: border-box;
-  padding: 4px 8px;
   border-radius: 4px;
+  box-sizing: border-box;
+  display: block;
+  font-size: 1.7rem;
+  padding: 4px 8px;
+  width: 100%;
 }
 
 .btn {
-  text-align: center;
   padding: 1rem;
+  text-align: center;
 }

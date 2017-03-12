@@ -16,8 +16,8 @@ export const mainSetDimensions = createAction(MAIN_SET_DIMENSIONS);
  */
 const mainMockup = {
   dimensions: {
-    width: 0,
-    height: 0,
+    width: 320,
+    height: 568,
   },
 };
 

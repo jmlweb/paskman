@@ -8,25 +8,24 @@ const {
   any,
 } = React.PropTypes;
 
-const defaultHeight = 568;
-const defaultCircleSize = 200;
-const relation = defaultCircleSize / defaultHeight;
-
 class CircleProgress extends React.Component {
   static propTypes = {
     progress: number.isRequired,
     dimensions: objectOf(any).isRequired,
   };
+  static defaultCircleSize = 200;
+  static defaultHeight = 568;
+  static relation = CircleProgress.defaultCircleSize / CircleProgress.defaultHeight;
   constructor(props) {
     super(props);
     this.state = {
-      size: defaultCircleSize,
+      size: this.defaultCircleSize,
     };
     this.getSize = this.getSize.bind(this);
   }
   getSize() {
     const { dimensions } = this.props;
-    return relation * dimensions.height;
+    return CircleProgress.relation * dimensions.height;
   }
   render() {
     const { progress } = this.props;

@@ -1,5 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
+import InputRange from 'react-input-range';
 import Modal from '../../../../components/modal';
 import Btn from '../../../../components/btn';
 import RadioButton from '../../../../components/radiobutton';
@@ -54,17 +55,14 @@ const AddTask = ({
       </div>
       <div className={style.group}>
         <label className={style.label} htmlFor="timeRequired">Time required</label>
-        <input
-          className={classNames(style.fieldName, style.range)}
-          id="timeRequiredSlider"
-          type="range"
-          placeholder="Select minutes required"
-          required
-          min="1"
-          max="125"
-          value={timeRequired}
-          onChange={handleTimeRequiredChange}
-        />
+        <div className={style.slider}>
+          <InputRange
+            minValue={0}
+            maxValue={125}
+            value={timeRequired}
+            onChange={handleTimeRequiredChange}
+          />
+        </div>
         <RadioButton
           options={[
             {

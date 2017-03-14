@@ -16,7 +16,7 @@ function getTasksPending(tasksPending) {
   return tasksPending;
 }
 
-const TaskInfoBarView = ({ tasks, amount, toggleModal }) => (
+const TaskInfoBarView = ({ tasks, count, toggleModal }) => (
   <div className={style.tasksInfoBar}>
     <div className={style.info}>
       <p className={style.infoText}>
@@ -25,7 +25,7 @@ const TaskInfoBarView = ({ tasks, amount, toggleModal }) => (
         </span> tasks pending in your list
       </p>
       <p className={style.infoText}>
-        <span className={style.strong}><Clock amount={amount} /></span> planned
+        <span className={style.strong}><Clock amount={count} /></span> planned
       </p>
     </div>
     <button className={style.btn} onClick={toggleModal}>
@@ -35,12 +35,12 @@ const TaskInfoBarView = ({ tasks, amount, toggleModal }) => (
 );
 
 TaskInfoBarView.defaultProps = {
-  amount: 0,
+  count: 0,
   tasks: 0,
 };
 
 TaskInfoBarView.propTypes = {
-  amount: number,
+  count: number,
   tasks: number,
   toggleModal: func.isRequired,
 };

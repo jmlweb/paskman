@@ -1,25 +1,31 @@
 @import "settings/colors";
+@import "trumps/inputrange";
 
 .group {
-  margin-bottom: 1.5rem;
+  margin-bottom: 2rem;
 }
 
 .label {
+  font-weight: 500;
   display: block;
-  font-size: 1.3rem;
+  font-size: 1.4rem;
   text-transform: uppercase;
   margin-bottom: 0.5rem;
   color: rgba($saintPatrickBlue, 0.7);
 }
 
 .fieldName {
-  border: 1px solid rgba($saintPatrickBlue, 0.5);
+  border: 2px solid $hawkesBlue;
   border-radius: 4px;
   box-sizing: border-box;
   display: block;
-  font-size: 1.5rem;
-  padding: 6px 8px;
+  font-size: 1.7rem;
+  padding: 8px 12px;
   width: 100%;
+  &:focus {
+    border: 2px solid rgba($saintPatrickBlue, 0.8);
+    outline: 0;
+  }
 }
 
 .center {
@@ -28,12 +34,13 @@
 
 .short {
   display: inline-block;
-  width: 60px;
+  width: 48px;
+  text-align: center;
+  margin-right: 2px;
 }
 
-.range::-webkit-slider-thumb {
-  background: $saintPatrickBlue;
-  cursor: pointer;
+.slider {
+  margin: 2rem 0;
 }
 
 .btn {

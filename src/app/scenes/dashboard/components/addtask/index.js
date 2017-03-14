@@ -40,9 +40,15 @@ class AddTask extends Component {
     });
   }
   handleTimeRequiredChange(e) {
-    this.setState({
-      timeRequired: parseInt(e.target.value || 0, 10),
-    });
+    if (e.target) {
+      this.setState({
+        timeRequired: parseInt(e.target.value || 0, 10),
+      });
+    } else {
+      this.setState({
+        timeRequired: parseInt(e || 0, 10),
+      });
+    }
   }
   handleReset() {
     this.setState(AddTask.defaultState);

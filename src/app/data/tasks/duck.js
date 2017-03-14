@@ -11,7 +11,9 @@ import shortid from 'shortid';
  */
 const TASKS_ADD = 'TASKS/ADD';
 
-export const tasksAdd = createAction(TASKS_ADD);
+export const tasksAdd = createAction(TASKS_ADD, payload => (
+  { ...payload, id: shortid.generate(), created: Date.now() }
+));
 
 /**
  * DEFAULTS
@@ -42,7 +44,11 @@ export const remainingTasksTime = createSelector(
     if (!remainingTasks.count()) {
       return 0;
     }
-    return 0;
+    return remainingTasks.map(
+      task => task.get('timeRequired'),
+    ).reduce(
+      (sum, current) => sum + current,
+    );
   },
 );
 
@@ -53,9 +59,7 @@ const initialState = Immutable.fromJS(tasksMockup);
 
 const tasks = handleActions({
   [tasksAdd]: (state, action) => state.push(
-    Immutable.fromJS(taskMockup).merge(
-      { ...action.payload, id: shortid.generate(), created: Date.now() },
-    ),
+    Immutable.fromJS(taskMockup).merge(action.payload),
   ),
 }, initialState);
 

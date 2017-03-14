@@ -1,5 +1,4 @@
 import React from 'react';
-import classNames from 'classnames';
 import InputRange from 'react-input-range';
 import Modal from '../../../../components/modal';
 import Btn from '../../../../components/btn';
@@ -46,7 +45,6 @@ const AddTask = ({
           className={style.fieldName}
           id="description"
           placeholder="Describe the task"
-          required
           onChange={handleDescriptionChange}
           value={description}
           cols="80"
@@ -55,53 +53,49 @@ const AddTask = ({
       </div>
       <div className={style.group}>
         <label className={style.label} htmlFor="timeRequired">Time required</label>
-        <div className={style.slider}>
-          <InputRange
-            minValue={0}
-            maxValue={125}
+        <div className={style.radioButton}>
+          <RadioButton
+            options={[
+              {
+                description: '1 pom',
+                value: 25,
+              },
+              {
+                description: '2 pom',
+                value: 50,
+              },
+              {
+                description: '3 pom',
+                value: 75,
+              },
+              {
+                description: '4 pom',
+                value: 100,
+              },
+              {
+                description: '5 pom',
+                value: 125,
+              },
+            ]}
             value={timeRequired}
             onChange={handleTimeRequiredChange}
           />
         </div>
-        <RadioButton
-          options={[
-            {
-              description: '1 pom',
-              value: 25,
-            },
-            {
-              description: '2 pom',
-              value: 50,
-            },
-            {
-              description: '3 pom',
-              value: 75,
-            },
-            {
-              description: '4 pom',
-              value: 100,
-            },
-            {
-              description: '5 pom',
-              value: 125,
-            },
-          ]}
-          value={timeRequired}
-          onChange={handleTimeRequiredChange}
-        />
-      </div>
-      <div className={classNames(style.group, style.center)}>
-        <input
-          className={classNames(style.fieldName, style.short)}
-          id="timeRequired"
-          type="number"
-          placeholder="Please, enter the minutes required"
-          required
-          onChange={handleTimeRequiredChange}
-          value={timeRequired}
-          min={1}
-          max={125}
-        /> minutes
+        <div className={style.slider}>
+          <InputRange
+            minValue={0}
+            maxValue={125}
+            step={5}
+            value={timeRequired}
+            onChange={handleTimeRequiredChange}
+            formatLabel={(value, type) => {
+              if (type === 'value') {
+                return `${value} min`;
+              }
+              return value;
+            }}
+          />
+        </div>
       </div>
       <div className={style.btn}>
         <Btn type="submit" onSubmit={handleSubmit}>Save task</Btn>

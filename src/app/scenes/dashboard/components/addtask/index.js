@@ -60,6 +60,7 @@ class AddTask extends Component {
       description: this.state.description,
       timeRequired: this.state.timeRequired * 60 * 1000,
     });
+    this.setState(AddTask.defaultState);
     this.props.modalToggle('addTask');
   }
   render() {

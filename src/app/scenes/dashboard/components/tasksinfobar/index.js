@@ -3,14 +3,27 @@ import { connect } from 'react-redux';
 import {
   modalToggle,
 } from '../../../../components/modal/duck';
+import {
+  remainingTasksCount,
+  remainingTasksTime,
+} from '../../../../data/tasks/duck';
 import TaskInfoBarView from './view';
 
-const { func } = PropTypes;
+const {
+  func,
+  number,
+} = PropTypes;
 
 class TasksInfoBar extends Component {
   static propTypes = {
     modalToggle: func.isRequired,
-  }
+    tasks: number,
+    count: number,
+  };
+  static defaultProps = {
+    tasks: 0,
+    count: 0,
+  };
   constructor(props) {
     super(props);
     this.toggleModal = this.toggleModal.bind(this);
@@ -20,11 +33,22 @@ class TasksInfoBar extends Component {
   }
   render() {
     return (
-      <TaskInfoBarView toggleModal={this.toggleModal} />
+      <TaskInfoBarView
+        tasks={this.props.tasks}
+        count={this.props.count}
+        toggleModal={this.toggleModal}
+      />
     );
   }
 }
 
-export default connect(null, {
+function mapStateToProps(state) {
+  return {
+    tasks: remainingTasksCount(state.data.tasks),
+    count: remainingTasksTime(state.data.tasks),
+  };
+}
+
+export default connect(mapStateToProps, {
   modalToggle,
 })(TasksInfoBar);

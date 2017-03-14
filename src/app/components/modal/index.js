@@ -21,6 +21,7 @@ class Modal extends Component {
     name: string.isRequired,
     isOpen: bool,
     title: string.isRequired,
+    closeCb: func,
     children: oneOfType([
       objectOf(any),
       arrayOf(any),
@@ -28,12 +29,16 @@ class Modal extends Component {
   };
   static defaultProps = {
     isOpen: false,
+    closeCb: null,
   };
   constructor(props) {
     super(props);
     this.toggleModal = this.toggleModal.bind(this);
   }
   toggleModal() {
+    if (this.props.isOpen) {
+      this.props.closeCb();
+    }
     this.props.modalToggle(this.props.name);
   }
   render() {

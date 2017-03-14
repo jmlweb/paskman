@@ -3,6 +3,7 @@ import {
   createAction,
   handleActions,
 } from 'redux-actions';
+import { createSelector } from 'reselect';
 import shortid from 'shortid';
 
 /**
@@ -20,11 +21,30 @@ const taskMockup = {
   created: null,
   name: '',
   description: '',
+  timeRequired: 0,
   finished: false,
   weight: 1,
 };
 
 const tasksMockup = [];
+
+/**
+ * SELECTORS
+ */
+const remainingTasksSelector = state => state.filter(task => !task.get('finished'));
+export const remainingTasksCount = createSelector(
+  remainingTasksSelector,
+  remainingTasks => remainingTasks.count(),
+);
+export const remainingTasksTime = createSelector(
+  remainingTasksSelector,
+  (remainingTasks) => {
+    if (!remainingTasks.count()) {
+      return 0;
+    }
+    return 0;
+  },
+);
 
 /**
  * REDUCER

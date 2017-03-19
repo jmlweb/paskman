@@ -63,7 +63,6 @@ const pomodoros = handleActions({
     const newTable = lastPomodoro.get('table').merge({
       [`${lastPomodoro.get('mode')}`]: lastPomodoro.get('table').get(lastPomodoro.get('mode')).push(action.payload),
     });
-    console.log(newTable.toJS());
     return state.set(state.last(), newTable);
   },
 }, initialState);

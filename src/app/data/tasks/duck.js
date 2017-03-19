@@ -33,6 +33,7 @@ const tasksMockup = [];
 /**
  * SELECTORS
  */
+
 const remainingTasksSelector = state => state.filter(task => !task.get('finished'));
 export const remainingTasksCount = createSelector(
   remainingTasksSelector,
@@ -49,6 +50,16 @@ export const remainingTasksTime = createSelector(
     ).reduce(
       (sum, current) => sum + current,
     );
+  },
+);
+
+export const firstTaskSelector = createSelector(
+  remainingTasksSelector,
+  (remainingTasks) => {
+    if (!remainingTasks.size) {
+      return taskMockup;
+    }
+    return remainingTasks.first().toJS();
   },
 );
 

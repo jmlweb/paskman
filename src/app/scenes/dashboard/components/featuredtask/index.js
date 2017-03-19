@@ -1,42 +1,40 @@
-import React from 'react';
-import Progress from '../progress';
-import Clock from '../../../../components/clock';
-import style from './style.scss';
+import React, { Component, PropTypes } from 'react';
+import { connect } from 'react-redux';
+import {
+  firstTaskSelector,
+} from '../../../../data/tasks/duck';
+import FeaturedTaskView from './view';
 
 const {
-  number,
-  string,
-} = React.PropTypes;
+  objectOf,
+  any,
+} = PropTypes;
 
-function getName(name) {
-  if (!name) {
-    return 'Unplanned task';
+class FeaturedTask extends Component {
+  static propTypes = {
+    firstTask: objectOf(any).isRequired,
+    dimensions: objectOf(any).isRequired,
+  };
+  getMaxName() {
+    return this.props.dimensions.width > 768 ? 200 : 40;
   }
-  return name;
+  render() {
+    const { firstTask } = this.props;
+    return (
+      <FeaturedTaskView
+        name={firstTask.name.slice(0, this.getMaxName())}
+        totalTime={firstTask.timeRequired}
+      />
+    );
+  }
 }
 
-const FeaturedTask = ({ name, elapsedTime, totalTime, progress }) => (
-  <div className={style.featuredTask}>
-    <h1 className={style.title}>{getName(name)}</h1>
-    <div className={style.time}>
-      <Clock amount={elapsedTime} /> / <Clock amount={totalTime} />
-    </div>
-    <Progress type="linear" progress={progress} />
-  </div>
-);
+function mapStateToProps(state) {
+  return {
+    firstTask: firstTaskSelector(state.data.tasks),
+    dimensions: state.scenes.main.get('dimensions'),
+  };
+}
 
-FeaturedTask.defaultProps = {
-  name: null,
-  progress: 0.4,
-  elapsedTime: 0,
-  totalTime: 0,
-};
-
-FeaturedTask.propTypes = {
-  name: string,
-  progress: number,
-  elapsedTime: number,
-  totalTime: number,
-};
-
-export default FeaturedTask;
+export default connect(mapStateToProps, {
+})(FeaturedTask);

@@ -1,4 +1,5 @@
 @import "settings/colors";
+@import "settings/timings";
 
 .btn {
   color: $richBlue;
@@ -9,6 +10,10 @@
   background: #fff;
   padding: 15px 30px;
   border-radius: 30px;
+  transition: opacity 0.3s $easeOutQuad;
+  &[disabled] {
+    opacity: 0.1;
+  }
 }
 
 .primary {

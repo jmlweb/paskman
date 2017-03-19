@@ -1,49 +1,80 @@
-import React from 'react';
-import Btn from '../../../../components/btn';
-import Clock from '../../../../components/clock';
-import Progress from '../progress';
-import style from './style.scss';
+import React, { Component, PropTypes } from 'react';
+import { connect } from 'react-redux';
+import {
+  pomodorosAdd,
+  pomodorosAddItem,
+} from '../../../../data/pomodoros/duck';
+import {
+  firstTaskSelector,
+} from '../../../../data/tasks/duck';
+import TimerView from './view';
 
 const {
-  number,
-  bool,
-  string,
-} = React.PropTypes;
+  objectOf,
+  any,
+  func,
+} = PropTypes;
 
-const getBtnText = (enabled) => {
-  if (enabled) {
-    return 'Pause';
+class Timer extends Component {
+  static propTypes = {
+    settings: objectOf(any).isRequired,
+    pomodorosAdd: func.isRequired,
+    pomodorosAddItem: func.isRequired,
+    firstTask: objectOf(any).isRequired,
+  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      mode: 'stopped',
+    };
+    this.addPomodoro = this.addPomodoro.bind(this);
+    this.addPomodoroItem = this.addPomodoroItem.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
-  return 'Start';
-};
+  addPomodoro() {
+    const { target } = this.props.settings;
+    this.props.pomodorosAdd({
+      target,
+    });
+  }
+  addPomodoroItem() {
+    const { firstTask } = this.props;
+    this.props.pomodorosAddItem({
+      task: firstTask.id,
+    });
+  }
+  handleClick() {
+    const { mode } = this.state;
+    if (mode === 'stopped') {
+      this.addPomodoro();
+    }
+    if (mode === 'stopped' || mode === 'paused') {
+      this.setState({
+        mode: 'started',
+      });
+      this.addPomodoroItem();
+    }
+  }
+  render() {
+    const { mode } = this.state;
+    return (
+      <TimerView
+        state={mode}
+        handleClick={this.handleClick}
+      />
+    );
+  }
+}
 
-const Timer = ({ progress, amount, state, enabled }) => (
-  <div className={style.timer}>
-    <div className={style.info}>
-      <Progress type="circle" progress={progress} />
-      <div className={style.text}>
-        <div className={style.clock}><Clock amount={amount} /></div>
-        <div className={style.state}>{state}</div>
-      </div>
-    </div>
-    <div className={style.btn}>
-      <Btn color="primary">{`${getBtnText(enabled)} Timer`}</Btn>
-    </div>
-  </div>
-);
+function mapStateToProps(state) {
+  return {
+    settings: state.data.settings.toJS(),
+    firstTask: firstTaskSelector(state.data.tasks),
+  };
+}
 
-Timer.defaultProps = {
-  amount: 0,
-  enabled: false,
-  progress: 0,
-  state: 'Stopped',
-};
+export default connect(mapStateToProps, {
+  pomodorosAdd,
+  pomodorosAddItem,
+})(Timer);
 
-Timer.propTypes = {
-  amount: number,
-  enabled: bool,
-  progress: number,
-  state: string,
-};
-
-export default Timer;

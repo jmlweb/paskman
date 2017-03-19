@@ -28,11 +28,12 @@ const AddTask = ({
   >
     <form className={style.form} onSubmit={handleSubmit}>
       <div className={style.group}>
-        <label className={style.label} htmlFor="name">Name</label>
+        <label className={style.label} htmlFor="name">Name (3 chars min)</label>
         <input
           className={style.fieldName}
           id="name"
           type="text"
+          minLength="3"
           placeholder="Try to be concise"
           required
           onChange={handleNameChange}
@@ -83,7 +84,7 @@ const AddTask = ({
         </div>
         <div className={style.slider}>
           <InputRange
-            minValue={0}
+            minValue={5}
             maxValue={125}
             step={5}
             value={timeRequired}
@@ -98,7 +99,14 @@ const AddTask = ({
         </div>
       </div>
       <div className={style.btn}>
-        <Btn type="submit" onSubmit={handleSubmit}>Save task</Btn>
+        <Btn
+          color="primary"
+          type="submit"
+          disabled={name.length < 3}
+          onSubmit={handleSubmit}
+        >
+          Save task
+        </Btn>
       </div>
     </form>
   </Modal>

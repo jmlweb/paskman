@@ -1,0 +1,51 @@
+@import "settings/colors";
+@import "settings/timings";
+@import "settings/topbar";
+
+.menu {
+  background: $saintPatrickBlue;
+  bottom: 0;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  left: 0;
+  margin: 0;
+  max-height: 0;
+  overflow: hidden;
+  padding: 0;
+  position: fixed;
+  right: 0;
+  top: $topbar-height;
+  transition: max-height 0.3s $easeInBack;
+  z-index: 5;
+  &.open {
+    max-height: calc(100vh - #{$topbar-height});
+    li {
+      opacity: 1;
+    }
+  }
+  li {
+    align-items: center;
+    border-bottom: 2px solid $chetwodeBlue;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.4s $easeInOutQuad;
+    &:last-child {
+      border-bottom: 2px solid transparent;
+    }
+  }
+  a {
+    color: #fff;
+    font-size: 2.2rem;
+    text-decoration: none;
+  }
+}
+
+.icon {
+  fill: #ffffff;
+  margin-right: 4px;
+  margin-top: -5px;
+}

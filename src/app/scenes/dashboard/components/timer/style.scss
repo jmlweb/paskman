@@ -1,0 +1,41 @@
+@import "settings/colors";
+
+.timer {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 3rem 0;
+}
+
+.info {
+  position: relative;
+}
+
+.text {
+  left: 50%;
+  position: absolute;
+  text-align: center;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.clock {
+  color: $saintPatrickBlue;
+  font-size: 3.4rem;
+  font-weight: 500;
+  margin-top: 1.2rem;
+  min-width: 18rem;
+}
+
+.state {
+  color: rgba($saintPatrickBlue, 0.5);
+  font-size: 1.8rem;
+  font-weight: 500;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+}
+
+.btn {
+  margin-top: 1.5rem;
+}

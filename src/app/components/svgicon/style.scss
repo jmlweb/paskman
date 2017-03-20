@@ -1,0 +1,7 @@
+@import "mixins/fontSmoothing";
+
+.svgIcon {
+  @include fontSmoothing;
+  display: inline-block;
+  vertical-align: middle;
+}

@@ -1,3 +1,9 @@
-build/
-app/node_modules/public/js/
-build/
+node_modules
+bin
+*.log
+.*
+!.eslintrc
+!.gitignore
+!.npmignore
+!.babelrc
+!.README

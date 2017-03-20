@@ -1,0 +1,29 @@
+@import "settings/colors";
+@import "settings/spacing";
+@import "settings/topbar";
+
+.topbar {
+  background: $sweetPink;
+  color: $saintPatrickBlue;
+}
+
+.wrapper {
+  align-items: center;
+  display: flex;
+  height: $topbar-height;
+  justify-content: space-between;
+  padding: 0 $spacing-sm;
+}
+
+.btn {
+  align-items: center;
+  background: transparent;
+  border: 0;
+  display: inline-flex;
+  height: $topbar-height;
+  justify-content: center;
+  margin: 0;
+  margin-right: $spacing-sm * -1;
+  outline: 0;
+  width: 12vh;
+}

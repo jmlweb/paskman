@@ -1,0 +1,47 @@
+@import "settings/colors";
+@import "settings/sizes";
+@import "settings/spacing";
+
+.tasksInfoBar {
+  display: flex;
+  background: #fff;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid $mystic;
+}
+
+.info {
+  padding-left: $spacing-sm;
+}
+
+.infoText {
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: rgba($saintPatrickBlue, 0.5);
+  margin: 0;
+  padding: 0;
+  line-height: 1.2;
+  @media(min-width: $size-md) {
+    display: inline-block;
+    margin-right: $spacing-md;
+  }
+}
+
+.strong {
+  color: $saintPatrickBlue;
+}
+
+.btn {
+  background: $mystic;
+  border: 0;
+  margin: 0;
+  display: flex;
+  width: 12vh;
+  height: 62px;
+  align-items: center;
+  justify-content: center;
+  &:hover {
+    background: $hawkesBlue;
+  }
+}

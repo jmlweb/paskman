@@ -1,18 +1,18 @@
 /* eslint-disable filenames/match-regex */
 /* eslint-disable import/no-extraneous-dependencies */
 import path from 'path';
-import BrowserSyncPlugin from 'browser-sync-webpack-plugin';
+// import BrowserSyncPlugin from 'browser-sync-webpack-plugin';
 
 const getPlugins = () => {
   const nodeEnv = process.env.NODE_ENV;
   const pluginsArr = [];
 
   if (nodeEnv === 'development') {
-    pluginsArr.push(new BrowserSyncPlugin({
+    /* pluginsArr.push(new BrowserSyncPlugin({
       host: 'localhost',
       port: 3000,
-      proxy: 'http://localhost:8000',
-    }));
+      proxy: 'http://localhost:9000',
+    })); */
   }
   return pluginsArr;
 };

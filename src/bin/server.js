@@ -38,6 +38,17 @@ const {
   nodeExternalsWhitelist: [
     /^react-router/,
     /^history/,
+    /^express/,
+    /^immutable/,
+    /^moment/,
+    /^webpack/,
+    /^classnames/,
+    /^express/,
+    /^react-dom/,
+    /^react-helmet/,
+    /^react-progressbar\.js/,
+    /^reselect/,
+    /^shortid/,
   ],
 });
 
@@ -87,4 +98,4 @@ app.get('/*', (req, res) => {
 //   res.send(renderFullPage(head, appBody));
 // });
 
-app.listen(8000);
+app.listen(9000);

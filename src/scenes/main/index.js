@@ -6,6 +6,8 @@ import {
 import MainView from './view';
 
 const {
+  oneOfType,
+  arrayOf,
   objectOf,
   any,
   func,
@@ -13,7 +15,10 @@ const {
 
 class Main extends React.Component {
   static propTypes = {
-    children: objectOf(any).isRequired,
+    children: oneOfType([
+      objectOf(any),
+      arrayOf(any),
+    ]).isRequired,
     mainSetDimensions: func.isRequired,
   };
   constructor(props) {

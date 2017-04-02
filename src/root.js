@@ -6,7 +6,7 @@ import {
   connect,
 } from 'react-redux';
 import { Router } from 'react-router';
-import createRoutes from './routes';
+import routes from './routes';
 
 const {
   objectOf,
@@ -23,7 +23,7 @@ class Root extends Component {
     history: {},
   };
   componentWillMount() {
-    this.routes = createRoutes();
+    this.routes = routes;
   }
   render() {
     const { store, history } = this.props;

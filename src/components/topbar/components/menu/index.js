@@ -1,6 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
-import { Link } from 'react-router';
+import Link from 'react-router/lib/Link';
 import SvgIcon from '../../../svgicon';
 import backlogSvg from './backlog.svg';
 import timerSvg from './timer.svg';

@@ -7,7 +7,7 @@ import {
 /**
  * ACTIONS
  */
-const MENU_TOGGLE_OPEN = 'MENU/TOGGLE_OPEN';
+export const MENU_TOGGLE_OPEN = 'MENU/TOGGLE_OPEN';
 
 export const menuToggleOpen = createAction(MENU_TOGGLE_OPEN);
 
@@ -21,7 +21,7 @@ const topbarMockup = {
 /**
  * REDUCER
  */
-const initialState = Immutable.Map(topbarMockup);
+export const initialState = Immutable.Map(topbarMockup);
 
 const topbar = handleActions({
   [menuToggleOpen]: state => state.set('menuOpen', !state.get('menuOpen')),

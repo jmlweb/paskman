@@ -35,6 +35,9 @@ const pomodorosMockup = [];
 /**
  * ACTIONS
  */
+export const POMODOROS_ADD = 'POMODOROS/ADD';
+export const POMODOROS_ADD_ITEM = 'POMODOROS/ADD_ITEM';
+
 export const { pomodorosAdd, pomodorosAddItem } = createActions({
   POMODOROS_ADD: payload => (
     { ...pomodoroMockup, ...payload, id: shortid.generate(), created: Date.now(), mode: 'working' }

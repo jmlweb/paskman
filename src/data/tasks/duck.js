@@ -9,7 +9,7 @@ import shortid from 'shortid';
 /**
  * ACTIONS
  */
-const TASKS_ADD = 'TASKS/ADD';
+export const TASKS_ADD = 'TASKS/ADD';
 
 export const tasksAdd = createAction(TASKS_ADD, payload => (
   { ...payload, id: shortid.generate(), created: Date.now() }

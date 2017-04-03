@@ -7,7 +7,7 @@ import {
 /**
  * ACTIONS
  */
-const SETTINGS_CHANGE = 'SETTINGS/CHANGE';
+export const SETTINGS_CHANGE = 'SETTINGS/CHANGE';
 
 export const settingsChange = createAction(SETTINGS_CHANGE);
 

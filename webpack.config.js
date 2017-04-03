@@ -36,7 +36,9 @@ const basePlugins = [
   }),
   // Put it in the end to capture all the HtmlWebpackPlugin's
   // assets manipulations and do leak its manipulations to HtmlWebpackPlugin
-  new OfflinePlugin(),
+  new OfflinePlugin({
+    safeToUseOptionalCaches: true,
+  }),
 ];
 
 const vendorModules = [
@@ -72,14 +74,6 @@ const baseConfig = {
         ],
         exclude: /node_modules/,
       },
-      /*{
-        test: /\.css$/,
-        use: [
-          'style-loader',
-          'css-loader?modules',
-          'postcss-loader',
-        ],
-      },*/
       {
         test: /\.svg$/,
         use: [
@@ -134,11 +128,11 @@ if (nodeEnv === 'production') {
           ]
         },
     plugins: basePlugins.concat([
-      new LodashModuleReplacementPlugin({
+      /*new LodashModuleReplacementPlugin({
         caching: true,
         collections: true,
         paths: true,
-      }),
+      }),*/
       new webpack.LoaderOptionsPlugin({
         minimize: true,
       }),

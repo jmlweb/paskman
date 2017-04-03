@@ -7,7 +7,7 @@ import {
 /**
  * ACTIONS
  */
-const DASHBOARD_TOGGLE_TASKS_MODAL = 'DASHBOARD/TOGGLE_TASKS_MODAL';
+export const DASHBOARD_TOGGLE_TASKS_MODAL = 'DASHBOARD/TOGGLE_TASKS_MODAL';
 
 export const dashboardToggleTasksModal = createAction(DASHBOARD_TOGGLE_TASKS_MODAL);
 

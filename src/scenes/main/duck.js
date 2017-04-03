@@ -7,7 +7,7 @@ import {
 /**
  * ACTIONS
  */
-const MAIN_SET_DIMENSIONS = 'MAIN/SET_DIMENSIONS';
+export const MAIN_SET_DIMENSIONS = 'MAIN/SET_DIMENSIONS';
 
 export const mainSetDimensions = createAction(MAIN_SET_DIMENSIONS);
 

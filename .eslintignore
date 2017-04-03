@@ -8,3 +8,4 @@ bin
 !.npmignore
 !.babelrc
 !.README
+test.js

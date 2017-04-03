@@ -66,7 +66,7 @@ export const firstTaskSelector = createSelector(
 /**
  * REDUCER
  */
-const initialState = Immutable.fromJS(tasksMockup);
+export const initialState = Immutable.fromJS(tasksMockup);
 
 const tasks = handleActions({
   [tasksAdd]: (state, action) => state.push(

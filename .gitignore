@@ -17,7 +17,6 @@ pids
 
 # Dependency directories
 node_modules
-!app/node_modules
 
 # Optional npm cache directory
 .npm
@@ -35,6 +34,4 @@ node_modules
 /reports
 
 #Builds
-config/BUILD
-app/node_modules/public/js/bundle.*
-public/
+dist/

@@ -2,23 +2,41 @@
 /* eslint-disable import/no-extraneous-dependencies */
 const { resolve } = require('path');
 const webpack = require('webpack');
+const OfflinePlugin = require('offline-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
 const path = require('path');
+const DashboardPlugin = require('webpack-dashboard/plugin');
 
 const nodeEnv = process.env.NODE_ENV;
 
 const basePlugins = [
   new HtmlWebpackPlugin({
+    title: 'Paskman: Pomodoro based task manager',
     template: 'index.hbs',
     production: true,
     inject: true,
+    minify: {
+      removeComments: true,
+      collapseWhitespace: true,
+      removeRedundantAttributes: true,
+      useShortDoctype: true,
+      removeEmptyAttributes: true,
+      removeStyleLinkTypeAttributes: true,
+      keepClosingSlash: true,
+      minifyJS: true,
+      minifyCSS: true,
+      minifyURLs: true,
+    },
   }),
   new webpack.optimize.CommonsChunkPlugin({
     name: 'vendor',
     minChunks: Infinity,
     filename: 'vendor.bundle.[hash].js'
   }),
+  // Put it in the end to capture all the HtmlWebpackPlugin's
+  // assets manipulations and do leak its manipulations to HtmlWebpackPlugin
+  new OfflinePlugin(),
 ];
 
 const vendorModules = [
@@ -138,7 +156,8 @@ if (nodeEnv === 'production') {
 } else {
   module.exports = Object.assign(baseConfig, {
     entry: {
-      vendor: vendorModules.concat([
+      vendor: vendorModules,
+      js: [
         'react-hot-loader/patch',
         // activate HMR for React
 
@@ -149,8 +168,6 @@ if (nodeEnv === 'production') {
         'webpack/hot/only-dev-server',
         // bundle the client for hot reloading
         // only- means to only hot reload for successful updates
-      ]),
-      js: [
         './index.hot.js',
         './scenes/main/index.js',
       ]
@@ -190,6 +207,16 @@ if (nodeEnv === 'production') {
 
       new webpack.NamedModulesPlugin(),
       // prints more readable module names in the browser console on HMR
-    ].concat(basePlugins),
+    ].concat(basePlugins).concat([
+      new LodashModuleReplacementPlugin({
+        caching: false,
+        collections: true,
+        paths: true,
+      }),
+      new webpack.LoaderOptionsPlugin({
+        minimize: true,
+      }),
+      new DashboardPlugin(),
+    ]),
   });
 }

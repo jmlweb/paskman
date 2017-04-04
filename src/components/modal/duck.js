@@ -7,7 +7,7 @@ import {
 /**
  * ACTIONS
  */
-const MODAL_TOGGLE = 'MODAL/TOGGLE';
+export const MODAL_TOGGLE = 'MODAL/TOGGLE';
 
 export const modalToggle = createAction(MODAL_TOGGLE);
 

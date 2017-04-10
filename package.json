@@ -40,6 +40,7 @@
     "css-mqpacker": "^5.0.1",
     "cssnano": "^3.10.0",
     "enzyme": "^2.8.0",
+    "enzyme-to-json": "^1.5.0",
     "eslint": "^3.18.0",
     "eslint-config-airbnb": "^14.1.0",
     "eslint-plugin-compat": "^1.0.2",
@@ -75,7 +76,8 @@
     "start": "webpack-dashboard webpack-dev-server --colors --open",
     "build": "NODE_ENV='production' webpack -p",
     "test": "jest",
-    "test:watch": "npm test -- --watch"
+    "test:watch": "npm test -- --watch",
+    "test:coverage": "npm test -- --coverage"
   },
   "jest": {
     "verbose": true,

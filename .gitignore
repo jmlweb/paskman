@@ -3,7 +3,6 @@ logs
 *.log
 npm-debug.log*
 yarn-error.log*
-__snapshots__
 
 #Cache
 .eslintcache
@@ -32,7 +31,8 @@ node_modules
 .idea/
 
 #Tests
-/reports
+/coverage
+__snapshots__
 
 #Builds
 dist/

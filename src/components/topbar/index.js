@@ -7,7 +7,7 @@ import TopbarView from './view';
 
 const { bool, func } = PropTypes;
 
-class Topbar extends Component {
+export class Topbar extends Component {
   static propTypes = {
     menuOpen: bool.isRequired,
     menuToggleOpen: func.isRequired,

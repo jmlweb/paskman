@@ -16,6 +16,10 @@ const SvgIcon = ({ svg, className }) => {
     iconClass[className] = true;
   }
 
+  if (typeof(svgEl.getAttribute) !== 'function') {
+    return <svg className={classNames(iconClass)} />;
+  }
+
   return (
     <svg
       className={classNames(iconClass)}

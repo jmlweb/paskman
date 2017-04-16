@@ -12,7 +12,7 @@ function setup() {
     opacity: 1,
   };
 
-  const enzymeWrapper = shallow(<TopbarView {...props}></TopbarView>);
+  const enzymeWrapper = shallow(<TopbarView {...props} />);
 
   return {
     props,

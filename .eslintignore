@@ -2,10 +2,10 @@ node_modules
 bin
 *.log
 *.hbs
+*.test.js
 .*
 !.eslintrc
 !.gitignore
 !.npmignore
 !.babelrc
 !.README
-test.js

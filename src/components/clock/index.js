@@ -1,10 +1,11 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { toClock } from '../../utils/parsetime';
 import style from './style.scss';
 
 const {
   number,
-} = React.PropTypes;
+} = PropTypes;
 
 const Clock = ({ amount }) => {
   const parsedTimeArr = toClock(amount).split(':');

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import InputRange from 'react-input-range';
 import Modal from '../../../../components/modal';
 import Btn from '../../../../components/btn';
@@ -9,7 +10,7 @@ const {
   string,
   number,
   func,
-} = React.PropTypes;
+} = PropTypes;
 
 const AddTask = ({
   name,

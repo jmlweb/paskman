@@ -1,6 +1,7 @@
 import React, {
   Component,
 } from 'react';
+import PropTypes from 'prop-types';
 import {
   Provider,
   connect,
@@ -15,7 +16,7 @@ import Preloader from './components/preloader';
 const {
   objectOf,
   any,
-} = React.PropTypes;
+} = PropTypes;
 
 class Root extends Component {
   static propTypes = {

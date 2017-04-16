@@ -32,7 +32,7 @@ const basePlugins = [
   new webpack.optimize.CommonsChunkPlugin({
     name: 'vendor',
     minChunks: Infinity,
-    filename: 'vendor.bundle.[hash].js'
+    filename: 'vendor.bundle.[hash].js',
   }),
   // Put it in the end to capture all the HtmlWebpackPlugin's
   // assets manipulations and do leak its manipulations to HtmlWebpackPlugin

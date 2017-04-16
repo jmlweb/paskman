@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Progress from '../progress';
 import Clock from '../../../../components/clock';
 import style from './style.scss';
@@ -6,7 +7,7 @@ import style from './style.scss';
 const {
   number,
   string,
-} = React.PropTypes;
+} = PropTypes;
 
 function getName(name) {
   if (!name) {

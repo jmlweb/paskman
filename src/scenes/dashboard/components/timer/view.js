@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Btn from '../../../../components/btn';
 import Clock from '../../../../components/clock';
 import Progress from '../progress';
@@ -9,7 +10,7 @@ const {
   bool,
   string,
   func,
-} = React.PropTypes;
+} = PropTypes;
 
 const getBtnText = (enabled) => {
   if (enabled) {

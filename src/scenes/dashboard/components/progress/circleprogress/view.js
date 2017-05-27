@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Circle } from 'react-progressbar.js';
+import { Circle } from '../shape';
 
 const {
   number,

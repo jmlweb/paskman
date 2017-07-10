@@ -11,7 +11,7 @@ import shortid from 'shortid';
 const pomodoroTableItemMockup = {
   start: null,
   end: null,
-  task: null,
+  // task: null, //only added if its a working interval
 };
 
 const pomodoroTableMockup = {

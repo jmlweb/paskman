@@ -121,18 +121,13 @@ const baseConfig = {
 if (nodeEnv === 'production') {
   module.exports = Object.assign(baseConfig, {
     entry: {
-          vendor: vendorModules,
-          js: [
-            './index.js',
-            './scenes/main/index.js',
-          ]
-        },
+      vendor: vendorModules,
+      js: [
+        './index.js',
+        './scenes/main/index.js',
+      ],
+    },
     plugins: basePlugins.concat([
-      /*new LodashModuleReplacementPlugin({
-        caching: true,
-        collections: true,
-        paths: true,
-      }),*/
       new webpack.LoaderOptionsPlugin({
         minimize: true,
       }),
@@ -164,23 +159,8 @@ if (nodeEnv === 'production') {
         // only- means to only hot reload for successful updates
         './index.hot.js',
         './scenes/main/index.js',
-      ]
+      ],
     },
-    /*entry: [
-      'react-hot-loader/patch',
-      // activate HMR for React
-
-      'webpack-dev-server/client?http://localhost:9000',
-      // bundle the client for webpack-dev-server
-      // and connect to the provided endpoint
-
-      'webpack/hot/only-dev-server',
-      // bundle the client for hot reloading
-      // only- means to only hot reload for successful updates
-
-      './index.hot.js',
-      // the entry point of our app
-    ],*/
     devtool: 'inline-source-map',
     devServer: {
       hot: true,

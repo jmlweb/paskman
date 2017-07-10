@@ -76,7 +76,7 @@
     "webpack-dev-server": "^2.4.2"
   },
   "scripts": {
-    "start": "webpack-dashboard -- webpack-dev-server --colors --open --port 4000",
+    "start": "webpack-dashboard -- webpack-dev-server --colors --open",
     "build": "NODE_ENV='production' webpack -p",
     "test": "jest",
     "test:watch": "npm test -- --watch",

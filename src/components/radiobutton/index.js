@@ -25,6 +25,7 @@ const RadioButton = ({ options, value, onChange }) => {
         type="radio"
         value={option.value}
         onChange={onChange}
+        onClick={onChange}
       />
       <span className={style.description}>{option.description}</span>
     </label>

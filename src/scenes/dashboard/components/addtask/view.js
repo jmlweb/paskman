@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import InputRange from 'react-input-range';
+import Slider from 'react-rangeslider';
 import Modal from '../../../../components/modal';
 import Btn from '../../../../components/btn';
 import RadioButton from '../../../../components/radiobutton';
@@ -57,45 +57,22 @@ const AddTask = ({
         <label className={style.label} htmlFor="timeRequired">Time required</label>
         <div className={style.radioButton}>
           <RadioButton
-            options={[
-              {
-                description: '1 pom',
-                value: 25,
-              },
-              {
-                description: '2 pom',
-                value: 50,
-              },
-              {
-                description: '3 pom',
-                value: 75,
-              },
-              {
-                description: '4 pom',
-                value: 100,
-              },
-              {
-                description: '5 pom',
-                value: 125,
-              },
-            ]}
+            options={[1, 2, 3, 4, 5].map(pomodoros => ({
+              description: `${pomodoros} pom`,
+              value: pomodoros * 25, // @todo Load time from settings
+            }))}
             value={timeRequired}
             onChange={handleTimeRequiredChange}
           />
         </div>
         <div className={style.slider}>
-          <InputRange
-            minValue={5}
-            maxValue={125}
+          <Slider
+            min={5}
+            max={125}
             step={5}
             value={timeRequired}
             onChange={handleTimeRequiredChange}
-            formatLabel={(value, type) => {
-              if (type === 'value') {
-                return `${value} min`;
-              }
-              return value;
-            }}
+            format={value => `${value} min`}
           />
         </div>
       </div>

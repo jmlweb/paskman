@@ -4,7 +4,7 @@ import { render } from 'react-dom';
 import { browserHistory } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
 import { AppContainer } from 'react-hot-loader';
-import * as OfflinePluginRuntime from 'offline-plugin/runtime';
+// import * as OfflinePluginRuntime from 'offline-plugin/runtime';
 import configureStore from './store';
 import Root from './root';
 
@@ -24,6 +24,6 @@ if (module.hot) {
   });
 }
 
-OfflinePluginRuntime.install();
+// OfflinePluginRuntime.install();
 
 export default app;

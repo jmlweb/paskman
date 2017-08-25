@@ -4,10 +4,12 @@ import { connect } from 'react-redux';
 import {
   pomodorosAdd,
   pomodorosAddItem,
+  pomodorosFinishItem,
 } from '../../../../data/pomodoros/duck';
 import {
   firstTaskSelector,
 } from '../../../../data/tasks/duck';
+import { timerSetMode } from './duck';
 import TimerView from './view';
 
 const {
@@ -21,7 +23,10 @@ class Timer extends Component {
     settings: objectOf(any).isRequired,
     pomodorosAdd: func.isRequired,
     pomodorosAddItem: func.isRequired,
+    pomodorosFinishItem: func.isRequired,
     firstTask: objectOf(any).isRequired,
+    timerData: objectOf(any).isRequired,
+    timerSetMode: func.isRequired,
   };
   constructor(props) {
     super(props);
@@ -45,22 +50,25 @@ class Timer extends Component {
     });
   }
   handleClick() {
-    const { mode } = this.state;
-    if (mode === 'stopped') {
+    const { timerData } = this.props;
+    if (timerData.mode === 'stopped') {
       this.addPomodoro();
     }
-    if (mode === 'stopped' || mode === 'paused') {
-      this.setState({
-        mode: 'started',
-      });
+    if (timerData.mode === 'stopped' || timerData.mode === 'paused') {
+      this.props.timerSetMode('started');
       this.addPomodoroItem();
+    }
+    if (timerData.mode === 'started') {
+      this.props.timerSetMode('paused');
+      this.props.pomodorosFinishItem();
     }
   }
   render() {
-    const { mode } = this.state;
+    const { timerData } = this.props;
     return (
       <TimerView
-        state={mode}
+        state={timerData.mode}
+        enabled={timerData.mode === 'started'}
         handleClick={this.handleClick}
       />
     );
@@ -70,6 +78,7 @@ class Timer extends Component {
 function mapStateToProps(state) {
   return {
     settings: state.data.settings.toJS(),
+    timerData: state.scenes.dashboard.components.timer.toJS(),
     firstTask: firstTaskSelector(state.data.tasks),
   };
 }
@@ -77,5 +86,7 @@ function mapStateToProps(state) {
 export default connect(mapStateToProps, {
   pomodorosAdd,
   pomodorosAddItem,
+  pomodorosFinishItem,
+  timerSetMode,
 })(Timer);
 

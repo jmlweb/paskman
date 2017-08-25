@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import style from './style.scss';
 
@@ -24,6 +25,7 @@ const RadioButton = ({ options, value, onChange }) => {
         type="radio"
         value={option.value}
         onChange={onChange}
+        onClick={onChange}
       />
       <span className={style.description}>{option.description}</span>
     </label>

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import style from './style.scss';
 
@@ -7,7 +8,7 @@ const {
   objectOf,
   any,
   string,
-} = React.PropTypes;
+} = PropTypes;
 
 const Btn = ({ children, color, ...rest }) =>
   <button className={classNames(style.btn, color && style[color])} {...rest}>{children}</button>;

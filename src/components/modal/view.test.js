@@ -1,5 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
+import toJson from 'enzyme-to-json';
 import ModalView from './view';
 
 function setup() {
@@ -23,5 +24,6 @@ describe('ModalView', () => {
     expect(enzymeWrapper.find('.modal').hasClass('active')).toBe(false);
     expect(enzymeWrapper.find('h3').text()).toBe('Testing');
     expect(enzymeWrapper.find('h1').text()).toBe('Testing children');
+    expect(toJson(enzymeWrapper)).toMatchSnapshot();
   });
 });

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Logo from '../logo';
 import Menu from './components/menu';
 import SvgIcon from '../svgicon';
@@ -10,7 +11,7 @@ const {
   bool,
   func,
   number,
-} = React.PropTypes;
+} = PropTypes;
 
 function TopbarView({ toggleMenu, menuOpen, handleTouchMove, lastY, opacity }) {
   return (

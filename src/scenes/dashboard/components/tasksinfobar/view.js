@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Clock from '../../../../components/clock';
 import SvgIcon from '../../../../components/svgicon';
 import style from './style.scss';
@@ -7,7 +8,7 @@ import addSvg from './add.svg';
 const {
   number,
   func,
-} = React.PropTypes;
+} = PropTypes;
 
 function getTasksPending(tasksPending) {
   if (tasksPending === 0) {

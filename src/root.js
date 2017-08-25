@@ -1,6 +1,7 @@
 import React, {
   Component,
 } from 'react';
+import PropTypes from 'prop-types';
 import {
   Provider,
   connect,
@@ -15,7 +16,7 @@ import Preloader from './components/preloader';
 const {
   objectOf,
   any,
-} = React.PropTypes;
+} = PropTypes;
 
 class Root extends Component {
   static propTypes = {
@@ -41,7 +42,6 @@ class Root extends Component {
         rehydrated: true,
       });
     });
-    this.routes = routes;
   }
   render() {
     if (!this.state.rehydrated) {
@@ -50,7 +50,7 @@ class Root extends Component {
     const { store, history } = this.props;
     return (
       <Provider store={store}>
-        <Router history={history} routes={this.routes} />
+        <Router history={history} routes={routes} />
       </Provider>
     );
   }

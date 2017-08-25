@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import Link from 'react-router/lib/Link';
 import SvgIcon from '../../../svgicon';
@@ -12,7 +13,7 @@ const {
   bool,
   func,
   number,
-} = React.PropTypes;
+} = PropTypes;
 
 const Menu = ({ menuOpen, handleTouchMove, lastY, toggleMenu, opacity }) =>
   <ul

@@ -1,9 +1,10 @@
 /* eslint-disable react/no-danger */
 import React from 'react';
 import classNames from 'classnames';
+import PropTypes from 'prop-types';
 import style from './style.scss';
 
-const { string } = React.PropTypes;
+const { string } = PropTypes;
 
 const SvgIcon = ({ svg, className }) => {
   const wrapper = document.createElement('span');
@@ -14,6 +15,10 @@ const SvgIcon = ({ svg, className }) => {
   };
   if (className) {
     iconClass[className] = true;
+  }
+
+  if (typeof svgEl.getAttribute !== 'function') {
+    return <svg className={classNames(iconClass)} />;
   }
 
   return (

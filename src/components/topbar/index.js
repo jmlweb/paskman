@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import {
   menuToggleOpen,
@@ -7,7 +8,7 @@ import TopbarView from './view';
 
 const { bool, func } = PropTypes;
 
-class Topbar extends Component {
+export class TopbarDumb extends Component {
   static propTypes = {
     menuOpen: bool.isRequired,
     menuToggleOpen: func.isRequired,
@@ -78,4 +79,4 @@ function mapStateToProps(state) {
 
 export default connect(mapStateToProps, {
   menuToggleOpen,
-})(Topbar);
+})(TopbarDumb);

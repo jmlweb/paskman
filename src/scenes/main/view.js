@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 import Topbar from '../../components/topbar';
 import style from './style.scss';
@@ -8,7 +9,7 @@ const {
   arrayOf,
   objectOf,
   any,
-} = React.PropTypes;
+} = PropTypes;
 
 function MainView({ children }) {
   return (

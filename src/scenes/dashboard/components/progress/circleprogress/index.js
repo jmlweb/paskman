@@ -1,12 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import CircleProgressView from './view';
 
 const {
   number,
   objectOf,
   any,
-} = React.PropTypes;
+} = PropTypes;
 
 class CircleProgress extends React.Component {
   static propTypes = {

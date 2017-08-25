@@ -1,11 +1,12 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import CircleProgress from './circleprogress';
 import LinearProgress from './linearprogress';
 
 const {
   number,
   string,
-} = React.PropTypes;
+} = PropTypes;
 
 const Progress = ({ type, progress }) => {
   if (type === 'linear') {

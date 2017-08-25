@@ -1,9 +1,10 @@
 import React from 'react';
-import { Line } from 'react-progressbar.js';
+import PropTypes from 'prop-types';
+import { Line } from '../shape';
 
 const {
   number,
-} = React.PropTypes;
+} = PropTypes;
 
 const options = {
   color: '#ffa3a2',

@@ -17,13 +17,18 @@ const getContainerStyle = size => ({
   height: `${size}px`,
 });
 
-const CircleProgressView = ({ progress, size }) => (
-  <Circle
-    progress={progress}
-    options={options}
-    containerStyle={getContainerStyle(size)}
-  />
-);
+const CircleProgressView = ({ progress, size }) => {
+  if (window.SVGElement) {
+    return (
+      <Circle
+        progress={progress}
+        options={options}
+        containerStyle={getContainerStyle(size)}
+      />
+    );
+  }
+  return null;
+};
 
 CircleProgressView.defaultProps = {
   size: 200,

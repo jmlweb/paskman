@@ -24,11 +24,11 @@
   color: $saintPatrickBlue;
   font-size: 3.4rem;
   font-weight: 500;
-  margin-top: 1.2rem;
   min-width: 18rem;
 }
 
-.state {
+.state,
+.mode {
   color: rgba($saintPatrickBlue, 0.5);
   font-size: 1.8rem;
   font-weight: 500;

@@ -24,7 +24,7 @@ const mainMockup = {
 /**
  * REDUCER
  */
-const initialState = Immutable.Map(mainMockup);
+export const initialState = Immutable.Map(mainMockup);
 
 const main = handleActions({
   [mainSetDimensions]: (state, action) => state.set('dimensions', action.payload),

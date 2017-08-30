@@ -28,7 +28,7 @@ const FeaturedTaskView = ({ name, elapsedTime, totalTime, progress }) => (
 
 FeaturedTaskView.defaultProps = {
   name: null,
-  progress: 0.4,
+  progress: 0,
   elapsedTime: 0,
   totalTime: 0,
 };

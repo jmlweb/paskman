@@ -1,4 +1,5 @@
 @import "settings/colors";
+@import "settings/spacing";
 @import "settings/timings";
 
 .btn {
@@ -11,6 +12,8 @@
   padding: 15px 30px;
   border-radius: 30px;
   transition: opacity 0.3s $easeOutQuad;
+  min-width: 135px;
+  margin: 0 $spacing-xs;
   &[disabled] {
     opacity: 0.7;
   }

@@ -5,17 +5,26 @@ import {
   pomodorosAdd,
   pomodorosAddItem,
   pomodorosFinishItem,
+  pomodorosChangeMode,
+  lastPomodoroSelector,
+  modeTimeSelector,
+  lastModeEntrySelector,
+  previousElapsedTimeSelector,
 } from '../../../../data/pomodoros/duck';
 import {
   firstTaskSelector,
 } from '../../../../data/tasks/duck';
-import { timerSetMode } from './duck';
+import {
+  timerSetMode,
+  timerSetAmount,
+} from './duck';
 import TimerView from './view';
 
 const {
   objectOf,
   any,
   func,
+  number,
 } = PropTypes;
 
 class Timer extends Component {
@@ -24,18 +33,66 @@ class Timer extends Component {
     pomodorosAdd: func.isRequired,
     pomodorosAddItem: func.isRequired,
     pomodorosFinishItem: func.isRequired,
+    pomodorosChangeMode: func.isRequired,
     firstTask: objectOf(any).isRequired,
     timerData: objectOf(any).isRequired,
     timerSetMode: func.isRequired,
+    timerSetAmount: func.isRequired,
+    previousElapsedTime: number,
+    lastPomodoro: objectOf(any),
+    modeTime: number,
+    lastModeEntry: objectOf(any),
+  };
+  static defaultProps = {
+    previousElapsedTime: 0,
+    lastPomodoro: {},
+    lastModeEntry: { start: Date.now() },
+    modeTime: 0,
   };
   constructor(props) {
     super(props);
-    this.state = {
-      mode: 'stopped',
-    };
     this.addPomodoro = this.addPomodoro.bind(this);
     this.addPomodoroItem = this.addPomodoroItem.bind(this);
     this.handleClick = this.handleClick.bind(this);
+    this.handleStop = this.handleStop.bind(this);
+    this.handleInterval = this.handleInterval.bind(this);
+  }
+  componentWillMount() {
+    this.updateAmount();
+    if (this.props.timerData.mode === 'started') {
+      this.startCounter();
+    }
+  }
+  componentWillUnmount() {
+    if (this.props.timerData.mode === 'started') {
+      this.handleClick();
+    } else {
+      this.stopCounter();
+    }
+  }
+  startCounter() {
+    this.counter = setInterval(this.handleInterval, 200);
+  }
+  stopCounter() {
+    clearInterval(this.counter);
+  }
+  handleInterval() {
+    if (this.props.modeTime - this.props.timerData.amount <= 0) {
+      this.props.timerSetMode('stopped');
+      this.props.pomodorosFinishItem();
+      this.stopCounter();
+      this.props.timerSetAmount(0);
+      this.props.pomodorosChangeMode();
+    } else {
+      this.updateAmount();
+    }
+  }
+  updateAmount() {
+    let elapsedTime = this.props.previousElapsedTime;
+    if (!this.props.lastModeEntry.end) {
+      elapsedTime += Date.now() - this.props.lastModeEntry.start;
+    }
+    this.props.timerSetAmount(elapsedTime);
   }
   addPomodoro() {
     const { target } = this.props.settings;
@@ -57,19 +114,28 @@ class Timer extends Component {
     if (timerData.mode === 'stopped' || timerData.mode === 'paused') {
       this.props.timerSetMode('started');
       this.addPomodoroItem();
+      this.startCounter();
     }
     if (timerData.mode === 'started') {
       this.props.timerSetMode('paused');
       this.props.pomodorosFinishItem();
+      this.stopCounter();
     }
   }
+  handleStop() {
+    this.props.timerSetMode('stopped');
+    this.props.pomodorosFinishItem();
+  }
   render() {
-    const { timerData } = this.props;
+    const { timerData, modeTime, lastPomodoro } = this.props;
     return (
       <TimerView
         state={timerData.mode}
-        enabled={timerData.mode === 'started'}
+        mode={lastPomodoro.mode}
+        amount={timerData.amount}
         handleClick={this.handleClick}
+        handleStop={this.handleStop}
+        progress={timerData.amount / modeTime}
       />
     );
   }
@@ -80,6 +146,10 @@ function mapStateToProps(state) {
     settings: state.data.settings.toJS(),
     timerData: state.scenes.dashboard.components.timer.toJS(),
     firstTask: firstTaskSelector(state.data.tasks),
+    lastPomodoro: lastPomodoroSelector(state.data.pomodoros).toJS(),
+    modeTime: modeTimeSelector(state.data.pomodoros),
+    lastModeEntry: lastModeEntrySelector(state.data.pomodoros),
+    previousElapsedTime: previousElapsedTimeSelector(state.data.pomodoros),
   };
 }
 
@@ -87,6 +157,8 @@ export default connect(mapStateToProps, {
   pomodorosAdd,
   pomodorosAddItem,
   pomodorosFinishItem,
+  pomodorosChangeMode,
   timerSetMode,
+  timerSetAmount,
 })(Timer);
 

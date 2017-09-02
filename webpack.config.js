@@ -173,6 +173,7 @@ if (nodeEnv === 'production') {
       // match the output `publicPath`
       compress: true,
       port: 9000,
+      host: '0.0.0.0',
       historyApiFallback: true,
     },
     plugins: [

@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 import Btn from '../../../../components/btn';
 import Clock from '../../../../components/clock';
 import Progress from '../progress';
@@ -9,6 +10,7 @@ const {
   number,
   string,
   func,
+  bool,
 } = PropTypes;
 
 const getBtnText = (state) => {
@@ -21,8 +23,8 @@ const getBtnText = (state) => {
   return 'Start';
 };
 
-const TimerView = ({ progress, amount, mode, state, handleClick, handleStop }) => (
-  <div className={style.timer}>
+const TimerView = ({ progress, isChanging, amount, mode, state, handleClick, handleStop }) => (
+  <div className={classNames(style.timer, isChanging && style['is-changing'])}>
     <div className={style.info}>
       <Progress type="circle" progress={progress} />
       <div className={style.text}>
@@ -43,6 +45,7 @@ TimerView.defaultProps = {
   progress: 0,
   state: 'stopped',
   mode: 'working',
+  isChanging: false,
   handleClick: () => null,
   handleStop: () => null,
 };
@@ -50,6 +53,7 @@ TimerView.defaultProps = {
 TimerView.propTypes = {
   amount: number,
   progress: number,
+  isChanging: bool,
   state: string,
   mode: string,
   handleClick: func.isRequired,

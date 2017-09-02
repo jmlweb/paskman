@@ -17,6 +17,7 @@ import {
 import {
   timerSetMode,
   timerSetAmount,
+  timerSetIsChanging,
 } from './duck';
 import TimerView from './view';
 
@@ -38,6 +39,7 @@ class Timer extends Component {
     timerData: objectOf(any).isRequired,
     timerSetMode: func.isRequired,
     timerSetAmount: func.isRequired,
+    timerSetIsChanging: func.isRequired,
     previousElapsedTime: number,
     lastPomodoro: objectOf(any),
     modeTime: number,
@@ -77,12 +79,20 @@ class Timer extends Component {
     clearInterval(this.counter);
   }
   handleInterval() {
-    if (this.props.modeTime - this.props.timerData.amount <= 0) {
+    const availableTime = this.props.modeTime - this.props.timerData.amount;
+    if (availableTime <= 200) {
+      this.props.timerSetIsChanging(true);
+    }
+    if (availableTime <= 0) {
       this.props.timerSetMode('stopped');
       this.props.pomodorosFinishItem();
       this.stopCounter();
-      this.props.timerSetAmount(0);
       this.props.pomodorosChangeMode();
+      // add some delay waiting for progress completion
+      setTimeout(() => {
+        this.props.timerSetAmount(0);
+        this.props.timerSetIsChanging(false);
+      }, 700);
     } else {
       this.updateAmount();
     }
@@ -108,6 +118,7 @@ class Timer extends Component {
   }
   handleClick() {
     const { timerData } = this.props;
+    this.props.timerSetIsChanging(false);
     if (timerData.mode === 'stopped') {
       this.addPomodoro();
     }
@@ -136,6 +147,7 @@ class Timer extends Component {
         handleClick={this.handleClick}
         handleStop={this.handleStop}
         progress={timerData.amount / modeTime}
+        isChanging={timerData.isChanging}
       />
     );
   }
@@ -160,5 +172,6 @@ export default connect(mapStateToProps, {
   pomodorosChangeMode,
   timerSetMode,
   timerSetAmount,
+  timerSetIsChanging,
 })(Timer);
 

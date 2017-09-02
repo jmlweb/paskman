@@ -86,11 +86,14 @@ class Timer extends Component {
     if (availableTime <= 0) {
       this.props.timerSetMode('stopped');
       this.props.pomodorosFinishItem();
+      if (this.props.lastPomodoro.mode === 'resting') {
+
+      }
       this.stopCounter();
       this.props.pomodorosChangeMode();
+      this.props.timerSetAmount(0);
       // add some delay waiting for progress completion
       setTimeout(() => {
-        this.props.timerSetAmount(0);
         this.props.timerSetIsChanging(false);
       }, 700);
     } else {
@@ -117,9 +120,9 @@ class Timer extends Component {
     });
   }
   handleClick() {
-    const { timerData } = this.props;
+    const { timerData, lastPomodoro } = this.props;
     this.props.timerSetIsChanging(false);
-    if (timerData.mode === 'stopped') {
+    if (timerData.mode === 'stopped' && lastPomodoro.mode !== 'resting') {
       this.addPomodoro();
     }
     if (timerData.mode === 'stopped' || timerData.mode === 'paused') {

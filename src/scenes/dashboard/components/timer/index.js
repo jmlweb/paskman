@@ -107,8 +107,11 @@ class Timer extends Component {
     });
   }
   handleClick() {
-    const { timerData } = this.props;
-    if (timerData.mode === 'stopped') {
+    const {
+      timerData,
+      lastPomodoro,
+    } = this.props;
+    if (timerData.mode === 'stopped' && lastPomodoro.mode !== 'resting') {
       this.addPomodoro();
     }
     if (timerData.mode === 'stopped' || timerData.mode === 'paused') {

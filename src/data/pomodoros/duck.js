@@ -5,6 +5,7 @@ import {
   handleActions,
 } from 'redux-actions';
 import { createSelector } from 'reselect';
+import memoize from 'lodash.memoize';
 import shortid from 'shortid';
 
 /**
@@ -86,6 +87,39 @@ export const lastModeEntrySelector = createSelector(
   lastModeTableSelector,
   lastModeTable => lastModeTable && lastModeTable.last(),
 );
+
+export const taskPomodorosSelector = createSelector(
+  state => state,
+  pomodoros => memoize(
+    (taskId) => {
+      function filterByMode(table, mode) {
+        return table.get(mode).filter(tableItem => tableItem.task === taskId);
+      }
+
+      function filterByAllModes(table) {
+        return filterByMode(table, 'working').join(filterByMode(table, 'resting'));
+      }
+      return pomodoros.filter(
+        pomodoro => filterByAllModes(pomodoro.get('table')),
+      );
+    },
+  ),
+);
+
+export function elapsedTimeSelector(pomodoros, taskId, mode = 'working') {
+  const taskPomodorosFilter = taskPomodorosSelector(pomodoros);
+  return (taskPomodorosFilter(taskId).reduce(
+    (elapsedTime, pomodoro) =>
+      elapsedTime + pomodoro.get('table').get(mode).reduce(
+        (tableElapsedTime, tableItem) => {
+          let endTime = tableItem.end;
+          if (!endTime) {
+            endTime = Date.now();
+          }
+          return tableElapsedTime + (endTime - tableItem.start);
+        }, 0)
+  , 0) / 200) * 200;
+}
 
 /**
  * REDUCER

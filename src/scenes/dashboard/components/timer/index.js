@@ -17,6 +17,7 @@ import {
 import {
   timerSetMode,
   timerSetAmount,
+  timerSetIsChanging,
 } from './duck';
 import TimerView from './view';
 
@@ -38,6 +39,7 @@ class Timer extends Component {
     timerData: objectOf(any).isRequired,
     timerSetMode: func.isRequired,
     timerSetAmount: func.isRequired,
+    timerSetIsChanging: func.isRequired,
     previousElapsedTime: number,
     lastPomodoro: objectOf(any),
     modeTime: number,
@@ -63,6 +65,14 @@ class Timer extends Component {
       this.startCounter();
     }
   }
+  shouldComponentUpdate(nextProps) {
+    const {
+      timerData,
+    } = this.props;
+    const isDifferentTime = +(timerData.amount / 1000) !== +(nextProps.timerData.amount / 1000);
+    const isDifferentMode = timerData.mode !== nextProps.timerData.mode;
+    return timerData.amount === 0 || isDifferentTime || isDifferentMode;
+  }
   componentWillUnmount() {
     if (this.props.timerData.mode === 'started') {
       this.handleClick();
@@ -77,12 +87,28 @@ class Timer extends Component {
     clearInterval(this.counter);
   }
   handleInterval() {
-    if (this.props.modeTime - this.props.timerData.amount <= 0) {
+    const {
+      modeTime,
+      timerData,
+      settings,
+    } = this.props;
+    const availableTime = modeTime - timerData.amount;
+    if (availableTime <= 200) {
+      this.props.timerSetIsChanging(true);
+    }
+    if (availableTime <= 0) {
       this.props.timerSetMode('stopped');
       this.props.pomodorosFinishItem();
       this.stopCounter();
-      this.props.timerSetAmount(0);
       this.props.pomodorosChangeMode();
+      this.props.timerSetAmount(0);
+      // add some delay waiting for progress completion
+      setTimeout(() => {
+        this.props.timerSetIsChanging(false);
+        if (!settings.pauseBetween) {
+          this.handleClick();
+        }
+      }, 700);
     } else {
       this.updateAmount();
     }
@@ -107,10 +133,8 @@ class Timer extends Component {
     });
   }
   handleClick() {
-    const {
-      timerData,
-      lastPomodoro,
-    } = this.props;
+    const { timerData, lastPomodoro } = this.props;
+    this.props.timerSetIsChanging(false);
     if (timerData.mode === 'stopped' && lastPomodoro.mode !== 'resting') {
       this.addPomodoro();
     }
@@ -139,6 +163,7 @@ class Timer extends Component {
         handleClick={this.handleClick}
         handleStop={this.handleStop}
         progress={timerData.amount / modeTime}
+        isChanging={timerData.isChanging}
       />
     );
   }
@@ -163,5 +188,6 @@ export default connect(mapStateToProps, {
   pomodorosChangeMode,
   timerSetMode,
   timerSetAmount,
+  timerSetIsChanging,
 })(Timer);
 

@@ -14,6 +14,7 @@
   transition: opacity 0.3s $easeOutQuad;
   min-width: 135px;
   margin: 0 $spacing-xs;
+  outline: 0;
   &[disabled] {
     opacity: 0.7;
   }

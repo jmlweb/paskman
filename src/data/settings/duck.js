@@ -19,7 +19,7 @@ const settingsMockup = {
     working: 0.1,
     resting: 0.1,
   },
-  pauseBetween: true,
+  pauseBetween: false,
 };
 
 /**

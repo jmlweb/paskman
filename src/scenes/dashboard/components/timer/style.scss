@@ -1,4 +1,7 @@
 @import "settings/colors";
+@import "settings/timings";
+
+$defaultTransition: all 0.4s $easeInOutBack;
 
 .timer {
   align-items: center;
@@ -6,10 +9,20 @@
   flex-direction: column;
   justify-content: space-between;
   padding: 3rem 0;
+  transition: $defaultTransition;
+}
+
+.is-changing {
+  opacity: 0.9;
 }
 
 .info {
   position: relative;
+  transition: $defaultTransition;
+  .is-changing & {
+    transform: scale(0.9);
+    //filter: blur(1px);
+  }
 }
 
 .text {

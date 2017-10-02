@@ -47,7 +47,7 @@ class Main extends React.Component {
           this.props.mainSetDimensions(this.state.lastDimensions);
         }
         setInterval();
-      }, 500);
+      }, 250);
     };
     setInterval();
   }

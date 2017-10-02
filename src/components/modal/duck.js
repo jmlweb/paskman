@@ -20,7 +20,7 @@ const modalMockup = {
 /**
  * REDUCER
  */
-const initialState = Immutable.Map(modalMockup);
+export const initialState = Immutable.Map(modalMockup);
 
 const modal = handleActions({
   [modalToggle]: (state, action) => state.set(action.payload, !state.get(action.payload)),

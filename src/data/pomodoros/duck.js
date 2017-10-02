@@ -7,22 +7,23 @@ import {
 import { createSelector } from 'reselect';
 import memoize from 'lodash.memoize';
 import shortid from 'shortid';
+import { minToMil } from '../../utils/parsetime';
 
 /**
  * DEFAULTS
  */
-const pomodoroTableItemMockup = {
+export const pomodoroTableItemMockup = {
   start: null,
   end: null,
   // task: null, //only added if its a working interval
 };
 
-const pomodoroTableMockup = {
+export const pomodoroTableMockup = {
   working: [],
   resting: [],
 };
 
-const pomodoroMockup = {
+export const pomodoroMockup = {
   id: null,
   created: null,
   target: {
@@ -33,7 +34,7 @@ const pomodoroMockup = {
   table: pomodoroTableMockup,
 };
 
-const pomodorosMockup = [];
+export const pomodorosMockup = [];
 
 /**
  * ACTIONS
@@ -64,14 +65,24 @@ export const pomodorosChangeMode = createAction(POMODOROS_CHANGE_MODE);
 /*
  * SELECTORS
  */
-export const lastPomodoroSelector = state => state.last() || Immutable.fromJS(pomodoroMockup);
+
+export const lastPomodoroSelector = (state) => {
+  return (state && state.last()) || Immutable.fromJS(pomodoroMockup);
+};
+
+const modeSelector = createSelector(
+  lastPomodoroSelector,
+  lastPomodoro => lastPomodoro.get('mode')
+);
 export const modeTimeSelector = createSelector(
   lastPomodoroSelector,
-  lastPomodoro => lastPomodoro && lastPomodoro.get('target').get(lastPomodoro.get('mode')) * 60 * 1000,
+  modeSelector,
+  (lastPomodoro, mode) => lastPomodoro && minToMil(lastPomodoro.get('target').get(mode)),
 );
 const lastModeTableSelector = createSelector(
   lastPomodoroSelector,
-  lastPomodoro => lastPomodoro && lastPomodoro.get('table').get(lastPomodoro.get('mode')),
+  modeSelector,
+  (lastPomodoro, mode) => lastPomodoro && lastPomodoro.get('table').get(mode),
 );
 export const previousElapsedTimeSelector = createSelector(
   lastModeTableSelector,
@@ -108,23 +119,19 @@ export const taskPomodorosSelector = createSelector(
 
 export function elapsedTimeSelector(pomodoros, taskId, mode = 'working') {
   const taskPomodorosFilter = taskPomodorosSelector(pomodoros);
-  return (taskPomodorosFilter(taskId).reduce(
+  return taskPomodorosFilter(taskId).reduce(
     (elapsedTime, pomodoro) =>
       elapsedTime + pomodoro.get('table').get(mode).reduce(
         (tableElapsedTime, tableItem) => {
-          let endTime = tableItem.end;
-          if (!endTime) {
-            endTime = Date.now();
-          }
-          return tableElapsedTime + (endTime - tableItem.start);
+          return tableElapsedTime + ((tableItem.end || Date.now()) - tableItem.start);
         }, 0)
-  , 0) / 200) * 200;
+  , 0);
 }
 
 /**
  * REDUCER
  */
-const initialState = Immutable.List(pomodorosMockup);
+export const initialState = Immutable.List(pomodorosMockup);
 
 const pomodoros = handleActions({
   [pomodorosAdd]: (state, action) => state.push(

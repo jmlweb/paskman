@@ -5,8 +5,11 @@ describe('actions', () => {
     expect(duck.timerSetMode()).toEqual({
       type: duck.TIMER_SET_MODE,
     });
-    expect(duck.timerSetElapsed()).toEqual({
-      type: duck.TIMER_SET_ELAPSED,
+    expect(duck.timerSetAmount()).toEqual({
+      type: duck.TIMER_SET_AMOUNT,
+    });
+    expect(duck.timerSetIsChanging()).toEqual({
+      type: duck.TIMER_SET_IS_CHANGING,
     });
   });
 });

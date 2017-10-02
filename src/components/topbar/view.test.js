@@ -31,6 +31,7 @@ describe('TopbarView', () => {
     expect(enzymeWrapper.find('.wrapper')).toHaveLength(1);
     expect(enzymeWrapper.find('.nav')).toHaveLength(1);
     expect(enzymeWrapper.find('.btn')).toHaveLength(1);
+    expect(enzymeWrapper.find('SvgIcon')).toHaveLength(1);
     expect(enzymeWrapper.find('Menu')).toHaveLength(1);
     expect(enzymeWrapper.find('Menu').props().menuOpen).toBe(false);
     expect(toJson(enzymeWrapper)).toMatchSnapshot();

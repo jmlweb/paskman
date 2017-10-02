@@ -10,7 +10,7 @@ const {
   string,
 } = PropTypes;
 
-class Shape extends React.Component {
+export class Shape extends React.Component {
   static defaultProps = {
     ShapeClass: null,
     options: {},
@@ -18,7 +18,7 @@ class Shape extends React.Component {
     text: null,
     initialAnimate: false,
     containerStyle: {},
-    containerClassName: '.progressbar-container',
+    containerClassName: 'progressbar-container',
   };
 
   static propTypes = {
@@ -74,6 +74,10 @@ class Shape extends React.Component {
       throw new Error('Progressbar is already created');
     }
 
+    if (typeof window.SVGElement !== 'function') {
+      return false;
+    }
+
     // setState function is not used to prevent a new render cycle
     // This handling happens outside of React component's lifecycle
     const container = this.progressBar;
@@ -110,6 +114,8 @@ class Shape extends React.Component {
   }
 
 }
+
+export const ProgressBarLib = ProgressBar;
 
 export const Line = props => <Shape {...props} ShapeClass={ProgressBar.Line} />;
 export const Circle = props => <Shape {...props} ShapeClass={ProgressBar.Circle} />;

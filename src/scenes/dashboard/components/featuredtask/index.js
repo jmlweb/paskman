@@ -8,6 +8,8 @@ import {
   elapsedTimeSelector,
 } from '../../../../data/pomodoros/duck';
 import FeaturedTaskView from './view';
+import roundQty from '../../../../utils/roundqty';
+import { toClock } from '../../../../utils/parsetime';
 
 const {
   objectOf,
@@ -21,6 +23,16 @@ class FeaturedTask extends Component {
     dimensions: objectOf(any).isRequired,
     elapsedTime: number.isRequired,
   };
+  shouldComponentUpdate(nextProps) {
+    if (!nextProps) {
+      return true;
+    }
+    const hasDifferentClockTime = toClock(this.props.elapsedTime) !== toClock(nextProps.elapsedTime);
+    const hasDifferentWidth = this.props.dimensions.width !== nextProps.dimensions.width;
+    const hasDifferentHeight = this.props.dimensions.height !== nextProps.dimensions.height;
+    const hasDifferentDimensions = hasDifferentWidth || hasDifferentHeight;
+    return hasDifferentClockTime || hasDifferentDimensions;
+  }
   getMaxName() {
     return this.props.dimensions.width > 768 ? 200 : 40;
   }
@@ -46,7 +58,7 @@ function mapStateToProps(state) {
   const firstTask = firstTaskSelector(state.data.tasks);
   return {
     firstTask,
-    elapsedTime: elapsedTimeSelector(state.data.pomodoros, firstTask.id, 'working'),
+    elapsedTime: roundQty(elapsedTimeSelector(state.data.pomodoros, firstTask.id, 'working'), 200),
     dimensions: state.scenes.main.get('dimensions'),
   };
 }

@@ -26,4 +26,9 @@ describe('TimerView', () => {
     expect(enzymeWrapper.find('.state').text()).toBe('stopped');
     expect(toJson(enzymeWrapper)).toMatchSnapshot();
   });
+  it('should start the timer', () => {
+    const { enzymeWrapper } = setup();
+    enzymeWrapper.find('Btn').simulate('click');
+    //expect(toJson(enzymeWrapper)).toMatchSnapshot();
+  });
 });

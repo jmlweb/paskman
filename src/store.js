@@ -3,15 +3,19 @@ import thunkMiddleware from 'redux-thunk';
 import { autoRehydrate } from 'redux-persist';
 import reducer from './reducer';
 
-const configureStore = initialState =>
+/* eslint-disable no-underscore-dangle */
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+/* eslint-enable */
+
+const configureStore = () =>
   createStore(
     reducer,
-    initialState,
-    compose(
-      applyMiddleware(thunkMiddleware),
+    undefined,
+    composeEnhancers(
       autoRehydrate({
         log: true,
       }),
+      applyMiddleware(thunkMiddleware),
     ),
   );
 

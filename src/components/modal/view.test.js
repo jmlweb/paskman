@@ -19,11 +19,17 @@ function setup() {
 }
 
 describe('ModalView', () => {
+  const { enzymeWrapper } = setup();
   it('should render self and subcomponents', () => {
-    const { enzymeWrapper } = setup();
     expect(enzymeWrapper.find('.modal').hasClass('active')).toBe(false);
     expect(enzymeWrapper.find('h3').text()).toBe('Testing');
     expect(enzymeWrapper.find('h1').text()).toBe('Testing children');
     expect(toJson(enzymeWrapper)).toMatchSnapshot();
+    enzymeWrapper.setProps({modalOpen: true});
+    expect(enzymeWrapper.find('.modal').hasClass('active')).toBe(true);
   });
+  /*it('should make active the modal on click', () => {
+    enzymeWrapper.find('.close').simulate('click');
+    expect(enzymeWrapper.find('.modal').hasClass('active')).toBe(true);
+  });*/
 });

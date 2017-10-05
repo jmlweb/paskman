@@ -16,9 +16,10 @@
   position: fixed;
   right: 0;
   top: $topbar-height;
-  transition: max-height 0.3s $easeInBack;
   z-index: 5;
+  transition: max-height 0.3s $easeInBack;
   &.open {
+    transition: max-height 0.3s $easeOutBack;
     max-height: calc(100vh - #{$topbar-height});
     li {
       opacity: 1;

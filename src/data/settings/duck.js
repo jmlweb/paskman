@@ -16,16 +16,16 @@ export const settingsChange = createAction(SETTINGS_CHANGE);
  */
 const settingsMockup = {
   target: {
-    working: 25,
-    resting: 5,
+    working: 0.1,
+    resting: 0.1,
   },
-  pauseBetween: true,
+  pauseBetween: false,
 };
 
 /**
  * REDUCER
  */
-const initialState = Immutable.Map(settingsMockup);
+export const initialState = Immutable.Map(settingsMockup);
 
 const settings = handleActions({
   [settingsChange]: (state, action) => state.set(action.payload),

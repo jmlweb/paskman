@@ -28,7 +28,7 @@ const {
   number,
 } = PropTypes;
 
-class Timer extends Component {
+export class Timer extends Component {
   static propTypes = {
     settings: objectOf(any).isRequired,
     pomodorosAdd: func.isRequired,
@@ -169,7 +169,7 @@ class Timer extends Component {
   }
 }
 
-function mapStateToProps(state) {
+export function mapStateToProps(state) {
   return {
     settings: state.data.settings.toJS(),
     timerData: state.scenes.dashboard.components.timer.toJS(),

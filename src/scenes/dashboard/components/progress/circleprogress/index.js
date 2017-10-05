@@ -9,7 +9,7 @@ const {
   any,
 } = PropTypes;
 
-class CircleProgress extends React.Component {
+export class CircleProgress extends React.Component {
   static propTypes = {
     progress: number.isRequired,
     dimensions: objectOf(any).isRequired,
@@ -39,7 +39,7 @@ class CircleProgress extends React.Component {
   }
 }
 
-function mapStateToProps(state) {
+export function mapStateToProps(state) {
   return {
     dimensions: state.scenes.main.get('dimensions'),
   };

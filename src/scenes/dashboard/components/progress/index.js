@@ -9,6 +9,9 @@ const {
 } = PropTypes;
 
 const Progress = ({ type, progress }) => {
+  if (typeof window.SVGElement !== 'function') {
+    return false;
+  }
   if (type === 'linear') {
     return <LinearProgress progress={progress} />;
   }

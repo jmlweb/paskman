@@ -66,7 +66,7 @@ export class Shape extends React.Component {
   }
 
   animateProgress(progress) {
-    this.state.shape.animate(progress);
+    this.state.shape && this.state.shape.animate(progress);
   }
 
   create(props, oldProps) {

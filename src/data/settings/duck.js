@@ -14,7 +14,7 @@ export const settingsChange = createAction(SETTINGS_CHANGE);
 /**
  * DEFAULTS
  */
-const settingsMockup = {
+export const settingsMockup = {
   target: {
     working: 0.1,
     resting: 0.1,

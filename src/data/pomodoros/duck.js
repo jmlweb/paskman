@@ -133,7 +133,7 @@ export function elapsedTimeSelector(pomodoros, taskId, mode = 'working') {
  */
 export const initialState = Immutable.List(pomodorosMockup);
 
-const pomodoros = handleActions({
+export const pomodoros = handleActions({
   [pomodorosAdd]: (state, action) => state.push(
     Immutable.fromJS(pomodoroMockup).merge(action.payload),
   ),

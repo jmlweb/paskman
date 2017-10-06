@@ -157,11 +157,11 @@ export const pomodoros = handleActions({
   },
   [pomodorosChangeMode]: (state) => {
     let newMode = 'resting';
-    if (state.get(-1).get('mode') === 'resting') {
-      newMode = 'working';
-    }
     if (typeof state.get(-1) === 'undefined') {
       return state;
+    }
+    if (state.get(-1).get('mode') === 'resting') {
+      newMode = 'working';
     }
     return state.set(-1, state.get(-1).merge({
       mode: newMode,

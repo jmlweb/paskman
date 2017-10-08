@@ -7,9 +7,9 @@ import {
   incrementAsync,
   decrement,
   decrementAsync
-} from '../../modules/counter'
+} from './duck'
 
-const Home = props => (
+const Manager = props => (
   <div>
     <h1>Home</h1>
     <p>Count: {props.count}</p>
@@ -28,11 +28,14 @@ const Home = props => (
   </div>
 )
 
-const mapStateToProps = state => ({
-  count: state.counter.count,
-  isIncrementing: state.counter.isIncrementing,
-  isDecrementing: state.counter.isDecrementing
-})
+const mapStateToProps = state => {
+  const { data } = state.scenes.manager;
+  return {
+    count: data.count,
+    isIncrementing: data.isIncrementing,
+    isDecrementing: data.isDecrementing
+  };
+};
 
 const mapDispatchToProps = dispatch => bindActionCreators({
   increment,
@@ -45,4 +48,4 @@ const mapDispatchToProps = dispatch => bindActionCreators({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Home)
+)(Manager)

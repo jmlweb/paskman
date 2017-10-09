@@ -10,7 +10,7 @@ import {
  */
 
 type State = {
-  [name: string]: boolean
+  +[name: string]: boolean
 };
 
 /**
@@ -31,7 +31,7 @@ export const initialState: State = {};
 
 const reducer = handleAction(
   MODAL_TOGGLE,
-  (state: State, {payload}: ActionType<typeof modalToggle>) => ({...state, payload: !state.payload}),
+  (state: State, {payload}: ActionType<typeof modalToggle>) => ({...state, [payload]: !state[payload]}),
   initialState
 );
 

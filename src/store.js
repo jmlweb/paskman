@@ -2,7 +2,8 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 import { routerMiddleware } from 'react-router-redux';
 import thunk from 'redux-thunk';
-import { autoRehydrate } from 'redux-persist';
+import { persistReducer, persistStore } from 'redux-persist';
+import localForage from 'localforage';
 import createHistory from 'history/createBrowserHistory';
 import rootReducer from './reducer';
 
@@ -16,6 +17,7 @@ const middleware = [
 ];
 let persistLog: boolean = false;
 
+ /* istanbul ignore next */
 if (process.env.NODE_ENV === 'development') {
   const devToolsExtension = window.devToolsExtension;
 
@@ -25,18 +27,26 @@ if (process.env.NODE_ENV === 'development') {
   persistLog = true;
 }
 
+const persistConfig: {
+  [name: string]: any,
+} = {
+  key: 'root',
+  storage: localForage,
+  blacklist: ['routing', '_persist'],
+  debug: persistLog,
+};
+
 const composedEnhancers = compose(
   applyMiddleware(...middleware),
-  autoRehydrate({
-    log: persistLog,
-  }),
   ...enhancers,
 );
 
-const store = createStore(
-  rootReducer,
-  initialState,
-  composedEnhancers,
-);
-
-export default store;
+export const configureStore = () => {
+  const store = createStore(
+    persistReducer(persistConfig, rootReducer),
+    initialState,
+    composedEnhancers,
+  );
+  const persistor = persistStore(store);
+  return { store, persistor };
+};

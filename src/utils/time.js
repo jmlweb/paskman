@@ -12,8 +12,3 @@ export const toClock = (miliseconds: number): string => {
 };
 
 export const minToMil = (minutes: number): number => +minutes * 60 * 1000;
-
-export default {
-  toClock,
-  minToMil
-};

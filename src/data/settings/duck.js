@@ -9,11 +9,11 @@ import {
  * TYPES
  */
 type State = {
-  target: {
-    working: number,
-    resting: number,
+  +target: {
+    +working: number,
+    +resting: number,
   },
-  pauseBetween: boolean,
+  +pauseBetween: boolean,
 };
 
 /**

@@ -1,7 +1,9 @@
 // @flow
 import React from 'react';
 import { Route, Link } from 'react-router-dom';
-import Home from '../Home';
+import DynamicComponent from '../../components/DynamicComponent';
+
+const AsyncHome = DynamicComponent(() => import('../Home'));
 
 const App = () => (
   <div>
@@ -10,7 +12,7 @@ const App = () => (
     </header>
 
     <main>
-      <Route exact path="/" component={Home} />
+      <Route exact path="/" component={AsyncHome} />
     </main>
   </div>
 );

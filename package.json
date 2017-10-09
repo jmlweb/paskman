@@ -18,19 +18,10 @@
     "reselect": "^3.0.1",
     "shortid": "^2.2.8"
   },
-  "scripts": {
-    "precommit": "lint-staged",
-    "start": "react-scripts start",
-    "flow": "flow",
-    "build": "react-scripts build && react-snapshot",
-    "test": "react-scripts test --env=jsdom --setupTestFrameworkScriptFile=raf/polyfill --collectCoverageFrom=src/**/*js --collectCoverageFrom=!src/index.js --collectCoverageFrom=!src/registerServiceWorker.js",
-    "eject": "react-scripts eject"
-  },
   "devDependencies": {
     "enzyme": "^3.1.0",
     "enzyme-adapter-react-16": "^1.0.1",
     "flow-bin": "^0.56.0",
-    "lint-staged": "^4.2.3",
     "raf": "^3.4.0",
     "react-scripts": "1.0.14",
     "react-snapshot": "^1.2.0",
@@ -39,5 +30,19 @@
   },
   "eslintConfig": {
     "extends": "./node_modules/react-scripts/config/eslint.js"
+  },
+  "lint-staged": {
+    "src/**/*.{js,jsx,json,css}": [
+      "prettier --single-quote --write",
+      "git add"
+    ]
+  },
+  "scripts": {
+    "precommit": "lint-staged",
+    "start": "react-scripts start",
+    "flow": "flow",
+    "build": "react-scripts build && react-snapshot",
+    "test": "react-scripts test --env=jsdom --setupTestFrameworkScriptFile=raf/polyfill --collectCoverageFrom=src/**/*js --collectCoverageFrom=!src/index.js --collectCoverageFrom=!src/registerServiceWorker.js",
+    "eject": "react-scripts eject"
   }
 }

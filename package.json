@@ -39,9 +39,6 @@
       "git add"
     ]
   },
-  "reactSnapshot": {
-    "snapshotDelay": 1000
-  },
   "scripts": {
     "precommit": "lint-staged",
     "start": "react-scripts start",

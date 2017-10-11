@@ -10,15 +10,6 @@ exports[`Root Matchs snapshot 1`] = `
       Home
     </a>
   </header>
-  <main>
-    <div>
-      <h1>
-        Manager Page
-      </h1>
-      <p>
-        Did you get here via Redux?
-      </p>
-    </div>
-  </main>
+  <main />
 </div>
 `;

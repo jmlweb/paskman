@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Menu Matchs snapshot 1`] = `
+<div>
+  <header>
+    <a
+      href="/"
+      onClick={[Function]}
+    >
+      Home
+    </a>
+  </header>
+  <main />
+</div>
+`;

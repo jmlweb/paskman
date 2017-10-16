@@ -1,14 +1,14 @@
 import React from 'react';
 import { render } from 'react-snapshot';
 import { configureStore, history } from './store';
-import Root from './scenes/Root';
+import Root from './Root/Root';
 import registerServiceWorker from './registerServiceWorker';
 
 const target = document.querySelector('#root');
-const { store, persistor } = configureStore();
+const store = configureStore();
 
 render(
-  <Root store={store} persistor={persistor} history={history} />,
+  <Root store={store} history={history} />,
   target,
 );
 

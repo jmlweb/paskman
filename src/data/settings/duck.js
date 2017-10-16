@@ -8,12 +8,13 @@ import {
 /**
  * TYPES
  */
-type State = {
-  +target: {
-    +working: number,
-    +resting: number,
+export type State = {
+  target: {
+    working: number,
+    resting: number,
   },
-  +pauseBetween: boolean,
+  pauseBetween: boolean,
+  confirmEndingTask: boolean,
 };
 
 /**
@@ -36,6 +37,7 @@ export const initialState: State = {
     resting: 0.1,
   },
   pauseBetween: false,
+  confirmEndingTask: true,
 };
 
 const reducer = handleActions({

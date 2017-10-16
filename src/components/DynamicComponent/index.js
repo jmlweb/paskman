@@ -5,6 +5,7 @@ import isSnapshot from '../../utils/isSnapshot';
 export default function createDynamicComponent(
   importComponent: () => {default: any},
   requireComponent: () => {default: any},
+  importKey: string = 'default',
 ) {
   type Props = {
     [name: string]: any,
@@ -16,8 +17,12 @@ export default function createDynamicComponent(
     constructor(props: Props) {
       super(props);
       let component = null;
-      if (isSnapshot()) {
-        component = requireComponent().default;
+       /* istanbul ignore next */
+      if (!importComponent || isSnapshot()) {
+        component = requireComponent();
+        if (typeof component.default !== 'undefined') {
+          component = component.default;
+        }
       }
       this.state = {
         component,
@@ -26,7 +31,7 @@ export default function createDynamicComponent(
 
     componentDidMount() {
       (async() => {
-        const { default: component } = await importComponent();
+        const { [`${importKey}`]: component } = await importComponent();
         this.setState({
           component,
         });

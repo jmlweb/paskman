@@ -1,10 +1,13 @@
 [ignore]
+.*/node_modules/styled-components/src/.*
 
 [include]
 
 [libs]
+flow-typed
 
 [lints]
 
 [options]
+emoji=true
 module.ignore_non_literal_requires=true

@@ -6,41 +6,29 @@ import createDynamicComponent from './';
 
 configure({ adapter: new Adapter() });
 
-Object.defineProperty(window.navigator, "userAgent", (function(_value){
-  return {
-    get: function _get() {
-      return _value;
-    },
-    set: function _set(v) {
-        _value = v;
-    }
-  };
-})(window.navigator.userAgent));
-Object.defineProperty(window, "reactSnapshotRender", (function(_value){
-  return {
-    get: function _get() {
-      return _value;
-    },
-    set: function _set(v) {
-        _value = v;
-    }
-  };
-})(window.reactSnapshotRender));
-
 describe('DynamicComponent', () => {
-  let wrapper;
-  beforeEach(() => {
-    window.navigator.userAgent = 'Node.js';
-    window.reactSnapshotRender = true;
+  it('should render the dynamic component with import', () => {
     const component = createDynamicComponent(
-      () => import('../../scenes/Home'), () => require('../../scenes/Home')
+      () => import('../../scenes/Home'),
+      () => require('../../scenes/Home'),
     );
-    wrapper = mount(<component />);
+    expect(mount(<component />)).toBeTruthy();
   });
   it('should render the dynamic component with require', () => {
-    expect(wrapper.find('div').length).toEqual(1);
+    const component = createDynamicComponent(
+      null,
+      () => require('../../scenes/Home'),
+      true,
+    );
+    expect(mount(<component />)).toBeTruthy();
   });
   it('Matchs snapshot', () => {
+    const component = createDynamicComponent(
+      () => import('../../scenes/Home'),
+      () => require('../../scenes/Home'),
+      true,
+    );
+    const wrapper = mount(<component />);
     const tree = renderer.create(wrapper).toJSON();
     expect(tree).toMatchSnapshot();
   });

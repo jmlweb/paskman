@@ -1,8 +1,9 @@
-function isSnapshot() {
-  if (!navigator || !navigator.userAgent || !window) {
+// @flow
+function isSnapshot(): boolean {
+  if (!window || !window.navigator || !window.navigator.userAgent) {
     return false
   };
-  if (navigator.userAgent.match(/Node\.js/i) && window.reactSnapshotRender) {
+  if (window.navigator.userAgent.match(/Node\.js/i) && window.reactSnapshotRender) {
     return true;
   }
   return false;

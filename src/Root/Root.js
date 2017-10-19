@@ -11,6 +11,10 @@ type Props = {
 
 const Root = (props: Props) => {
   const { store, history } = props;
+  if (process.env.NODE_ENV !== 'production') {
+    const { whyDidYouUpdate } = require('why-did-you-update');
+    whyDidYouUpdate(React)
+  }
   return (
     <Provider store={store}>
       <ConnectedRouter history={history}>

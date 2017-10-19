@@ -1,10 +1,11 @@
+// @flow
 /**
  * ROUTES
  */
 export type RouteType = {
   +path: string,
   +title: string,
-  +component: any,
+  +component: Function,
 };
 
-export type RoutesType = Array<RouteType>;
+export type RoutesType = RouteType[];

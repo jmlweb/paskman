@@ -3,16 +3,17 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 import colors from '../../../styles/colors';
 import spacing from '../../../styles/spacing';
+import timings from '../../../styles/timings';
 
 type Option = {
-  value: any,
+  value: mixed,
   description: string,
 };
 
 type Props = {
   options: Array<Option>,
-  value: ?any,
-  onChange: Function,
+  value: ?mixed,
+  onChange: (e: Event) => mixed,
 };
 
 const optionsSwitcherBorder = `2px solid ${colors.secondaryT7}`;
@@ -22,6 +23,8 @@ const StyledOptionsSwitcher = styled.div`
   border-top: ${optionsSwitcherBorder};
   border-bottom: ${optionsSwitcherBorder};
   border-left: ${optionsSwitcherBorder};
+  border-radius: 4px;
+  overflow: hidden;
 `;
 
 const selectedItem = css`
@@ -33,13 +36,13 @@ const Item = styled.label`
   flex: 1;
   text-align: center;
   background: ${colors.secondaryA1};
-  padding: ${spacing.sm} ${spacing.xs};
+  padding: ${spacing.xs};
   border-right: 2px solid ${colors.secondaryT7};
-  transition: background 0.3s;
-  font-size: 1.3rem;
+  transition: background 0.2s ${timings.easeOutSine};
+  font-size: 1.5rem;
   font-weight: 700;
   color: ${colors.secondaryA7};
-  ${props => props.selected && selectedItem}
+  ${props => props.selected && selectedItem};
 `;
 
 const Input = styled.input.attrs({
@@ -55,10 +58,10 @@ const OptionsSwitcher = ({ options, value, onChange }: Props) => (
       option => (
         <Item
           selected={option.value === value}
-          key={option.value}
+          key={+option.value}
         >
           <Input
-            id={`${option.value}`}
+            id={`id-${+option.value}`}
             value={option.value}
             onClick={onChange}
           />

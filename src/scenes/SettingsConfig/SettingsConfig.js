@@ -1,36 +1,42 @@
 // @flow
 import React, { Component } from 'react';
-import styled from 'styled-components';
 import Form, {
   FieldSet,
   FormGroup,
   Label,
-  TextField,
-  OptionsSwitcher
+  OptionsSwitcher,
+  RangeSlider,
 } from '../../components/Form/Form';
 import Heading from '../../components/Heading/Heading';
 import Button from '../../components/Button/Button';
-import { type State } from '../../data/settings/duck';
+import Loading from '../../components/Loading/Loading';
+import constants from './constants';
 
-type Props = State;
+type State = {
+  target: {
+    working: number,
+    resting: number,
+  },
+  pauseBetween: boolean,
+  confirmEndingTask: boolean,
+};
 
-const StyledSettingsConfig = Form.extend(`
-
-`);
-
-const TargetField = styled(TextField).attrs(
-  {
-    type: 'number',
-    min: 1,
-    required: true,
-  }
-)``;
+export type Props = {
+  isLoading: boolean,
+  target: {
+    working: number,
+    resting: number,
+  },
+  pauseBetween: boolean,
+  confirmEndingTask: boolean,
+};
 
 class SettingsConfig extends Component<Props, State> {
-  handleSubmit: any;
-  handleTargetChange: any;
-  handlePauseBetweenChange: any;
-  handleConfirmEndingTaskChange: any;
+  handleSubmit: (e: Event) => void;
+  handleTargetChange: (e: Event) => void;
+  handleTargetBlur: (e: Event) => void;
+  handlePauseBetweenChange: (e: Event) => void;
+  handleConfirmEndingTaskChange: (e: Event) => void;
   constructor(props: Props) {
     super(props);
     const { target, pauseBetween, confirmEndingTask } = props;
@@ -39,55 +45,66 @@ class SettingsConfig extends Component<Props, State> {
       pauseBetween,
       confirmEndingTask,
     };
-    this.handleTargetChange = this.handleTargetChange.bind(this);
     this.handlePauseBetweenChange = this.handlePauseBetweenChange.bind(this);
     this.handleConfirmEndingTaskChange = this.handleConfirmEndingTaskChange.bind(this);
   }
-  handleSubmit = function(e: any) {
+  handleSubmit = function(e: Event) {
     e.preventDefault();
   }
-  handleTargetChange(mode: string) {
-    return (e: any) => {
+  handleTargetSlider(mode: string) {
+    return (value: number) => {
       this.setState({
         target: {
           ...this.state.target,
-          [`${mode}`]: e.target.value
+          [`${mode}`]: value
         }
       });
     }
   }
-  handlePauseBetweenChange(e: any) {
+  handlePauseBetweenChange(e: Event) {
     this.setState({
       pauseBetween: e.target.value === 'true' ? true : false,
     });
   }
-  handleConfirmEndingTaskChange(e: any) {
+  handleConfirmEndingTaskChange(e: Event) {
     this.setState({
       confirmEndingTask: e.target.value === 'true' ? true : false,
     });
   }
   render() {
+    const { isLoading } = this.props;
     const { target, pauseBetween, confirmEndingTask } = this.state;
+    if (isLoading) {
+      return <Loading />;
+    }
     return (
-      <StyledSettingsConfig onSubmit={this.handleSubmit}>
+      <Form onSubmit={this.handleSubmit}>
         <Heading>Settings Config</Heading>
         <FieldSet>
           <FormGroup>
-            <Label>Working time (minutes)</Label>
-            <TargetField
-              defaultValue={target.working}
-              onChange={this.handleTargetChange('working')}
+            <Label><b>{target.working}</b> minutes working time</Label>
+            <RangeSlider
+              tooltip={false}
+              min={constants.working.target.min}
+              max={constants.working.target.max}
+              step={constants.working.step}
+              value={target.working}
+              onChange={this.handleTargetSlider('working')}
             />
           </FormGroup>
           <FormGroup>
-            <Label>Resting time (minutes)</Label>
-            <TargetField
-              defaultValue={target.resting}
-              onChange={this.handleTargetChange('resting')}
+            <Label><b>{target.resting}</b> minutes resting time</Label>
+            <RangeSlider
+              tooltip={false}
+              min={constants.resting.target.min}
+              max={constants.resting.target.max}
+              step={constants.resting.step}
+              value={target.resting}
+              onChange={this.handleTargetSlider('resting')}
             />
           </FormGroup>
           <FormGroup>
-            <Label>¿Pause between pomodoros?</Label>
+            <Label>Pause between pomodoros?</Label>
             <OptionsSwitcher
               options={
                 [
@@ -125,8 +142,8 @@ class SettingsConfig extends Component<Props, State> {
             />
           </FormGroup>
         </FieldSet>
-        <Button type="submit" secondary block>Save</Button>
-      </StyledSettingsConfig>
+        <Button type="submit" color="success" block>Save</Button>
+      </Form>
     );
   }
 }

@@ -1,5 +1,5 @@
 // @flow
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import styled from 'styled-components';
 import { stripUnit } from 'polished';
 import spacing from '../../../styles/spacing';
@@ -31,7 +31,7 @@ const StyledTopBarBtn = styled.button`
   }
 `;
 
-class TopBarBtn extends Component<Props> {
+class TopBarBtn extends PureComponent<Props> {
   handleClick: any;
   constructor(props: Props) {
     super(props);

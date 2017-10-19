@@ -7,11 +7,12 @@ import topBarHeight from '../../styles/topBarHeight';
 import Logo from '../../components/Logo/Logo';
 import TopBarBtn from './TopBarBtn/TopBarBtn';
 import TopBarMenu from './TopBarMenu/TopBarMenu';
+import type { RoutesType } from '../../types';
 
 type Props = {
   menuOpen: boolean,
-  routes: any,
-  topBarToggleMenu: any,
+  routes: RoutesType,
+  topBarToggleMenu: () => void,
 };
 
 const StyledTopBar = styled.div`

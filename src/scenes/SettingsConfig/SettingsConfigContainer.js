@@ -1,14 +1,49 @@
 // @flow
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { settingsChange } from '../../data/settings/duck';
-import SettingsConfig from './SettingsConfig';
+import { settingsChange, settingsFetch } from '../../data/settings/duck';
+import SettingsConfig, { type Props as ComponentProps } from './SettingsConfig';
 
-export function mapStateToProps(state: any) {
+type Props = {
+  ...ComponentProps,
+  settingsFetch: () => void,
+};
+
+class SettingsConfigContainer extends Component<Props> {
+  componentDidMount() {
+    const { settingsFetch }: Props = this.props;
+    settingsFetch();
+  }
+  render() {
+    const { isLoading, target, pauseBetween, confirmEndingTask } = this.props;
+    const newProps = {
+      isLoading,
+      target,
+      pauseBetween,
+      confirmEndingTask,
+    }
+    return <SettingsConfig {...newProps} />;
+  }
+}
+
+export function mapStateToProps(state: {
+  data: {
+    settings: ComponentProps,
+  }
+}) {
   return { ...state.data.settings };
 };
 
-const SettingsConfigContainer = connect(mapStateToProps, {
-  settingsChange,
-})(SettingsConfig);
+export function mapDispatchToProps() {
+  return {
+    settingsChange,
+    settingsFetch,
+  };
+};
 
-export default SettingsConfigContainer;
+const SettingsConfigConnectedContainer = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(SettingsConfigContainer);
+
+export default SettingsConfigConnectedContainer;

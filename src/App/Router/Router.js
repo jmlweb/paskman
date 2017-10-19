@@ -1,10 +1,10 @@
 // @flow
 import React from 'react';
 import { Route } from 'react-router-dom';
-import { type RouteTypes } from '../../types';
+import { type RoutesType } from '../../types';
 
 type Props = {
-  routes: RouteTypes,
+  routes: RoutesType,
 };
 
 const Router = (props: Props) => (

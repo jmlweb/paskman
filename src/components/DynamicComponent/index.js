@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import isSnapshot from '../../utils/isSnapshot';
 
 export default function createDynamicComponent(
-  importComponent: () => {default: any},
+  importComponent: () => any,
   requireComponent: () => {default: any},
   importKey: string = 'default',
 ) {

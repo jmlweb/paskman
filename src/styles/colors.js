@@ -4,11 +4,12 @@ import { rgba, shade, tint, darken, lighten } from 'polished';
 const baseColors: { [name: string]: string } = {
   primary: '#ffa3a2',
   secondary: '#223177',
+  success: '#18ac4c',
   white: '#fff',
   black: '#000',
 };
 
-const baseKeys: Array<string> = Object.keys(baseColors);
+const baseKeys: string[] = Object.keys(baseColors);
 
 const colors: { [name: string]: string } = {
   ...baseColors,

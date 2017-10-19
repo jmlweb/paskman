@@ -5,12 +5,12 @@ import styled, { css } from 'styled-components';
 import colors from '../../../styles/colors';
 import timings from '../../../styles/timings';
 import topBarHeight from '../../../styles/topBarHeight';
-import { type RouteTypes } from '../../../types';
+import { type RoutesType } from '../../../types';
 
 type Props = {
   menuOpen: boolean,
-  toggleMenu: any,
-  routes: RouteTypes,
+  toggleMenu: () => void,
+  routes: RoutesType,
 };
 
 const StyledLink = styled(Link)`
@@ -26,6 +26,9 @@ const StyledLink = styled(Link)`
   justify-content: center;
   text-decoration: none;
   transition: all 0.4s ${timings.easeInOutQuad};
+  &:active {
+    background: ${colors.secondaryS7};
+  }
   &:last-child {
     border-bottom: 2px solid transparent;
   }

@@ -1,4 +1,3 @@
-// @flow
 import { createStore, applyMiddleware, compose } from 'redux';
 import { routerMiddleware } from 'react-router-redux';
 import thunk from 'redux-thunk';
@@ -15,7 +14,7 @@ const middleware = [
   thunk,
   routerMiddleware(history),
 ];
-let persistLog: boolean = false;
+let persistLog = false;
 
  /* istanbul ignore next */
 if (process.env.NODE_ENV === 'development') {
@@ -27,9 +26,7 @@ if (process.env.NODE_ENV === 'development') {
   persistLog = true;
 }
 
-const persistConfig: {
-  [name: string]: any,
-} = {
+const persistConfig = {
   key: 'root',
   storage: localForage,
   blacklist: ['routing', '_persist'],

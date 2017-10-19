@@ -9,6 +9,10 @@ const Label = styled.label`
   text-transform: uppercase;
   margin-bottom: 0.5rem;
   color: ${colors.secondaryA7};
+  b,
+  strong {
+    font-weight: 700;
+  }
 `;
 
 export default Label;

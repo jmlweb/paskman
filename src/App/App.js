@@ -11,12 +11,12 @@ import { type RoutesType } from '../types';
 
 export const routes: RoutesType = [
   {
-    path: '/',
-    title: 'Home',
+    path: '/dashboard',
+    title: 'Dashboard',
     component: createDynamicComponent(
-      () => import('../scenes/Home/Home'),
+      () => import('../scenes/Dashboard/Dashboard'),
       /* istanbul ignore next */
-      () => require('../scenes/Home/Home'),
+      () => require('../scenes/Dashboard/Dashboard'),
     ),
   },
   {

@@ -43,9 +43,10 @@ class TopBarBtn extends PureComponent<Props> {
   }
   render() {
     const { menuOpen } = this.props;
+    const btnText = `${menuOpen ? 'Close' : 'Open'} menu`;
     const Icon = menuOpen ? TopBarBtnOpenSVG : TopBarBtnClosedSVG;
     return (
-      <StyledTopBarBtn menuOpen={menuOpen} onClick={this.handleClick}>
+      <StyledTopBarBtn menuOpen={menuOpen} onClick={this.handleClick} aria-label={btnText}>
         <Icon />
       </StyledTopBarBtn>
     );

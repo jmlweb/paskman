@@ -35,16 +35,26 @@ export const settingsSetLoading = createAction(SETTINGS_SET_LOADING, (value: boo
  * THUNKS
  */
 export function settingsFetch() {
-  console.log('entra');
   return (dispatch: (ActionType<typeof settingsSetLoading>) => void) => {
-    dispatch(settingsSetLoading(true));
     setTimeout(() => {
-      console.log('entra');
       // @todo call
       dispatch(settingsSetLoading(false));
     }, 1000);
   };
 };
+
+export function settingsSave(newSettings) {
+  return (dispatch: (ActionType<typeof settingsSetLoading>) => void) => {
+    dispatch(settingsSetLoading(true));
+    setTimeout(() => {
+      // @todo call
+      dispatch(settingsChange({
+        ...newSettings,
+      }));
+      dispatch(settingsSetLoading(false));
+    }, 2000);
+  };
+}
 
 /**
  * REDUCER

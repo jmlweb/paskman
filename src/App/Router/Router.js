@@ -10,7 +10,14 @@ type Props = {
 const Router = (props: Props) => (
   <main>
     {props.routes.map(
-      route => <Route key={`route${route.title}`} exact path={route.path} component={route.component} />
+      route => (
+        <Route
+          key={`route${route.title}`}
+          path={route.path}
+          component={route.component}
+          routes={route.routes}
+        />
+      )
     )}
   </main>
 );

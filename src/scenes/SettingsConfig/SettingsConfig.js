@@ -29,6 +29,7 @@ export type Props = {
   },
   pauseBetween: boolean,
   confirmEndingTask: boolean,
+  settingsSave: () => void,
 };
 
 class SettingsConfig extends Component<Props, State> {
@@ -47,9 +48,14 @@ class SettingsConfig extends Component<Props, State> {
     };
     this.handlePauseBetweenChange = this.handlePauseBetweenChange.bind(this);
     this.handleConfirmEndingTaskChange = this.handleConfirmEndingTaskChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
   handleSubmit = function(e: Event) {
+    const { settingsSave } = this.props;
     e.preventDefault();
+    settingsSave({
+      ...this.state,
+    });
   }
   handleTargetSlider(mode: string) {
     return (value: number) => {
@@ -74,9 +80,6 @@ class SettingsConfig extends Component<Props, State> {
   render() {
     const { isLoading } = this.props;
     const { target, pauseBetween, confirmEndingTask } = this.state;
-    if (isLoading) {
-      return <Loading />;
-    }
     return (
       <Form onSubmit={this.handleSubmit}>
         <Heading>Settings Config</Heading>
@@ -143,6 +146,7 @@ class SettingsConfig extends Component<Props, State> {
           </FormGroup>
         </FieldSet>
         <Button type="submit" color="success" block>Save</Button>
+        {isLoading && <Loading />}
       </Form>
     );
   }

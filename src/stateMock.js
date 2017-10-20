@@ -10,6 +10,17 @@ const stateMock = {
       menuOpen: false,
     },
   },
+  data: {
+    settings: {
+      isLoading: false,
+      target: {
+        working: 25,
+        resting: 5,
+      },
+      pauseBetween: false,
+      confirmEndingTask: true,
+    },
+  }
 };
 
 export default stateMock;

@@ -4,6 +4,7 @@ import {
   handleActions,
   type ActionType,
 } from 'redux-actions';
+import stateMock from '../../stateMock';
 
 /**
  * TYPES
@@ -59,15 +60,7 @@ export function settingsSave(newSettings: State) {
 /**
  * REDUCER
  */
-export const initialState: State = {
-  isLoading: false,
-  target: {
-    working: 25,
-    resting: 5,
-  },
-  pauseBetween: false,
-  confirmEndingTask: true,
-};
+export const initialState: State = stateMock.data.settings;
 
 const reducer = handleActions({
   // @todo ActionType<typeof settingsChange>

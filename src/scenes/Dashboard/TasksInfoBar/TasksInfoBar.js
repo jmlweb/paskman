@@ -62,7 +62,11 @@ const getPendingTasksText = (qty: number): string => {
   return qty.toString();
 };
 
-const TaskInfoBar = ({url}) => {
+type Props = {
+  base: string,
+};
+
+const TaskInfoBar = ({base}: Props) => {
   return (
     <StyledTaskInfoBar>
       <Info>
@@ -73,7 +77,7 @@ const TaskInfoBar = ({url}) => {
           <Accent>{toClock(0)}</Accent> planned
         </InfoText>
       </Info>
-      <Btn to={`${url}/addtask`}>
+      <Btn to={`${base}/addtask`}>
         <AddIconSVG />
       </Btn>
     </StyledTaskInfoBar>

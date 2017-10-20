@@ -12,7 +12,7 @@ const AddTask = createDynamicComponent(
 const Dashboard = ({ match }) => {
   return (
     <div>
-      <TasksInfoBar />
+      <TasksInfoBar base={match.url} />
       <Route path={`${match.url}/addtask`} component={AddTask} />
     </div>
   );

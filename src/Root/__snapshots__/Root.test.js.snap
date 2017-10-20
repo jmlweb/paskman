@@ -1,3 +1,135 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Root Matchs snapshot 1`] = `null`;
+exports[`Root Matchs snapshot 1`] = `
+<div
+  className="sc-htoDjs iTTEbq"
+>
+  <div
+    className="sc-EHOje gITUcI"
+  >
+    <div
+      className="sc-bZQynM IknJE"
+    >
+      <span
+        className="sc-bdVaJa kyIXQx"
+      >
+        <svg
+          height="29"
+          viewBox="0 0 40 29"
+          width="40"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <g
+            fill="#223177"
+            fillRule="evenodd"
+            transform="translate(0 .8)"
+          >
+            <circle
+              cx="14"
+              cy="14"
+              opacity=".626"
+              r="14"
+            />
+            <circle
+              cx="28.7"
+              cy="13.3"
+              opacity=".725"
+              r="10.5"
+            />
+          </g>
+        </svg>
+        <span
+          className="sc-bwzfXH FwGDt"
+        >
+          PASKMAN
+        </span>
+      </span>
+      <div
+        className="sc-gzVnrw ibZhkv"
+      >
+        <button
+          aria-label="Open menu"
+          className="sc-htpNat ftxHZv"
+          onClick={[Function]}
+        >
+          <svg
+            height="35px"
+            version="1.1"
+            viewBox="0 0 35 35"
+            width="35px"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <g
+              fill="none"
+              fillRule="evenodd"
+              id="Symbols"
+              opacity="0.984433302"
+              stroke="none"
+              strokeWidth="1"
+            >
+              <g
+                fill="#1E2F76"
+                id="topbar/mobile"
+                transform="translate(-269.000000, -12.000000)"
+              >
+                <g
+                  id="menu/mobile/closed"
+                  transform="translate(269.000000, 12.000000)"
+                >
+                  <g
+                    id="Page-1"
+                  >
+                    <path
+                      d="M17.5,35 C7.8512,35 0,27.1488 0,17.5 C0,7.8512 7.8512,0 17.5,0 C27.1488,0 35,7.8512 35,17.5 C35,27.1488 27.1488,35 17.5,35 Z M17.5,2.18773333 C9.05613333,2.18773333 2.18773333,9.05613333 2.18773333,17.5 C2.18773333,25.9438667 9.05613333,32.8122667 17.5,32.8122667 C25.9438667,32.8122667 32.8122667,25.9438667 32.8122667,17.5 C32.8122667,9.05613333 25.9438667,2.18773333 17.5,2.18773333 Z"
+                      id="Fill-1"
+                    />
+                    <path
+                      d="M24.0622667,13.125 L10.9377333,13.125 C10.3343333,13.125 9.84386667,12.6345333 9.84386667,12.0311333 C9.84386667,11.4277333 10.3343333,10.9377333 10.9377333,10.9377333 L24.0622667,10.9377333 C24.6675333,10.9377333 25.1561333,11.4277333 25.1561333,12.0311333 C25.1561333,12.6345333 24.6675333,13.125 24.0622667,13.125 Z"
+                      id="Fill-2"
+                    />
+                    <path
+                      d="M24.0622667,18.5938667 L10.9377333,18.5938667 C10.3343333,18.5938667 9.84386667,18.1034 9.84386667,17.5 C9.84386667,16.8966 10.3343333,16.4061333 10.9377333,16.4061333 L24.0622667,16.4061333 C24.6675333,16.4061333 25.1561333,16.8966 25.1561333,17.5 C25.1561333,18.1034 24.6675333,18.5938667 24.0622667,18.5938667 Z"
+                      id="Fill-3"
+                    />
+                    <path
+                      d="M24.0622667,24.0622667 L10.9377333,24.0622667 C10.3343333,24.0622667 9.84386667,23.5741333 9.84386667,22.9688667 C9.84386667,22.3636 10.3343333,21.875 10.9377333,21.875 L24.0622667,21.875 C24.6675333,21.875 25.1561333,22.3636 25.1561333,22.9688667 C25.1561333,23.5741333 24.6675333,24.0622667 24.0622667,24.0622667 Z"
+                      id="Fill-4"
+                    />
+                  </g>
+                </g>
+              </g>
+            </g>
+            º
+          </svg>
+        </button>
+        <nav
+          className="sc-ifAKCX Knqlz"
+        >
+          <a
+            className="sc-bxivhb iRKivg"
+            href="/dashboard"
+            onClick={[Function]}
+          >
+            Dashboard
+          </a>
+          <a
+            className="sc-bxivhb iRKivg"
+            href="/settings"
+            onClick={[Function]}
+          >
+            Settings
+          </a>
+          <a
+            className="sc-bxivhb iRKivg"
+            href="/loading"
+            onClick={[Function]}
+          >
+            Loading
+          </a>
+        </nav>
+      </div>
+    </div>
+  </div>
+  <main />
+</div>
+`;

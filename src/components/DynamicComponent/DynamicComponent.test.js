@@ -2,7 +2,7 @@ import React from 'react';
 import { configure, mount } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import renderer from 'react-test-renderer';
-import createDynamicComponent from './';
+import createDynamicComponent from './DynamicComponent';
 
 configure({ adapter: new Adapter() });
 

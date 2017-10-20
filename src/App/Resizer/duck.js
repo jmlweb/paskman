@@ -5,6 +5,8 @@ import {
   type ActionType
 } from 'redux-actions';
 
+import stateMock from '../../stateMock';
+
 /**
  * TYPES
  */
@@ -32,12 +34,7 @@ export const appSetDimensions = createAction(APP_SET_DIMENSIONS, (dimensions: Di
 /**
  * REDUCER
  */
-export const initialState: State = {
-  dimensions: {
-    width: 320,
-    height: 568,
-  },
-};
+export const initialState: State = stateMock.app.resizer;
 
 const reducer = handleAction(
   APP_SET_DIMENSIONS,

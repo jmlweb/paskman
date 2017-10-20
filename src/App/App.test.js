@@ -7,6 +7,7 @@ import Adapter from 'enzyme-adapter-react-16';
 import configureStore from 'redux-mock-store';
 import renderer from 'react-test-renderer';
 import App from './App';
+import stateMock from '../stateMock';
 
 configure({ adapter: new Adapter() });
 
@@ -17,7 +18,7 @@ describe('App', () => {
   let wrapper;
   let count = 0;
   beforeEach(() => {
-    store = mockStore({});
+    store = mockStore(stateMock);
     history = createHistory();
     wrapper = mount(
       <Provider key={count} store={store}>

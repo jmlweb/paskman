@@ -1,7 +1,14 @@
+// @flow
 import React from 'react'
 import { Route } from 'react-router-dom';
 import TasksInfoBar from './TasksInfoBar/TasksInfoBar';
-import createDynamicComponent from '../../components/DynamicComponent';
+import createDynamicComponent from '../../components/DynamicComponent/DynamicComponent';
+
+type Props = {
+  match: {
+    url: string,
+  },
+};
 
 const AddTask = createDynamicComponent(
   () => import('./AddTask/AddTask'),
@@ -9,7 +16,7 @@ const AddTask = createDynamicComponent(
   () => require('./AddTask/AddTask'),
 );
 
-const Dashboard = ({ match }) => {
+const Dashboard = ({ match }: Props) => {
   return (
     <div>
       <TasksInfoBar base={match.url} />

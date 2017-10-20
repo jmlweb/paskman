@@ -12,7 +12,7 @@ type Props = {
   children: any,
 }
 
-const StyledHeadingMaster = styled.h1`
+const StyledHeadingMaster: Function = styled.h1`
   color: ${props => colors[props.colorScheme]};
   font-size: ${styledMap('level', {
     '1': '2.2rem',
@@ -26,7 +26,7 @@ const StyledHeadingMaster = styled.h1`
   margin: 0 0 ${spacing.md};
 `;
 
-const createStyledHeading = (tag) => StyledHeadingMaster.withComponent(tag);
+const createStyledHeading: Function = (tag: ?string) => StyledHeadingMaster.withComponent(tag);
 
 const normalizeTag = (tag: ?string, level: number): string => {
   if (tag) {
@@ -47,7 +47,7 @@ const normalizeLevel = (level: number): number => {
 
 const Heading = (props: Props) => {
   const {level = '1', color = 'secondary', tag, children, ...rest} = props;
-  const StyledHeading = createStyledHeading(normalizeTag(tag, normalizeLevel(+level)));
+  const StyledHeading: Function = createStyledHeading(normalizeTag(tag, normalizeLevel(+level)));
   return <StyledHeading colorScheme={color} level={level} {...rest}>{children}</StyledHeading>;
 };
 

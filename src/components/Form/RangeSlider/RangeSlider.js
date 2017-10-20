@@ -1,3 +1,4 @@
+// @flow
 import React from 'react';
 import styled, { css } from 'styled-components';
 import Slider from 'react-rangeslider';
@@ -88,6 +89,6 @@ const StyledRangeSlider = styled(Slider)`
   }
 `;
 
-const RangeSlider = props => <StyledRangeSlider {...props} />;
+const RangeSlider = (props: ?mixed) => <StyledRangeSlider {...props} />;
 
 export default RangeSlider;

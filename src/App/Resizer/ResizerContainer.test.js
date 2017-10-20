@@ -2,19 +2,24 @@ import React from 'react';
 import { configure, mount } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import renderer from 'react-test-renderer';
+import configureStore from 'redux-mock-store';
 import Resizer from './ResizerContainer';
+import stateMock from '../../stateMock';
 
 configure({ adapter: new Adapter() });
 
 describe('Resizer', () => {
+  const mockStore = configureStore();
   let wrapper;
+  let store;
   let count = 0;
   const appSetDimensions = jest.fn();
   const onWillMount = jest.fn();
   beforeEach(() => {
+    store = mockStore(stateMock);
     Resizer.prototype.componentWillMount = onWillMount;
     wrapper = mount(
-      <Resizer key={count} appSetDimensions={appSetDimensions} />
+      <Resizer key={count} appSetDimensions={appSetDimensions} store={store} />
     );
     count += 1;
   });

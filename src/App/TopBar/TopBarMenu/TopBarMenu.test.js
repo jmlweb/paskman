@@ -6,16 +6,16 @@ import { configure, mount } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import renderer from 'react-test-renderer';
 import TopBarMenu from './TopBarMenu';
-import Router from '../Router';
-import createDynamicComponent from '../../../../components/DynamicComponent';
+import Router from '../../Router/Router';
+import createDynamicComponent from '../../../components/DynamicComponent/DynamicComponent';
 
 const routes = [
   {
     path: '/',
     title: 'Home',
     component: createDynamicComponent(
-      () => import('../../../../scenes/Home'),
-      () => require('../../../../scenes/Home'),
+      () => import('../../../scenes/Dashboard/Dashboard'),
+      () => require('../../../scenes/Dashboard/Dashboard'),
     ),
   },
 ];

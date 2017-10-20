@@ -9,13 +9,13 @@ import {
  * TYPES
  */
 export type State = {
-  isLoading: boolean,
-  target: {
+  +isLoading: boolean,
+  +target: {
     working: number,
     resting: number,
   },
-  pauseBetween: boolean,
-  confirmEndingTask: boolean,
+  +pauseBetween: boolean,
+  +confirmEndingTask: boolean,
 };
 
 /**
@@ -43,7 +43,7 @@ export function settingsFetch() {
   };
 };
 
-export function settingsSave(newSettings) {
+export function settingsSave(newSettings: State) {
   return (dispatch: (ActionType<typeof settingsSetLoading>) => void) => {
     dispatch(settingsSetLoading(true));
     setTimeout(() => {
@@ -70,8 +70,9 @@ export const initialState: State = {
 };
 
 const reducer = handleActions({
-  [SETTINGS_CHANGE]: (state: State, action: ActionType<typeof settingsChange>) => {
-    return {...state, ...action.payload};
+  // @todo ActionType<typeof settingsChange>
+  [SETTINGS_CHANGE]: (state: State, action: any) => {
+    return { ...state, ...action.payload };
   },
   [SETTINGS_SET_LOADING]: (state: State, action: ActionType<typeof settingsChange>) => {
     return {...state, isLoading: action.payload};

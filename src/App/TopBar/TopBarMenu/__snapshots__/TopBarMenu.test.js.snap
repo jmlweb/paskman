@@ -2,14 +2,17 @@
 
 exports[`Menu Matchs snapshot 1`] = `
 <div>
-  <header>
+  <nav
+    className="sc-bwzfXH gzKAUT"
+  >
     <a
+      className="sc-bdVaJa ioMEjV"
       href="/"
       onClick={[Function]}
     >
       Home
     </a>
-  </header>
+  </nav>
   <main />
 </div>
 `;

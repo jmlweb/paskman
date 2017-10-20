@@ -1,11 +1,11 @@
 import React from 'react';
 import createHistory from 'history/createBrowserHistory';
-import { persistStore } from 'redux-persist';
 import { configure, mount } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import configureStore from 'redux-mock-store';
 import renderer from 'react-test-renderer';
 import Root from './Root';
+import stateMock from '../stateMock';
 
 configure({ adapter: new Adapter() });
 
@@ -13,14 +13,12 @@ describe('Root', () => {
   const mockStore = configureStore();
   let store;
   let history;
-  let persistor;
   let wrapper;
   beforeEach(() => {
-    store = mockStore({});
+    store = mockStore(stateMock);
     history = createHistory();
-    persistor = persistStore(store);
     wrapper = mount(
-      <Root store={store} history={history} persistor={persistor} />
+      <Root store={store} history={history} />
     );
   });
   it('Render the connected component', () => {

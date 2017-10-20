@@ -1,8 +1,9 @@
 // @flow
 import styled from 'styled-components';
 import colors from '../../../styles/colors';
+import type { Target } from 'styled-components';
 
-const Label = styled.label`
+const Label: Target = styled.label`
   font-weight: 500;
   display: block;
   font-size: 1.4rem;

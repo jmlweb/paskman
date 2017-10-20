@@ -6,6 +6,7 @@ import colors from '../../styles/colors';
 import fonts from '../../styles/fonts';
 import spacing from '../../styles/spacing';
 import timings from '../../styles/timings';
+import type { Target } from 'styled-components';
 
 type Props = {
   tag?: string,
@@ -15,7 +16,7 @@ type Props = {
   children?: any,
 }
 
-const StyledBtnTemplate = styled.button`
+const StyledBtnTemplate: Target = styled.button`
   appearance: none;
   background: ${styledMap('color', {
     primary: colors.primary,

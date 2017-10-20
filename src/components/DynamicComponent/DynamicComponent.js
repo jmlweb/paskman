@@ -3,15 +3,17 @@ import React, { Component } from 'react';
 import isSnapshot from '../../utils/isSnapshot';
 
 export default function createDynamicComponent(
-  importComponent: () => any,
-  requireComponent: () => {default: any},
+  importComponent: () => {
+    [name: string]: mixed,
+  },
+  requireComponent: () => {default: mixed},
   importKey: string = 'default',
 ) {
   type Props = {
-    [name: string]: any,
+    [name: string]: mixed,
   };
   type State = {
-    component: any,
+    component: ?mixed,
   };
   class DynamicComponent extends Component<Props, State> {
     constructor(props: Props) {
@@ -39,7 +41,7 @@ export default function createDynamicComponent(
     }
 
     render() {
-      const C = this.state.component;
+      const C: ?any = this.state.component;
       return C ? <C {...this.props} /> : null;
     }
   }

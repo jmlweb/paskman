@@ -1,12 +1,13 @@
 // @flow
 import React, { Component } from 'react';
-import Form, {
+import {
+  Form,
   FieldSet,
   FormGroup,
   Label,
   OptionsSwitcher,
   RangeSlider,
-} from '../../components/Form/Form';
+} from '../../components/Form';
 import Heading from '../../components/Heading/Heading';
 import Button from '../../components/Button/Button';
 import Loading from '../../components/Loading/Loading';
@@ -29,7 +30,7 @@ export type Props = {
   },
   pauseBetween: boolean,
   confirmEndingTask: boolean,
-  settingsSave: () => void,
+  settingsSave: ({}) => void,
 };
 
 class SettingsConfig extends Component<Props, State> {

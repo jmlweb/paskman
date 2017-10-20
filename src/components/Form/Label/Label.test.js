@@ -2,18 +2,17 @@ import React from 'react';
 import { configure, mount } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import renderer from 'react-test-renderer';
-import Loading from './Loading';
-import LoadingWrapper from './LoadingWrapper/LoadingWrapper';
+import Label from './Label';
 
 configure({ adapter: new Adapter() });
 
-describe('Loading', () => {
+describe('Label', () => {
   let wrapper;
   beforeEach(() => {
-    wrapper = mount(<Loading />);
+    wrapper = mount(<Label>Dummy</Label>);
   });
   it('Render the component', () => {
-    expect(wrapper.find(LoadingWrapper).length).toEqual(1);
+    expect(wrapper.find(Label).length).toEqual(1);
   });
   it('Matchs snapshot', () => {
     const tree = renderer.create(wrapper).toJSON();

@@ -3,6 +3,7 @@ import {
   createAction,
   handleAction,
 } from 'redux-actions';
+import stateMock from '../../stateMock';
 
 /**
  * TYPES
@@ -26,9 +27,7 @@ export const topBarToggleMenu = createAction(TOP_BAR_TOGGLE_MENU);
 /**
  * REDUCER
  */
-export const initialState: State = {
-  menuOpen: false,
-};
+export const initialState: State = stateMock.app.topBar;
 
 const reducer = handleAction(
   TOP_BAR_TOGGLE_MENU,

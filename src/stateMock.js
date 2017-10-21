@@ -12,7 +12,7 @@ const stateMock = {
   },
   components: {
     modal: {},
-  }
+  },
   data: {
     settings: {
       isLoading: false,

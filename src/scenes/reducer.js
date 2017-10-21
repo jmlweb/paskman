@@ -1,8 +1,6 @@
 import { combineReducers } from 'redux';
-import main from './main/duck';
-import dashboard from './dashboard/reducer';
+// import manager from './Manager/reducer';
 
 export default combineReducers({
-  main,
-  dashboard,
+  // manager,
 });

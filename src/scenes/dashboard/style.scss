@@ -1,7 +1,0 @@
-@import "settings/topbar";
-
-.dashboard {
-  display: flex;
-  flex-direction: column;
-  height: calc(100% - #{$topbar-height});
-}

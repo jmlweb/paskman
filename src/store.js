@@ -1,23 +1,48 @@
-import { compose, createStore, applyMiddleware } from 'redux';
-import thunkMiddleware from 'redux-thunk';
-import { autoRehydrate } from 'redux-persist';
-import reducer from './reducer';
+import { createStore, applyMiddleware, compose } from 'redux';
+import { routerMiddleware } from 'react-router-redux';
+import thunk from 'redux-thunk';
+import { persistReducer } from 'redux-persist';
+import localForage from 'localforage';
+import createHistory from 'history/createBrowserHistory';
+import rootReducer from './reducer';
 
-/* eslint-disable no-underscore-dangle */
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-/* eslint-enable */
+export const history = createHistory();
 
-const configureStore = () =>
-  createStore(
-    reducer,
-    undefined,
-    composeEnhancers(
-      autoRehydrate({
-        log: true,
-      }),
-      applyMiddleware(thunkMiddleware),
-    ),
+const initialState = {};
+const enhancers = [];
+const middleware = [
+  thunk,
+  routerMiddleware(history),
+];
+let persistLog = false;
+
+ /* istanbul ignore next */
+if (process.env.NODE_ENV === 'development') {
+  const devToolsExtension = window.devToolsExtension;
+
+  if (typeof devToolsExtension === 'function') {
+    enhancers.push(devToolsExtension());
+  }
+  persistLog = true;
+}
+
+const persistConfig = {
+  key: 'root',
+  storage: localForage,
+  blacklist: ['routing', '_persist'],
+  debug: persistLog,
+};
+
+const composedEnhancers = compose(
+  applyMiddleware(...middleware),
+  ...enhancers,
+);
+
+export const configureStore = () => {
+  const store = createStore(
+    persistReducer(persistConfig, rootReducer),
+    initialState,
+    composedEnhancers,
   );
-
-export default configureStore;
-
+  return store;
+};

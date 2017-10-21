@@ -1,31 +1,35 @@
-import Main from './scenes/main';
+// @flow
+import createDynamicComponent from './components/DynamicComponent/DynamicComponent';
+import { type RoutesType } from './types';
 
-function errorLoading(err) {
-  console.error('Dynamic page loading failed', err);
-}
+const routes: RoutesType = [
+  {
+    path: '/dashboard',
+    title: 'Dashboard',
+    component: createDynamicComponent(
+      () => import('./scenes/Dashboard/Dashboard'),
+      /* istanbul ignore next */
+      () => require('./scenes/Dashboard/Dashboard'),
+    ),
+  },
+  {
+    path: '/settings',
+    title: 'Settings',
+    component: createDynamicComponent(
+      () => import('./scenes/SettingsConfig/SettingsConfigContainer'),
+      /* istanbul ignore next */
+      () => require('./scenes/SettingsConfig/SettingsConfigContainer'),
+    ),
+  },
+  {
+    path: '/loading',
+    title: 'Loading',
+    component: createDynamicComponent(
+      () => import('./components/Loading/Loading'),
+      /* istanbul ignore next */
+      () => require('./components/Loading/Loading'),
+    ),
+  },
+];
 
-function loadRoute(cb) {
-  return module => cb(null, module.default);
-}
-
-export default {
-  component: Main,
-  childRoutes: [
-    {
-      path: '/',
-      getComponent(location, cb) {
-        System.import('./scenes/dashboard')
-          .then(loadRoute(cb))
-          .catch(errorLoading);
-      },
-    },
-    {
-      path: 'backlog',
-      getComponent(location, cb) {
-        System.import('./scenes/backlog')
-          .then(loadRoute(cb))
-          .catch(errorLoading);
-      },
-    },
-  ],
-};
+export default routes;

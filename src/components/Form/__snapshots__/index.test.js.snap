@@ -1,0 +1,85 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Button Matchs snapshot 1`] = `
+<form
+  className="sc-bdVaJa fAoWzh"
+>
+  <fieldset
+    className="sc-bwzfXH gSXRtU"
+  >
+    <div
+      className="sc-htpNat QOKog"
+    >
+      <label
+        className="sc-bxivhb fMASpP"
+      >
+        Dummy
+      </label>
+      <input
+        className="sc-ifAKCX fPNPKI"
+      />
+      <div
+        className="sc-EHOje erXxej"
+      >
+        <label
+          className="sc-bZQynM bXIApl"
+          selected={true}
+        >
+          <input
+            className="sc-gzVnrw bLHfQE"
+            id="id-1"
+            onClick={[Function]}
+            type="radio"
+            value={1}
+          />
+          <span>
+            dummy
+          </span>
+        </label>
+      </div>
+      <div
+        aria-orientation="horizontal"
+        aria-valuemax={10}
+        aria-valuemin={1}
+        aria-valuenow={5}
+        className="rangeslider rangeslider-horizontal sc-htoDjs gqLgCW"
+        onMouseDown={[Function]}
+        onMouseUp={[Function]}
+        onTouchEnd={[Function]}
+        onTouchStart={[Function]}
+      >
+        <div
+          className="rangeslider__fill"
+          style={
+            Object {
+              "width": "0px",
+            }
+          }
+        />
+        <div
+          className="rangeslider__handle"
+          onKeyDown={[Function]}
+          onMouseDown={[Function]}
+          onTouchEnd={[Function]}
+          onTouchMove={[Function]}
+          style={
+            Object {
+              "left": "0px",
+            }
+          }
+          tabIndex={0}
+        >
+          <div
+            className="rangeslider__handle-label"
+          >
+            
+          </div>
+        </div>
+        <ul
+          className="rangeslider__labels"
+        />
+      </div>
+    </div>
+  </fieldset>
+</form>
+`;

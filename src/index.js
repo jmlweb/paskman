@@ -1,20 +1,15 @@
 import React from 'react';
-import { render } from 'react-dom';
-import { browserHistory } from 'react-router';
-import { syncHistoryWithStore } from 'react-router-redux';
-import * as OfflinePluginRuntime from 'offline-plugin/runtime';
-import configureStore from './store';
-import Root from './root';
+import { render } from 'react-snapshot';
+import { configureStore, history } from './store';
+import Root from './Root/Root';
+import registerServiceWorker from './registerServiceWorker';
 
+const target = document.querySelector('#root');
 const store = configureStore();
-const history = syncHistoryWithStore(browserHistory, store);
 
-const app = <Root store={store} history={history} />;
+render(
+  <Root store={store} history={history} />,
+  target,
+);
 
-const appWrapper = document.getElementById('app');
-appWrapper.style.opacity = 1;
-render(app, appWrapper);
-
-OfflinePluginRuntime.install();
-
-export default app;
+registerServiceWorker();

@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Menu Matchs snapshot 1`] = `
+<div>
+  <nav
+    className="sc-bwzfXH gzKAUT"
+  >
+    <a
+      className="sc-bdVaJa ioMEjV"
+      href="/"
+      onClick={[Function]}
+    >
+      Home
+    </a>
+  </nav>
+  <main />
+</div>
+`;

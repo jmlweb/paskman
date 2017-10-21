@@ -1,0 +1,31 @@
+import React from 'react';
+import { configure, mount } from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
+import renderer from 'react-test-renderer';
+import Heading from './Heading';
+
+configure({ adapter: new Adapter() });
+
+describe('Heading', () => {
+  it('Render the component', () => {
+    const wrapper = mount(<Heading>Dummy</Heading>);
+    expect(wrapper.find(Heading).length).toEqual(1);
+  });
+  it('Render the component with tag', () => {
+    const wrapper = mount(<Heading level="2" color="primary" tag="p">Dummy</Heading>);
+    expect(wrapper.find(Heading).length).toEqual(1);
+  });
+  it('Render the component with level lower than 1', () => {
+    const wrapper = mount(<Heading level="0">Dummy</Heading>);
+    expect(wrapper.find(Heading).length).toEqual(1);
+  });
+  it('Render the component with level heigher than 6', () => {
+    const wrapper = mount(<Heading level="7">Dummy</Heading>);
+    expect(wrapper.find(Heading).length).toEqual(1);
+  });
+  it('Matchs snapshot', () => {
+    const wrapper = mount(<Heading>Dummy</Heading>);
+    const tree = renderer.create(wrapper).toJSON();
+    expect(tree).toMatchSnapshot();
+  });
+});

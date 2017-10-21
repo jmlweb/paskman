@@ -1,8 +1,6 @@
 import { combineReducers } from 'redux';
-import modal from './modal/duck';
-import topbar from './topbar/duck';
+import modal from './Modal/duck';
 
 export default combineReducers({
   modal,
-  topbar,
 });

@@ -1,0 +1,83 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TopBar Matchs snapshot 1`] = `
+<div
+  className="sc-EHOje gITUcI"
+>
+  <div
+    className="sc-bZQynM IknJE"
+  >
+    <span
+      className="sc-bdVaJa kyIXQx"
+    >
+      <svg
+        height="29"
+        viewBox="0 0 40 29"
+        width="40"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <g
+          fill="#223177"
+          fillRule="evenodd"
+          transform="translate(0 .8)"
+        >
+          <circle
+            cx="14"
+            cy="14"
+            opacity=".626"
+            r="14"
+          />
+          <circle
+            cx="28.7"
+            cy="13.3"
+            opacity=".725"
+            r="10.5"
+          />
+        </g>
+      </svg>
+      <span
+        className="sc-bwzfXH FwGDt"
+      >
+        PASKMAN
+      </span>
+    </span>
+    <div
+      className="sc-gzVnrw ibZhkv"
+    >
+      <button
+        aria-label="Close menu"
+        className="sc-htpNat dhKYni"
+        onClick={[Function]}
+      >
+        <svg
+          height="35"
+          viewBox="0 0 35 35"
+          width="35"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <g
+            fill="#1E2F76"
+            fillRule="nonzero"
+          >
+            <path
+              d="M17.5 35C7.85 35 0 27.15 0 17.5S7.85 0 17.5 0 35 7.85 35 17.5 27.15 35 17.5 35zm0-32.813c-8.444 0-15.313 6.87-15.313 15.313 0 8.444 6.87 15.313 15.313 15.313 8.444 0 15.313-6.87 15.313-15.313 0-8.444-6.87-15.313-15.313-15.313z"
+            />
+            <path
+              d="M22.97 24.063c-.28 0-.56-.108-.775-.32L11.258 12.804c-.428-.428-.428-1.12 0-1.547.428-.428 1.12-.428 1.547 0l10.937 10.937c.428.428.428 1.12 0 1.547-.213.213-.493.32-.773.32z"
+            />
+            <path
+              d="M22.97 24.063c-.28 0-.56-.108-.775-.32L11.258 12.804c-.428-.428-.428-1.12 0-1.547.428-.428 1.12-.428 1.547 0l10.937 10.937c.428.428.428 1.12 0 1.547-.213.213-.493.32-.773.32z"
+            />
+            <path
+              d="M12.03 24.063c-.28 0-.56-.108-.772-.32-.428-.43-.428-1.12 0-1.548l10.937-10.937c.428-.428 1.12-.428 1.547 0 .428.428.428 1.12 0 1.547L12.805 23.742c-.214.213-.494.32-.774.32z"
+            />
+          </g>
+        </svg>
+      </button>
+      <nav
+        className="sc-ifAKCX bYZdDu"
+      />
+    </div>
+  </div>
+</div>
+`;

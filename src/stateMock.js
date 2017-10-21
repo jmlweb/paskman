@@ -10,6 +10,9 @@ const stateMock = {
       menuOpen: false,
     },
   },
+  components: {
+    modal: {},
+  }
   data: {
     settings: {
       isLoading: false,

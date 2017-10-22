@@ -5,12 +5,13 @@ import {
   modalToggle,
 } from './duck';
 import Modal from './Modal';
-import type { Props as ComponentProps } from './Modal';
 
 type Props = {
-  ...ComponentProps,
+  title: string,
+  isOpen: bool,
+  children: mixed,
   name: string,
-  modalToggle: () => void,
+  modalToggle: (name: string) => void,
   closeCallback: () => void,
 };
 
@@ -23,25 +24,27 @@ class ModalContainer extends Component<Props> {
   handleToggle(e: Event) {
     const { name, isOpen, modalToggle, closeCallback } = this.props;
     modalToggle(name);
-    if (!isOpen) {
+    if (!isOpen && closeCallback) {
       closeCallback();
     }
   }
   render() {
-    const { isOpen, title } = this.props;
+    const { isOpen, title, children } = this.props;
     return (
       <Modal
         title={title}
         isOpen={isOpen}
         handleToggle={this.handleToggle}
-      />
+      >
+        {children}
+      </Modal>
     );
   }
 }
 
 export function mapStateToProps(state: {
   components: {
-    modal: [ComponentProps],
+    modal: mixed,
   }
 }) {
   return { ...state.components.modal };
@@ -55,5 +58,16 @@ const ModalConnectedContainer = connect(
   mapStateToProps,
   mapDispatchToProps
 )(ModalContainer);
+
+// const withModal = (WrappedComponent: Function, props: {
+//   title: string,
+//   name: string,
+//   isOpen?: bool,
+//   closeCallback?: () => void,
+// }) => (
+//   <ModalConnectedContainer {...props}>
+//     <WrappedComponent />
+//   </ModalConnectedContainer>
+// );
 
 export default ModalConnectedContainer;

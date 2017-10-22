@@ -1,12 +1,17 @@
 // @flow
 import React from 'react';
 import styled, { css } from 'styled-components';
+import Heading from '../Heading/Heading';
+import ModalBtn from './ModalBtn/ModalBtn';
 import colors from '../../styles/colors';
+import spacing from '../../styles/spacing';
 import timings from '../../styles/timings';
+import topBarHeight from '../../styles/topBarHeight';
 
 export type Props = {
   title: string,
   isOpen: bool,
+  handleToggle: Function,
   children: mixed,
 };
 
@@ -42,11 +47,29 @@ const StyledModal = styled.div`
   ${props => props.isOpen ? activeModalStyle : inactiveModalStyle};
 `;
 
+const ModalBar = styled.div`
+  align-items: center;
+  background: ${colors.primary};
+  color: ${colors.secondary};
+  display: flex;
+  height: ${topBarHeight};
+  justify-content: space-between;
+  padding: 0 ${spacing.sm};
+`;
+
+const ModalContent = styled.div`
+  padding: ${spacing.md} ${spacing.sm};
+`;
+
 const Modal = (props: Props) => {
-  const { isOpen } = props;
+  const { isOpen, title, handleToggle, children } = props;
   return (
     <StyledModal isOpen={isOpen}>
-
+      <ModalBar>
+        <Heading level="3">{title}</Heading>
+        <ModalBtn onClick={handleToggle} />
+      </ModalBar>
+      <ModalContent>{children}</ModalContent>
     </StyledModal>
   );
 };

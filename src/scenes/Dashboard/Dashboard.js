@@ -1,6 +1,5 @@
 // @flow
 import React from 'react'
-import { Route } from 'react-router-dom';
 import TasksInfoBar from './TasksInfoBar/TasksInfoBar';
 import createDynamicComponent from '../../components/DynamicComponent/DynamicComponent';
 
@@ -19,8 +18,8 @@ const AddTask = createDynamicComponent(
 const Dashboard = ({ match }: Props) => {
   return (
     <div>
-      <TasksInfoBar base={match.url} />
-      <Route path={`${match.url}/addtask`} component={AddTask} />
+      <TasksInfoBar />
+      <AddTask />
     </div>
   );
 };

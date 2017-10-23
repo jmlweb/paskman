@@ -1,6 +1,6 @@
 // @flow
 import React from 'react';
-import { Route } from 'react-router-dom';
+import { Route, Redirect } from 'react-router-dom';
 import { type RoutesType } from '../../types';
 
 type Props = {
@@ -9,6 +9,9 @@ type Props = {
 
 const Router = (props: Props) => (
   <main>
+    <Route exact path="/" render={() => (
+      <Redirect to="/dashboard"/>
+    )}/>
     {props.routes.map(
       route => (
         <Route

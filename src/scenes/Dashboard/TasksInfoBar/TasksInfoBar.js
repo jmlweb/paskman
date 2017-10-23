@@ -1,7 +1,7 @@
 // @flow
 import React from 'react';
-import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import TaskInfoBarContainer from './TaskInfoBarContainer';
 import AddIconSVG from './AddIconSVG';
 import colors from '../../../styles/colors';
 import sizes from '../../../styles/sizes';
@@ -39,7 +39,7 @@ const Accent = styled.span`
   color: ${colors.secondary};
 `;
 
-const Btn = styled(Link)`
+const Btn = styled.button`
   background: ${colors.secondaryA2};
   border: 0;
   margin: 0;
@@ -63,10 +63,10 @@ const getPendingTasksText = (qty: number): string => {
 };
 
 type Props = {
-  base: string,
+  handleAddTask: Function,
 };
 
-const TaskInfoBar = ({base}: Props) => {
+const TaskInfoBar = ({handleAddTask}: Props) => {
   return (
     <StyledTaskInfoBar>
       <Info>
@@ -77,11 +77,11 @@ const TaskInfoBar = ({base}: Props) => {
           <Accent>{toClock(0)}</Accent> planned
         </InfoText>
       </Info>
-      <Btn to={`${base}/addtask`}>
+      <Btn onClick={handleAddTask}>
         <AddIconSVG />
       </Btn>
     </StyledTaskInfoBar>
   );
 };
 
-export default TaskInfoBar;
+export default TaskInfoBarContainer(TaskInfoBar);

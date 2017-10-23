@@ -43,12 +43,13 @@ const openMenu = css`
 
 const closedMenu = css`
   max-height: 0;
-  transition: max-height 0.3s ${timings.easeInQuad};
+  transition: max-height 0.7s ${timings.easeOutBack};
 `;
 
 const StyledMenu = styled.nav`
   background: ${colors.secondary};
   bottom: 0;
+  box-shadow: 0 7px 6px ${colors.blackA6};
   color: ${colors.white};
   display: flex;
   flex-direction: column;

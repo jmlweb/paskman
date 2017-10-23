@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {
-  modalToggle,
+  modalClose,
 } from './duck';
 import Modal from './Modal';
 
@@ -11,30 +11,31 @@ type Props = {
   isOpen: bool,
   children: mixed,
   name: string,
-  modalToggle: (name: string) => void,
+  modal: {},
+  modalClose: (name: string) => void,
   closeCallback: () => void,
 };
 
 class ModalContainer extends Component<Props> {
-  handleToggle: (e: Event) => void;
+  handleClose: (e: Event) => void;
   constructor(props: Props) {
     super(props);
-    this.handleToggle = this.handleToggle.bind(this);
+    this.handleClose = this.handleClose.bind(this);
   }
-  handleToggle(e: Event) {
-    const { name, isOpen, modalToggle, closeCallback } = this.props;
-    modalToggle(name);
-    if (!isOpen && closeCallback) {
+  handleClose(e: Event) {
+    const { name, modalClose, closeCallback } = this.props;
+    modalClose(name);
+    if (closeCallback) {
       closeCallback();
     }
   }
   render() {
-    const { isOpen, title, children } = this.props;
+    const { name, modal, title, children } = this.props;
     return (
       <Modal
         title={title}
-        isOpen={isOpen}
-        handleToggle={this.handleToggle}
+        isOpen={modal[name]}
+        handleClose={this.handleClose}
       >
         {children}
       </Modal>
@@ -47,11 +48,11 @@ export function mapStateToProps(state: {
     modal: mixed,
   }
 }) {
-  return { ...state.components.modal };
+  return { ...state.components };
 };
 
 export const mapDispatchToProps = {
-  modalToggle,
+  modalClose,
 };
 
 const ModalConnectedContainer = connect(

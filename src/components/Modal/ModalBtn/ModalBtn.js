@@ -1,6 +1,6 @@
 // @flow
 import React from 'react';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { stripUnit } from 'polished';
 import ModalBtnSVG from './ModalBtnSVG';
 import spacing from '../../../styles/spacing';
@@ -19,8 +19,8 @@ const StyledModalBtn = styled.button`
   width: 12vh;
 `;
 
-const ModalBtn = () => (
-  <StyledModalBtn>
+const ModalBtn = ({ handleClick }) => (
+  <StyledModalBtn onClick={handleClick}>
     <ModalBtnSVG />
   </StyledModalBtn>
 );

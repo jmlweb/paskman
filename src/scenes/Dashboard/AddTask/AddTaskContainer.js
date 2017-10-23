@@ -4,18 +4,12 @@ import { connect } from 'react-redux';
 import { modalToggle } from '../../../components/Modal/duck';
 import AddTask from './AddTask';
 
-const modalName = 'addTask';
-
 class AddTaskContainer extends Component {
   constructor(props) {
     super(props);
-    console.log('entra');
-  }
-  ComponentWillMount() {
-    this.props.modalToggle(modalName);
   }
   render() {
-    return <AddTask name={modalName} />;
+    return <AddTask />;
   }
 }
 

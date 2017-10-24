@@ -47,8 +47,6 @@ const Item = styled.label`
 
 const Input = styled.input.attrs({
   type: 'radio',
-}: {
-  type: string,
 })`
   position: absolute;
   opacity: 0;

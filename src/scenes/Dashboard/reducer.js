@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
-import dashboard from './Dashboard/reducer';
+import addTask from './AddTask/duck';
 
 export default combineReducers({
-  dashboard,
+  addTask,
 });

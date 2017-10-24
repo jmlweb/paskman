@@ -31,10 +31,22 @@ const StyledBtnTemplate: Target = styled.button`
     success: colors.white,
   })};
   font-family: ${fonts.fontFamily};
-  font-size: 1.8rem;
+  font-size: ${styledMap('size', {
+    xs: '1rem',
+    sm: '1.2rem',
+    md: '1.8rem',
+    lg: '2rem',
+    xl: '2.2rem',
+  })};
   font-weight: 700;
   outline: 0;
-  padding: ${spacing.sm};
+  padding: ${styledMap('size', {
+    xs: spacing.xs,
+    sm: spacing.xs,
+    md: spacing.sm,
+    lg: spacing.md,
+    xl: spacing.lg,
+  })};
   text-transform: uppercase;
   transition: background 0.4s ${timings.easeOutQuad};
   width: ${props => props.block ? '100%': 'auto'};

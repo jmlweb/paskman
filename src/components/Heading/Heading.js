@@ -8,6 +8,7 @@ import spacing from '../../styles/spacing';
 type Props = {
   level?: string,
   color?: string,
+  weight?: number,
   tag?: string,
   children: any,
 }
@@ -22,7 +23,7 @@ const StyledHeadingMaster: Function = styled.h1`
     '5': '1.4rem',
     '6': '1.2rem',
   })};
-  font-weight: 500;
+  font-weight: ${props => props.weight};
   margin: 0 0 ${spacing.md};
 `;
 
@@ -46,9 +47,9 @@ const normalizeLevel = (level: number): number => {
 };
 
 const Heading = (props: Props) => {
-  const {level = '1', color = 'secondary', tag, children, ...rest} = props;
+  const {level = '1', color = 'secondary', weight = 500, tag, children, ...rest} = props;
   const StyledHeading: Function = createStyledHeading(normalizeTag(tag, normalizeLevel(+level)));
-  return <StyledHeading colorScheme={color} level={level} {...rest}>{children}</StyledHeading>;
+  return <StyledHeading colorScheme={color} level={level} weight={weight} {...rest}>{children}</StyledHeading>;
 };
 
 export default Heading;

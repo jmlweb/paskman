@@ -29,7 +29,7 @@ const StyledRangeSlider = styled(Slider)`
       height: 40px;
       text-align: center;
       position: absolute;
-      background-color: rgba(0, 0, 0, 0.8);
+      background-color: ${colors.blackA8};
       font-weight: normal;
       font-size: 14px;
       transition: all 100ms ease-in;
@@ -58,7 +58,7 @@ const StyledRangeSlider = styled(Slider)`
     border-radius: 10px;
     .rangeslider__fill {
       height: 100%;
-      background-color: $hawkesBlue;
+      background-color: ${colors.secondaryT7};
       border-radius: 10px;
       top: 0;
     }
@@ -74,7 +74,7 @@ const StyledRangeSlider = styled(Slider)`
       &:after {
         border-left: 8px solid transparent;
         border-right: 8px solid transparent;
-        border-top: 8px solid rgba(0, 0, 0, 0.8);
+        border-top: 8px solid ${colors.blackA8};
         left: 30px;
         bottom: -8px;
       }

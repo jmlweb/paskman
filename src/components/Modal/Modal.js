@@ -72,7 +72,7 @@ const Modal = (props: Props) => {
   return (
     <StyledModal isOpen={isOpen}>
       <ModalBar>
-        <ModalHeading>{title}</ModalHeading>
+        <ModalHeading weight="700">{title}</ModalHeading>
         <ModalBtn handleClick={handleClose} />
       </ModalBar>
       <ModalContent>{children}</ModalContent>

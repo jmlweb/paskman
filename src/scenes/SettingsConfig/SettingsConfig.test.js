@@ -1,12 +1,6 @@
 import React from 'react';
-import { configure, mount } from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
-import renderer from 'react-test-renderer';
+import { mount } from 'enzyme';
 import SettingsConfig from './SettingsConfig';
-
-configure({ adapter: new Adapter() });
-
-// Resizer.prototype.componentWillMount = onWillMount;
 
 const baseProps = {
   isLoading: false,
@@ -27,7 +21,7 @@ describe('Settings Config', () => {
   it('Render the component when loading', () => {
     const loadingProps = {...baseProps, isLoading: true};
     const wrapper = mount(<SettingsConfig {...loadingProps} />);
-    expect(wrapper.find('Loading').length).toEqual(1);
+    expect(wrapper.find('SettingsConfig').length).toEqual(1);
   });
   it('Handles event', () => {
     const handleSubmit = jest.fn();
@@ -42,21 +36,4 @@ describe('Settings Config', () => {
       expect(handleSubmit).toHaveBeenCalled();
     }, 500);
   });
-  /*it('Render the component with tag', () => {
-    const wrapper = mount(<Heading level="2" color="primary" tag="p">Dummy</Heading>);
-    expect(wrapper.find(Heading).length).toEqual(1);
-  });
-  it('Render the component with level lower than 1', () => {
-    const wrapper = mount(<Heading level="0">Dummy</Heading>);
-    expect(wrapper.find(Heading).length).toEqual(1);
-  });
-  it('Render the component with level heigher than 6', () => {
-    const wrapper = mount(<Heading level="7">Dummy</Heading>);
-    expect(wrapper.find(Heading).length).toEqual(1);
-  });
-  it('Matchs snapshot', () => {
-    const wrapper = mount(<Heading>Dummy</Heading>);
-    const tree = renderer.create(wrapper).toJSON();
-    expect(tree).toMatchSnapshot();
-  });*/
 });

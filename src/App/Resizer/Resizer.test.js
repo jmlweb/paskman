@@ -1,10 +1,6 @@
 import React from 'react';
-import { configure, mount } from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
-import renderer from 'react-test-renderer';
+import { mount } from 'enzyme';
 import Resizer from './Resizer';
-
-configure({ adapter: new Adapter() });
 
 describe('Resizer', () => {
   const dimensions = {
@@ -19,9 +15,18 @@ describe('Resizer', () => {
     jest.useFakeTimers();
     Resizer.prototype.componentWillMount = onWillMount;
     Resizer.prototype.componentWillUnmount = onWillUnmount;
-    wrapper = mount(<Resizer dimensions={dimensions} appSetDimensions={appSetDimensions} />);
+    wrapper = mount(
+      <Resizer dimensions={dimensions} appSetDimensions={appSetDimensions} />,
+      {attachTo: document.getElementById('root')}
+    );
   });
   it('Render the component', () => {
     expect(wrapper).toBeTruthy();
+    wrapper.unmount();
+  });
+  it('Render the component the second time', () => {
+    window.resizeTo(1000, 1000);
+    expect(wrapper).toBeTruthy();
+    wrapper.unmount();
   });
 });

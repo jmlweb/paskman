@@ -1,7 +1,152 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Heading Matchs snapshot 1`] = `
-<div>
-  Hola
-</div>
+<form
+  className="sc-bZQynM hSufOU"
+>
+  <fieldset
+    className="sc-gzVnrw cJCIgP"
+  >
+    <div
+      className="sc-htoDjs hpWqMX"
+    >
+      <label
+        className="sc-dnqmqq jebcPH"
+      >
+        Name (3 chars min)
+      </label>
+      <input
+        className="sc-iwsKbI WHWzN"
+        id="name"
+        minLength="3"
+        placeholder="Try to be concise"
+        required={true}
+        type="text"
+      />
+    </div>
+    <div
+      className="sc-htoDjs hpWqMX"
+    >
+      <label
+        className="sc-dnqmqq jebcPH"
+      >
+        Description
+      </label>
+      <textarea
+        className="sc-gZMcBi jEvzYf"
+        cols="80"
+        id="description"
+        placeholder="Describe the task"
+        rows="4"
+      />
+    </div>
+    <div
+      className="sc-htoDjs hpWqMX"
+    >
+      <label
+        className="sc-dnqmqq jebcPH"
+      >
+        Pomodoros required
+      </label>
+      <div
+        className="sc-gqjmRU hpLqBK"
+      >
+        <label
+          className="sc-VigVT dzzzHZ"
+          selected={true}
+        >
+          <input
+            className="sc-jTzLTM hbqTmN"
+            id="id-25"
+            onClick={undefined}
+            type="radio"
+            value={25}
+          />
+          <span>
+            1
+          </span>
+        </label>
+        <label
+          className="sc-VigVT cnzhie"
+          selected={false}
+        >
+          <input
+            className="sc-jTzLTM hbqTmN"
+            id="id-50"
+            onClick={undefined}
+            type="radio"
+            value={50}
+          />
+          <span>
+            2
+          </span>
+        </label>
+        <label
+          className="sc-VigVT cnzhie"
+          selected={false}
+        >
+          <input
+            className="sc-jTzLTM hbqTmN"
+            id="id-75"
+            onClick={undefined}
+            type="radio"
+            value={75}
+          />
+          <span>
+            3
+          </span>
+        </label>
+        <label
+          className="sc-VigVT cnzhie"
+          selected={false}
+        >
+          <input
+            className="sc-jTzLTM hbqTmN"
+            id="id-100"
+            onClick={undefined}
+            type="radio"
+            value={100}
+          />
+          <span>
+            4
+          </span>
+        </label>
+        <label
+          className="sc-VigVT cnzhie"
+          selected={false}
+        >
+          <input
+            className="sc-jTzLTM hbqTmN"
+            id="id-125"
+            onClick={undefined}
+            type="radio"
+            value={125}
+          />
+          <span>
+            5
+          </span>
+        </label>
+      </div>
+      <div
+        className="sc-jzJRlG bzLuwb"
+      >
+        <button
+          className="sc-kpOJdX eBApnI"
+          color="primary"
+          size="sm"
+        >
+          Change to time
+        </button>
+      </div>
+    </div>
+  </fieldset>
+  <button
+    className="sc-dxgOiQ exCsrx"
+    color="success"
+    size="md"
+    type="submit"
+  >
+    Save
+  </button>
+</form>
 `;

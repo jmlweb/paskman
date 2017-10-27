@@ -1,10 +1,7 @@
 import React from 'react';
-import { configure, mount } from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
+import { mount } from 'enzyme';
 import renderer from 'react-test-renderer';
 import Heading from './Heading';
-
-configure({ adapter: new Adapter() });
 
 describe('Heading', () => {
   it('Render the component', () => {

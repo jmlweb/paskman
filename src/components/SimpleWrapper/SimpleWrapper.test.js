@@ -1,15 +1,12 @@
 import React from 'react';
-import { configure, mount } from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
+import { mount } from 'enzyme';
 import renderer from 'react-test-renderer';
 import SimpleWrapper from './SimpleWrapper';
-
-configure({ adapter: new Adapter() });
 
 describe('SimpleWrapper', () => {
   let wrapper;
   beforeEach(() => {
-    wrapper = mount(<SimpleWrapper><div>Dummy</div></SimpleWrapper>);
+    wrapper = mount(<SimpleWrapper key={Date.now()}><div>Dummy</div></SimpleWrapper>);
   });
   it('Render the component', () => {
     expect(wrapper.find('div').length).toEqual(1);

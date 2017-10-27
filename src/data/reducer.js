@@ -6,7 +6,7 @@ import settings, {
   settingsSaveEpic,
 } from './settings/duck';
 
-export const dataEpic = combineEpics(
+export const dataEpic: Function = combineEpics(
   settingsFetchEpic,
   settingsSaveEpic,
 );

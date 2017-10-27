@@ -69,7 +69,6 @@ export const initialState: State = stateMock.data.settings;
 const reducer = handleActions({
   // @todo ActionType<typeof settingsChange>
   [SETTINGS_CHANGE]: (state: State, action: any) => {
-    console.log(action);
     return { ...state, ...action.payload };
   },
   [SETTINGS_SET_LOADING]: (state: State, action: ActionType<typeof settingsChange>) => {

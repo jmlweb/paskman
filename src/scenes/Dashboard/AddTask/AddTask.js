@@ -28,7 +28,7 @@ import constants from '../constants';
   </div>
  */
 
-const AddTask = () => (
+export const AddTask = () => (
   <Form noSpacing>
     <FieldSet>
       <FormGroup>

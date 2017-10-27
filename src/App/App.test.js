@@ -2,14 +2,11 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'react-router-redux';
 import createHistory from 'history/createBrowserHistory';
-import { configure, mount } from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
+import { mount } from 'enzyme';
 import configureStore from 'redux-mock-store';
 import renderer from 'react-test-renderer';
 import App from './App';
 import stateMock from '../stateMock';
-
-configure({ adapter: new Adapter() });
 
 describe('App', () => {
   const mockStore = configureStore();

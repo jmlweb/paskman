@@ -52,7 +52,7 @@
     "start": "react-scripts start",
     "flow": "flow",
     "build": "cross-env NODE_ENV=production react-scripts build && react-snapshot",
-    "test": "react-scripts test --env=jsdom --setupTestFrameworkScriptFile=raf/polyfill --collectCoverageFrom=src/**/*.js --collectCoverageFrom=!src/index.js --collectCoverageFrom=!src/registerServiceWorker.js",
+    "test": "react-scripts test --env=jsdom --collectCoverageFrom=src/**/*.js --collectCoverageFrom=!src/index.js --collectCoverageFrom=!src/registerServiceWorker.js",
     "analyze": "source-map-explorer build/static/js/main.*",
     "eject": "react-scripts eject"
   }

@@ -1,7 +1,7 @@
-import reducer from './reducer';
+import { rootReducer } from './reducer';
 
 describe('Global reducer', () => {
   it('should return a valid object', () => {
-    expect(reducer).toBeTruthy();
+    expect(rootReducer).toBeTruthy();
   });
 });

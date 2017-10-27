@@ -5,11 +5,6 @@ exports[`SettingsConfig Matchs snapshot 1`] = `
   className="sc-bdVaJa fAoWzh"
   onSubmit={[Function]}
 >
-  <h1
-    className="sc-kkGfuU cKkbCx"
-  >
-    Settings Config
-  </h1>
   <fieldset
     className="sc-bwzfXH gSXRtU"
   >
@@ -29,7 +24,7 @@ exports[`SettingsConfig Matchs snapshot 1`] = `
         aria-valuemax={60}
         aria-valuemin={5}
         aria-valuenow={25}
-        className="rangeslider rangeslider-horizontal sc-htoDjs gqLgCW"
+        className="rangeslider rangeslider-horizontal sc-dnqmqq kGnwsx"
         onMouseDown={[Function]}
         onMouseUp={[Function]}
         onTouchEnd={[Function]}
@@ -83,7 +78,7 @@ exports[`SettingsConfig Matchs snapshot 1`] = `
         aria-valuemax={15}
         aria-valuemin={1}
         aria-valuenow={5}
-        className="rangeslider rangeslider-horizontal sc-htoDjs gqLgCW"
+        className="rangeslider rangeslider-horizontal sc-dnqmqq kGnwsx"
         onMouseDown={[Function]}
         onMouseUp={[Function]}
         onTouchEnd={[Function]}
@@ -130,14 +125,14 @@ exports[`SettingsConfig Matchs snapshot 1`] = `
         Pause between pomodoros?
       </label>
       <div
-        className="sc-EHOje erXxej"
+        className="sc-bZQynM kijoyl"
       >
         <label
-          className="sc-bZQynM fyOIxu"
+          className="sc-gzVnrw jpiMBn"
           selected={false}
         >
           <input
-            className="sc-gzVnrw bLHfQE"
+            className="sc-htoDjs kCGYta"
             id="id-1"
             onClick={[Function]}
             type="radio"
@@ -148,11 +143,11 @@ exports[`SettingsConfig Matchs snapshot 1`] = `
           </span>
         </label>
         <label
-          className="sc-bZQynM bXIApl"
+          className="sc-gzVnrw lhwIJl"
           selected={true}
         >
           <input
-            className="sc-gzVnrw bLHfQE"
+            className="sc-htoDjs kCGYta"
             id="id-0"
             onClick={[Function]}
             type="radio"
@@ -173,14 +168,14 @@ exports[`SettingsConfig Matchs snapshot 1`] = `
         Require confirm for ending tasks
       </label>
       <div
-        className="sc-EHOje erXxej"
+        className="sc-bZQynM kijoyl"
       >
         <label
-          className="sc-bZQynM bXIApl"
+          className="sc-gzVnrw lhwIJl"
           selected={true}
         >
           <input
-            className="sc-gzVnrw bLHfQE"
+            className="sc-htoDjs kCGYta"
             id="id-1"
             onClick={[Function]}
             type="radio"
@@ -191,11 +186,11 @@ exports[`SettingsConfig Matchs snapshot 1`] = `
           </span>
         </label>
         <label
-          className="sc-bZQynM fyOIxu"
+          className="sc-gzVnrw jpiMBn"
           selected={false}
         >
           <input
-            className="sc-gzVnrw bLHfQE"
+            className="sc-htoDjs kCGYta"
             id="id-0"
             onClick={[Function]}
             type="radio"
@@ -208,13 +203,5 @@ exports[`SettingsConfig Matchs snapshot 1`] = `
       </div>
     </div>
   </fieldset>
-  <button
-    className="sc-iAyFgw cEpUjs"
-    color="success"
-    size="md"
-    type="submit"
-  >
-    Save
-  </button>
 </form>
 `;

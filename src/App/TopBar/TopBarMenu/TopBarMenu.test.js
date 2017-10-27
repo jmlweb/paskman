@@ -2,8 +2,7 @@ import React from 'react';
 import {
   BrowserRouter,
 } from 'react-router-dom';
-import { configure, mount } from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
+import { mount } from 'enzyme';
 import renderer from 'react-test-renderer';
 import TopBarMenu from './TopBarMenu';
 import Router from '../../Router/Router';
@@ -20,8 +19,6 @@ const routes = [
   },
 ];
 
-configure({ adapter: new Adapter() });
-
 describe('Menu', () => {
   let wrapper;
   let count = 0;
@@ -36,7 +33,7 @@ describe('Menu', () => {
     );
     count += 1;
   });
-  it('Render the connected component', () => {
+  it('Render the component', () => {
     expect(wrapper.find('Menu').length).toEqual(1);
   });
   it('Matchs snapshot', () => {

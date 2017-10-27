@@ -1,6 +1,5 @@
 import React from 'react';
-import { configure, mount } from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
+import { mount } from 'enzyme';
 import renderer from 'react-test-renderer';
 import { default as Form } from './Form';
 import { default as FieldSet } from './FieldSet/FieldSet';
@@ -9,8 +8,6 @@ import { default as Label } from './Label/Label';
 import { default as TextField } from './TextField/TextField';
 import { default as OptionsSwitcher } from './OptionsSwitcher/OptionsSwitcher';
 import { default as RangeSlider } from './RangeSlider/RangeSlider';
-
-configure({ adapter: new Adapter() });
 
 describe('Button', () => {
   let wrapper;

@@ -1,7 +1,16 @@
 // @flow
+import { combineEpics } from 'redux-observable';
 import { combineReducers } from 'redux';
-import settings from './settings/duck';
+import settings, {
+  settingsFetchEpic,
+  settingsSaveEpic,
+} from './settings/duck';
 
-export default combineReducers({
+export const dataEpic = combineEpics(
+  settingsFetchEpic,
+  settingsSaveEpic,
+);
+
+export const dataReducer = combineReducers({
   settings,
 });

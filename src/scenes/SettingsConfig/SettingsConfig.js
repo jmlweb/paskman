@@ -1,5 +1,6 @@
 // @flow
 import React, { Component } from 'react';
+import createDynamicComponent from '../../components/DynamicComponent/DynamicComponent';
 import {
   Form,
   FieldSet,
@@ -8,10 +9,23 @@ import {
   OptionsSwitcher,
   RangeSlider,
 } from '../../components/Form';
-import Heading from '../../components/Heading/Heading';
-import Button from '../../components/Button/Button';
-import Loading from '../../components/Loading/Loading';
 import constants from './constants';
+
+const Loading = createDynamicComponent(
+  () => import('../../components/Loading/Loading'),
+  /* istanbul ignore next */
+  () => require('../../components/Loading/Loading'),
+);
+const Heading = createDynamicComponent(
+  () => import('../../components/Heading/Heading'),
+  /* istanbul ignore next */
+  () => require('../../components/Heading/Heading'),
+);
+const Button = createDynamicComponent(
+  () => import('../../components/Button/Button'),
+  /* istanbul ignore next */
+  () => require('../../components/Button/Button'),
+);
 
 type State = {
   target: {
@@ -50,6 +64,14 @@ class SettingsConfig extends Component<Props, State> {
     this.handlePauseBetweenChange = this.handlePauseBetweenChange.bind(this);
     this.handleConfirmEndingTaskChange = this.handleConfirmEndingTaskChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+  }
+  componentWillReceiveProps(nextProps: Props) {
+    const { target, pauseBetween, confirmEndingTask } = nextProps;
+    this.setState({
+      target,
+      pauseBetween,
+      confirmEndingTask,
+    });
   }
   handleSubmit = function(e: Event) {
     const { settingsSave } = this.props;
@@ -147,7 +169,7 @@ class SettingsConfig extends Component<Props, State> {
           </FormGroup>
         </FieldSet>
         <Button type="submit" color="success" block>Save</Button>
-        {isLoading && <Loading />}
+        {isLoading && <Loading text="Loading data..." />}
       </Form>
     );
   }

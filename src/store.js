@@ -1,17 +1,19 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 import { routerMiddleware } from 'react-router-redux';
-import thunk from 'redux-thunk';
+import { createEpicMiddleware } from 'redux-observable';
 import { persistReducer, persistStore } from 'redux-persist';
 import localForage from 'localforage';
 import createHistory from 'history/createBrowserHistory';
-import rootReducer from './reducer';
+import { rootEpic, rootReducer } from './reducer';
 
 export const history = createHistory();
+
+const epicMiddleware = createEpicMiddleware(rootEpic);
 
 const initialState = {};
 const enhancers = [];
 const middleware = [
-  thunk,
+  epicMiddleware,
   routerMiddleware(history),
 ];
 let persistLog = false;
@@ -44,6 +46,8 @@ export const configureStore = () => {
     initialState,
     composedEnhancers,
   );
-  persistStore(store);
-  return store;
+  return {
+    store,
+    persistor: persistStore(store),
+  };
 };

@@ -14,7 +14,7 @@ type Props = {
 };
 
 class SettingsConfigContainer extends Component<Props> {
-  componentWillMount() {
+  componentDidMount() {
     const { settingsFetch }: Props = this.props;
     settingsFetch();
   }

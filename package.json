@@ -15,9 +15,11 @@
     "react-router-redux": "^5.0.0-alpha.6",
     "redux": "^3.7.2",
     "redux-actions": "^2.2.1",
+    "redux-observable": "^0.16.0",
     "redux-persist": "^5.0.0-rc.6",
     "redux-thunk": "^2.2.0",
     "reselect": "^3.0.1",
+    "rxjs": "^5.5.1",
     "shortid": "^2.2.8",
     "styled-components": "^2.2.1",
     "styled-map": "^2.0.1"

@@ -5,10 +5,10 @@ import Root from './Root/Root';
 import registerServiceWorker from './registerServiceWorker';
 
 const target = document.querySelector('#root');
-const store = configureStore();
+const { store, persistor } = configureStore();
 
 render(
-  <Root store={store} history={history} />,
+  <Root store={store} persistor={persistor} history={history} />,
   target,
 );
 

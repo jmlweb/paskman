@@ -6,8 +6,9 @@ import LoadingGroups from './LoadingGroups/LoadingGroups';
 import { LoadingLeftGroup, LoadingRightGroup } from './LoadingGroup/LoadingGroup';
 import { LoadingPrimaryItem, LoadingSecondaryItem } from './LoadingItem/LoadingItem';
 import LoadingSVG from './LoadingSVG/LoadingSVG';
+import LoadingMsg from './LoadingMsg/LoadingMsg';
 
-const Loading = () => (
+const Loading = ({ text }) => (
   <LoadingWrapper>
     <LoadingMain>
       <LoadingGroups>
@@ -24,6 +25,7 @@ const Loading = () => (
       </LoadingGroups>
       <LoadingSVG />
     </LoadingMain>
+    {text && <LoadingMsg>{text}</LoadingMsg>}
   </LoadingWrapper>
 );
 

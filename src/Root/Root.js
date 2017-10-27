@@ -1,4 +1,5 @@
 import React from 'react';
+import PT from 'prop-types';
 import { Provider, connect } from 'react-redux';
 import { ConnectedRouter } from 'react-router-redux';
 import { PersistGate } from 'redux-persist/lib/integration/react';
@@ -30,7 +31,13 @@ const Root = (props) => {
         </ConnectedRouter>
       ))}
     </Provider>
-  )
+  );
+};
+
+Root.propTypes = {
+  store: PT.objectOf(PT.any).isRequired,
+  history: PT.objectOf(PT.any).isRequired,
+  persistor: PT.objectOf(PT.any).isRequired,
 };
 
 export default connect(() => ({}), {

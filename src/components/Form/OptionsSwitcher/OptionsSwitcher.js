@@ -1,4 +1,5 @@
 import React from 'react';
+import PT from 'prop-types';
 import styled, { css } from 'styled-components';
 import colors from '../../../styles/colors';
 import spacing from '../../../styles/spacing';
@@ -59,5 +60,11 @@ const OptionsSwitcher = ({ options, value, onChange }) => (
     )}
   </StyledOptionsSwitcher>
 );
+
+OptionsSwitcher.propTypes = {
+  options: PT.arrayOf(PT.object).isRequired,
+  value: PT.oneOfType([PT.string, PT.number, PT.bool]).isRequired,
+  onChange: PT.func.isRequired,
+};
 
 export default OptionsSwitcher;

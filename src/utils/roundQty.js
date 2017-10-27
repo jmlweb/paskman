@@ -1,4 +1,4 @@
 export default (
   number,
-  step
+  step,
 ) => parseInt((number / step), 10) * step;

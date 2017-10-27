@@ -24,9 +24,9 @@ export const modalToggle = createAction(MODAL_TOGGLE, name => name);
 export const initialState = {};
 
 const reducer = handleActions({
-  [MODAL_OPEN]: (state, {payload}) => ({...state, [payload]: true}),
-  [MODAL_CLOSE]: (state, {payload}) => ({...state, [payload]: false}),
-  [MODAL_TOGGLE]: (state, {payload}) => ({...state, [payload]: !state[payload]}),
+  [MODAL_OPEN]: (state, {payload}) => ({ ...state, [payload]: true }),
+  [MODAL_CLOSE]: (state, {payload}) => ({ ...state, [payload]: false }),
+  [MODAL_TOGGLE]: (state, {payload}) => ({ ...state, [payload]: !state[payload] }),
 }, initialState);
 
 export default reducer;

@@ -18,7 +18,7 @@ export const appSetDimensions = createAction(APP_SET_DIMENSIONS, dimensions => d
 /**
  * REDUCER
  */
-export const initialState: State = stateMock.app.resizer;
+export const initialState = stateMock.app.resizer;
 
 const reducer = handleAction(
   APP_SET_DIMENSIONS,

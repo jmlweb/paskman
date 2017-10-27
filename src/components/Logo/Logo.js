@@ -12,10 +12,11 @@ const StyledText = styled.span`
   font-weight: 700;
 `;
 
-const Logo = () =>
+const Logo = () => (
   <StyledLogo>
     <LogoSVG />
     <StyledText>PASKMAN</StyledText>
-  </StyledLogo>;
+  </StyledLogo>
+);
 
 export default Logo;

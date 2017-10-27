@@ -1,20 +1,6 @@
 import { Component } from 'react';
 
-export type Dimensions = {
-  width: number,
-  height: number,
-};
-
-type State = {
-  lastDimensions: Dimensions,
-};
-
-export type Props = {
-  appSetDimensions: any,
-  dimensions: Dimensions,
-};
-
-class Resizer extends Component<Props, State> {
+class Resizer extends Component {
   interval = null;
   componentWillMount() {
     const { appSetDimensions } = this.props;

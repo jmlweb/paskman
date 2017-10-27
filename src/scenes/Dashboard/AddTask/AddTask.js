@@ -27,6 +27,10 @@ import constants from '../constants';
   </div>
  */
 
+function dummy() {
+  return false;
+}
+
 export const AddTask = () => (
   <Form noSpacing>
     <FieldSet>
@@ -58,6 +62,7 @@ export const AddTask = () => (
               value: pomodoros * 25, // @todo Load time from settings
             }))}
             value={1 * 25}
+            onChange={dummy}
           />
           <ButtonBar right>
             <Button color="primary" size="sm">Change to time</Button>
@@ -72,6 +77,7 @@ export const AddTask = () => (
             min={5}
             max={75}
             step={5}
+            onChange={dummy}
           />
           <ButtonBar right>
             <Button color="primary" size="sm">Change to pomodoros</Button>
@@ -83,7 +89,7 @@ export const AddTask = () => (
   </Form>
 );
 
-const AddTaskWithModal = ({ name }) => (
+const AddTaskWithModal = () => (
   <Modal name={constants.addTaskModalName} title="Add new task">
     <AddTask />
   </Modal>

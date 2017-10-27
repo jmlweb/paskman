@@ -88,6 +88,6 @@ const StyledRangeSlider = styled(Slider)`
   }
 `;
 
-const RangeSlider = (props) => <StyledRangeSlider {...props} />;
+const RangeSlider = props => <StyledRangeSlider {...props} />;
 
 export default RangeSlider;

@@ -38,14 +38,13 @@ export const settingsFetchEpic = action$ =>
 
 export const settingsSaveEpic = action$ =>
   action$.ofType(SETTINGS_SAVE)
-    .mergeMap((action) =>
+    .mergeMap(action =>
       Rx.Observable.concat(
         Rx.Observable.of(settingsSetLoading(true)),
         Rx.Observable.of(settingsChange(action.payload))
-        .delay(2000),
+          .delay(2000),
         Rx.Observable.of(settingsSetLoading(false))
-      )
-    );
+      ));
 /**
  * REDUCER
  */
@@ -53,7 +52,7 @@ export const initialState = stateMock.data.settings;
 
 const reducer = handleActions({
   [SETTINGS_CHANGE]: (state, { payload }) => ({ ...state, ...payload }),
-  [SETTINGS_SET_LOADING]: (state, { payload }) => ({...state, isLoading: payload}),
+  [SETTINGS_SET_LOADING]: (state, { payload }) => ({ ...state, isLoading: payload }),
 }, initialState);
 
 export default reducer;

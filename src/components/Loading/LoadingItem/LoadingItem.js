@@ -3,7 +3,7 @@ import { stripUnit } from 'polished';
 import colors from '../../../styles/colors';
 import timings from '../../../styles/timings';
 
-const relation = -44/40;
+const relation = -44 / 40;
 const blobSize = '50px';
 const marginSize = `${+stripUnit(blobSize) * relation}px`;
 const primary = colors.primaryA7;

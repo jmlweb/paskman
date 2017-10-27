@@ -10,7 +10,7 @@ export default function createDynamicComponent(
     constructor(props) {
       super(props);
       let component = null;
-       /* istanbul ignore next */
+      /* istanbul ignore next */
       if (!importComponent || isSnapshot()) {
         component = requireComponent();
         if (typeof component.default !== 'undefined') {
@@ -23,7 +23,7 @@ export default function createDynamicComponent(
     }
 
     componentDidMount() {
-      (async() => {
+      (async () => {
         const { [`${importKey}`]: component } = await importComponent();
         this.setState({
           component,

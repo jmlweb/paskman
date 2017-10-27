@@ -23,7 +23,7 @@ const stateMock = {
       pauseBetween: false,
       confirmEndingTask: true,
     },
-  }
+  },
 };
 
 export default stateMock;

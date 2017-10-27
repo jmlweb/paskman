@@ -1,4 +1,5 @@
 import React from 'react';
+import PT from 'prop-types';
 import styled from 'styled-components';
 import { stripUnit } from 'polished';
 import ModalBtnSVG from './ModalBtnSVG';
@@ -23,5 +24,9 @@ const ModalBtn = ({ handleClick }) => (
     <ModalBtnSVG />
   </StyledModalBtn>
 );
+
+ModalBtn.propTypes = {
+  handleClick: PT.func.isRequired,
+};
 
 export default ModalBtn;

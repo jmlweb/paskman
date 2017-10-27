@@ -1,8 +1,8 @@
 const fonts = {
   rootFontSize: '62.5%',
   defaultFontSize: '1.6rem',
-  fontFamily: 'Dosis, sans-serif'
-}
+  fontFamily: 'Dosis, sans-serif',
+};
 
 export const fontSmoothing = (antialiased = true) => {
   if (antialiased) {
@@ -15,6 +15,6 @@ export const fontSmoothing = (antialiased = true) => {
     -webkit-font-smoothing: subpixel-antialiased;
     -moz-osx-font-smoothing: auto;
   `;
-}
+};
 
 export default fonts;

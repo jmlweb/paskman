@@ -6,9 +6,7 @@ import components from './components/reducer';
 import { dataEpic, dataReducer } from './data/reducer';
 // import scenes from './scenes/reducer';
 
-export const rootEpic = combineEpics(
-  dataEpic,
-);
+export const rootEpic = combineEpics(dataEpic);
 
 export const rootReducer = combineReducers({
   app,

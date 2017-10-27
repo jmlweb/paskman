@@ -1,4 +1,5 @@
-import * as React from 'react';
+import React from 'react';
+import PT from 'prop-types';
 import styled from 'styled-components';
 import styledMap from 'styled-map';
 import colors from '../../styles/colors';
@@ -39,29 +40,48 @@ const StyledBtnTemplate = styled.button`
   })};
   text-transform: uppercase;
   transition: background 0.4s ${timings.easeOutQuad};
-  width: ${props => props.block ? '100%': 'auto'};
+  width: ${(props) => {
+    if (props.block) {
+      return '100%';
+    }
+    return 'auto';
+  }};
   &:active {
     background: ${styledMap('color', {
-      primary: colors.primaryT2,
-      secondary: colors.secondaryT2,
-      success: colors.successT2,
-    })};
+    primary: colors.primaryT2,
+    secondary: colors.secondaryT2,
+    success: colors.successT2,
+  })};
   }
 `;
 
-const createStyledBtn = (tag) => StyledBtnTemplate.withComponent(tag);
+const createStyledBtn = tag => StyledBtnTemplate.withComponent(tag);
 
-const Btn = (props) => {
-  const {
-    tag = 'button',
-    color = 'secondary',
-    size = 'md',
-    block = false,
-    children,
-    ...rest
-  } = props;
+const Btn = ({
+  tag,
+  color,
+  size,
+  block,
+  children,
+  ...rest
+}) => {
   const StyledBtn = createStyledBtn(tag);
   return <StyledBtn color={color} block={block} size={size} {...rest}>{children}</StyledBtn>;
+};
+
+Btn.propTypes = {
+  tag: PT.string,
+  color: PT.string,
+  size: PT.string,
+  block: PT.bool,
+  children: PT.string.isRequired,
+};
+
+Btn.defaultProps = {
+  tag: 'button',
+  color: 'secondary',
+  size: 'md',
+  block: false,
 };
 
 export default Btn;

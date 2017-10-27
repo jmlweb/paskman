@@ -1,5 +1,7 @@
 import React from 'react';
+import PT from 'prop-types';
 import styled, { css } from 'styled-components';
+import styledMap from 'styled-map';
 import Heading from '../Heading/Heading';
 import ModalBtn from './ModalBtn/ModalBtn';
 import colors from '../../styles/colors';
@@ -36,7 +38,10 @@ const StyledModal = styled.div`
   overflow: hidden;
   position: fixed;
   box-shadow: 0 0 8px ${colors.blackA3};
-  ${props => props.isOpen ? activeModalStyle : inactiveModalStyle};
+  ${styledMap({
+    isOpen: activeModalStyle,
+    default: inactiveModalStyle,
+  })};
 `;
 
 const ModalBar = styled.div`
@@ -59,13 +64,30 @@ const ModalContent = styled.div`
   padding: ${spacing.md} ${spacing.sm};
 `;
 
-const Modal = ({ isOpen, title, handleClose, children }) =>
+const Modal = ({
+  isOpen,
+  title,
+  handleClose,
+  children,
+}) => (
   <StyledModal isOpen={isOpen}>
     <ModalBar>
       <ModalHeading weight="700">{title}</ModalHeading>
       <ModalBtn handleClick={handleClose} />
     </ModalBar>
     <ModalContent>{children}</ModalContent>
-  </StyledModal>;
+  </StyledModal>
+);
+
+Modal.propTypes = {
+  isOpen: PT.bool,
+  title: PT.string.isRequired,
+  handleClose: PT.func.isRequired,
+  children: PT.node.isRequired,
+};
+
+Modal.defaultProps = {
+  isOpen: false,
+};
 
 export default Modal;

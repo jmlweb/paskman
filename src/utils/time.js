@@ -1,9 +1,8 @@
-// @flow
-export const toClock = (miliseconds: number): string => {
-  const d: number = +miliseconds / 1000;
-  const h: number = Math.floor(d / 3600);
-  const m: number = Math.floor((d % 3600) / 60);
-  const s: number = Math.floor(d % 3600 % 60);
+export const toClock = miliseconds => {
+  const d = +miliseconds / 1000;
+  const h = Math.floor(d / 3600);
+  const m = Math.floor((d % 3600) / 60);
+  const s = Math.floor(d % 3600 % 60);
   return [
     h < 10 ? `0${h}` : h,
     m < 10 ? `0${m}` : m,
@@ -11,4 +10,4 @@ export const toClock = (miliseconds: number): string => {
   ].join(':');
 };
 
-export const minToMil = (minutes: number): number => +minutes * 60 * 1000;
+export const minToMil = minutes => +minutes * 60 * 1000;

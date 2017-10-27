@@ -1,17 +1,9 @@
-// @flow
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled, { css } from 'styled-components';
 import colors from '../../../styles/colors';
 import timings from '../../../styles/timings';
 import topBarHeight from '../../../styles/topBarHeight';
-import { type RoutesType } from '../../../types';
-
-type Props = {
-  menuOpen: boolean,
-  toggleMenu: () => void,
-  routes: RoutesType,
-};
 
 const StyledLink = styled(Link)`
   align-items: center;
@@ -68,10 +60,9 @@ const StyledMenu = styled.nav`
   }
 `;
 
-const Menu = ({ menuOpen, toggleMenu, routes }: Props) => (
+const Menu = ({ menuOpen, toggleMenu, routes }) =>
   <StyledMenu menuOpen={menuOpen}>
     {routes.map(route => <StyledLink key={`link${route.title}`} to={route.path} onClick={toggleMenu}>{route.title}</StyledLink>)}
-  </StyledMenu>
-);
+  </StyledMenu>;
 
 export default Menu;

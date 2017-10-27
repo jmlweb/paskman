@@ -1,4 +1,3 @@
-// @flow
 import {
   createAction,
   handleAction,
@@ -6,17 +5,9 @@ import {
 import stateMock from '../../stateMock';
 
 /**
- * TYPES
- */
-
-export type State = {
-  +menuOpen: boolean,
-};
-
-/**
  * CONSTANTS
  */
-export const TOP_BAR_TOGGLE_MENU: string = 'TOP_BAR/TOGGLE_MENU';
+export const TOP_BAR_TOGGLE_MENU = 'TOP_BAR/TOGGLE_MENU';
 
 /**
  * ACTIONS
@@ -27,11 +18,11 @@ export const topBarToggleMenu = createAction(TOP_BAR_TOGGLE_MENU);
 /**
  * REDUCER
  */
-export const initialState: State = stateMock.app.topBar;
+export const initialState = stateMock.app.topBar;
 
 const reducer = handleAction(
   TOP_BAR_TOGGLE_MENU,
-  (state: State) => ({...state, menuOpen: !state.menuOpen}),
+  state => ({...state, menuOpen: !state.menuOpen}),
   initialState
 );
 

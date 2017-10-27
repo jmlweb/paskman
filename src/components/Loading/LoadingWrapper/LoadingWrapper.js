@@ -1,4 +1,3 @@
-// @flow
 import colors from '../../../styles/colors';
 import FullCover from '../../../components/FullCover';
 

@@ -1,9 +1,8 @@
-// @flow
 import styled from 'styled-components';
 import colors from '../../../styles/colors';
 import fonts from '../../../styles/fonts';
 
-const TextField: Function = styled.input`
+const TextField = styled.input`
   border: 2px solid ${colors.secondaryA4};
   border-radius: 4px;
   box-sizing: border-box;

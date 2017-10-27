@@ -1,4 +1,3 @@
-// @flow
 import { combineEpics } from 'redux-observable';
 import { combineReducers } from 'redux';
 import settings, {
@@ -6,7 +5,7 @@ import settings, {
   settingsSaveEpic,
 } from './settings/duck';
 
-export const dataEpic: Function = combineEpics(
+export const dataEpic = combineEpics(
   settingsFetchEpic,
   settingsSaveEpic,
 );

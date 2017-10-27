@@ -1,4 +1,3 @@
-// @flow
 import React from 'react';
 import styled from 'styled-components';
 import TaskInfoBarContainer from './TaskInfoBarContainer';
@@ -55,18 +54,14 @@ const Btn = styled.button`
   }
 `;
 
-const getPendingTasksText = (qty: number): string => {
+const getPendingTasksText = qty => {
   if (qty === 0) {
     return 'No';
   }
   return qty.toString();
 };
 
-type Props = {
-  handleAddTask: Function,
-};
-
-const TaskInfoBar = ({handleAddTask}: Props) => {
+const TaskInfoBar = ({ handleAddTask }) => {
   return (
     <StyledTaskInfoBar>
       <Info>

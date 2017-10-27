@@ -1,5 +1,4 @@
-// @flow
-const timings: { [name: string]: string } = {
+const timings = {
   easeInQuad:      'cubic-bezier(0.550,  0.085, 0.680, 0.530)',
   easeInCubic:     'cubic-bezier(0.550,  0.055, 0.675, 0.190)',
   easeInQuart:     'cubic-bezier(0.895,  0.030, 0.685, 0.220)',

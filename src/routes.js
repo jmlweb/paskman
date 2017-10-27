@@ -1,8 +1,6 @@
-// @flow
 import createDynamicComponent from './components/DynamicComponent/DynamicComponent';
-import { type RoutesType } from './types';
 
-const routes: RoutesType = [
+const routes = [
   {
     path: '/dashboard',
     title: 'Dashboard',

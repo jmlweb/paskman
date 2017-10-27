@@ -1,4 +1,3 @@
-// @flow
 import React from 'react';
 import styled, { css } from 'styled-components';
 import Heading from '../Heading/Heading';
@@ -7,13 +6,6 @@ import colors from '../../styles/colors';
 import spacing from '../../styles/spacing';
 import timings from '../../styles/timings';
 import topBarHeight from '../../styles/topBarHeight';
-
-export type Props = {
-  title: string,
-  isOpen: bool,
-  handleClose: Function,
-  children: mixed,
-};
 
 const activeModalStyle = css`
   border-radius: 0;
@@ -67,17 +59,13 @@ const ModalContent = styled.div`
   padding: ${spacing.md} ${spacing.sm};
 `;
 
-const Modal = (props: Props) => {
-  const { isOpen, title, handleClose, children } = props;
-  return (
-    <StyledModal isOpen={isOpen}>
-      <ModalBar>
-        <ModalHeading weight="700">{title}</ModalHeading>
-        <ModalBtn handleClick={handleClose} />
-      </ModalBar>
-      <ModalContent>{children}</ModalContent>
-    </StyledModal>
-  );
-};
+const Modal = ({ isOpen, title, handleClose, children }) =>
+  <StyledModal isOpen={isOpen}>
+    <ModalBar>
+      <ModalHeading weight="700">{title}</ModalHeading>
+      <ModalBtn handleClick={handleClose} />
+    </ModalBar>
+    <ModalContent>{children}</ModalContent>
+  </StyledModal>;
 
 export default Modal;

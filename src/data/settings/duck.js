@@ -1,41 +1,26 @@
-// @flow
 import {
   createAction,
   handleActions,
-  type ActionType,
 } from 'redux-actions';
 import Rx from 'rxjs';
 import stateMock from '../../stateMock';
 
 /**
- * TYPES
- */
-export type State = {
-  +isLoading: boolean,
-  +target: {
-    working: number,
-    resting: number,
-  },
-  +pauseBetween: boolean,
-  +confirmEndingTask: boolean,
-};
-
-/**
  * CONSTANTS
  */
-export const SETTINGS_CHANGE: string = 'SETTINGS/CHANGE';
-export const SETTINGS_SET_LOADING: string = 'SETTINGS/SET_LOADING';
-export const SETTINGS_FETCH: string = 'SETTINGS/FETCH';
-export const SETTINGS_SAVE: string = 'SETTINGS/SAVE';
+export const SETTINGS_CHANGE = 'SETTINGS/CHANGE';
+export const SETTINGS_SET_LOADING = 'SETTINGS/SET_LOADING';
+export const SETTINGS_FETCH = 'SETTINGS/FETCH';
+export const SETTINGS_SAVE = 'SETTINGS/SAVE';
 
 /**
  * ACTIONS
  */
 
-export const settingsChange = createAction(SETTINGS_CHANGE, (settings: State) => settings);
-export const settingsSetLoading = createAction(SETTINGS_SET_LOADING, (value: boolean) => value);
+export const settingsChange = createAction(SETTINGS_CHANGE, settings => settings);
+export const settingsSetLoading = createAction(SETTINGS_SET_LOADING, value => value);
 export const settingsFetch = createAction(SETTINGS_FETCH);
-export const settingsSave = createAction(SETTINGS_SAVE, (newSettings: State) => newSettings);
+export const settingsSave = createAction(SETTINGS_SAVE, newSettings => newSettings);
 
 /**
  * EPICS
@@ -64,16 +49,11 @@ export const settingsSaveEpic = action$ =>
 /**
  * REDUCER
  */
-export const initialState: State = stateMock.data.settings;
+export const initialState = stateMock.data.settings;
 
 const reducer = handleActions({
-  // @todo ActionType<typeof settingsChange>
-  [SETTINGS_CHANGE]: (state: State, action: any) => {
-    return { ...state, ...action.payload };
-  },
-  [SETTINGS_SET_LOADING]: (state: State, action: ActionType<typeof settingsChange>) => {
-    return {...state, isLoading: action.payload};
-  },
+  [SETTINGS_CHANGE]: (state, { payload }) => ({ ...state, ...payload }),
+  [SETTINGS_SET_LOADING]: (state, { payload }) => ({...state, isLoading: payload}),
 }, initialState);
 
 export default reducer;

@@ -1,4 +1,3 @@
-// @flow
 import React from 'react';
 import styled from 'styled-components';
 import colors from '../../styles/colors';
@@ -7,13 +6,6 @@ import topBarHeight from '../../styles/topBarHeight';
 import Logo from '../../components/Logo/Logo';
 import TopBarBtn from './TopBarBtn/TopBarBtn';
 import TopBarMenu from './TopBarMenu/TopBarMenu';
-import type { RoutesType } from '../../types';
-
-type Props = {
-  menuOpen: boolean,
-  routes: RoutesType,
-  topBarToggleMenu: () => void,
-};
 
 const StyledTopBar = styled.div`
   background: ${colors.primary};
@@ -30,7 +22,7 @@ const StyledWrapper = styled.div`
 
 const StyledNav = styled.div``;
 
-const TopBar = ({ menuOpen, routes, topBarToggleMenu }: Props) => (
+const TopBar = ({ menuOpen, routes, topBarToggleMenu }) => (
   <StyledTopBar>
     <StyledWrapper>
       <Logo />

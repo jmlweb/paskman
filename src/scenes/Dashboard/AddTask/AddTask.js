@@ -1,4 +1,3 @@
-// @flow
 import React from 'react'
 import Modal from '../../../components/Modal/ModalContainer';
 import {
@@ -84,7 +83,7 @@ export const AddTask = () => (
   </Form>
 );
 
-const AddTaskWithModal = ({ name }: { name: string }) => (
+const AddTaskWithModal = ({ name }) => (
   <Modal name={constants.addTaskModalName} title="Add new task">
     <AddTask />
   </Modal>

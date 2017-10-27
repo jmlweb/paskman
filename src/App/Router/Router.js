@@ -1,13 +1,7 @@
-// @flow
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
-import { type RoutesType } from '../../types';
 
-type Props = {
-  routes: RoutesType,
-};
-
-const Router = (props: Props) => (
+const Router = props =>
   <main>
     <Route exact path="/" render={() => (
       <Redirect to="/dashboard"/>
@@ -22,7 +16,6 @@ const Router = (props: Props) => (
         />
       )
     )}
-  </main>
-);
+  </main>;
 
 export default Router;

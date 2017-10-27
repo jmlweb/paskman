@@ -1,7 +1,6 @@
-// @flow
 import styled from 'styled-components';
 
-const FullCover: mixed = styled.div`
+const FullCover = styled.div`
   position: absolute;
   top: 0;
   right: 0;

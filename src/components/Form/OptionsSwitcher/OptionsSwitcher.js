@@ -1,20 +1,8 @@
-// @flow
 import React from 'react';
 import styled, { css } from 'styled-components';
 import colors from '../../../styles/colors';
 import spacing from '../../../styles/spacing';
 import timings from '../../../styles/timings';
-
-type Option = {
-  value: mixed,
-  description: string,
-};
-
-type Props = {
-  options: Array<Option>,
-  value: ?mixed,
-  onChange: (e: Event) => mixed,
-};
 
 const optionsSwitcherBorder = `2px solid ${colors.secondaryT7}`;
 
@@ -52,7 +40,7 @@ const Input = styled.input.attrs({
   opacity: 0;
 `;
 
-const OptionsSwitcher = ({ options, value, onChange }: Props) => (
+const OptionsSwitcher = ({ options, value, onChange }) => (
   <StyledOptionsSwitcher>
     {options.map(
       option => (

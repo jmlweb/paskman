@@ -1,19 +1,10 @@
-// @flow
 import React from 'react';
 import styled from 'styled-components';
 import styledMap from 'styled-map';
 import colors from '../../styles/colors';
 import spacing from '../../styles/spacing';
 
-type Props = {
-  level?: string,
-  color?: string,
-  weight?: number,
-  tag?: string,
-  children: any,
-}
-
-const StyledHeadingMaster: Function = styled.h1`
+const StyledHeadingMaster = styled.h1`
   color: ${props => colors[props.colorScheme]};
   font-size: ${styledMap('level', {
     '1': '2.2rem',
@@ -27,16 +18,16 @@ const StyledHeadingMaster: Function = styled.h1`
   margin: 0 0 ${spacing.md};
 `;
 
-const createStyledHeading: Function = (tag: ?string) => StyledHeadingMaster.withComponent(tag);
+const createStyledHeading = tag => StyledHeadingMaster.withComponent(tag);
 
-const normalizeTag = (tag: ?string, level: number): string => {
+const normalizeTag = (tag, level) => {
   if (tag) {
     return tag;
   }
   return `h${level}`;
 };
 
-const normalizeLevel = (level: number): number => {
+const normalizeLevel = level => {
   if (level < 1) {
     return 1;
   }
@@ -46,9 +37,9 @@ const normalizeLevel = (level: number): number => {
   return level;
 };
 
-const Heading = (props: Props) => {
+const Heading = props => {
   const {level = '1', color = 'secondary', weight = 500, tag, children, ...rest} = props;
-  const StyledHeading: Function = createStyledHeading(normalizeTag(tag, normalizeLevel(+level)));
+  const StyledHeading = createStyledHeading(normalizeTag(tag, normalizeLevel(+level)));
   return <StyledHeading colorScheme={color} level={level} weight={weight} {...rest}>{children}</StyledHeading>;
 };
 

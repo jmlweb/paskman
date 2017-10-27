@@ -1,5 +1,4 @@
-// @flow
-const spacing: { [name: string]: string } = {
+const spacing = {
   xxs: '5px',
   xs: '10px',
   sm: '15px',

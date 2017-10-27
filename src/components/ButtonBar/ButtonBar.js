@@ -1,8 +1,7 @@
-// @flow
 import styled from 'styled-components';
 import styledMap from 'styled-map';
 
-const ButtonBar: Function = styled.div`
+const ButtonBar = styled.div`
   display: flex;
   margin-top: 1rem;
   justify-content: ${styledMap({

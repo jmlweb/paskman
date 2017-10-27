@@ -1,5 +1,4 @@
-// @flow
-const sizes: { [name: string]: string } = {
+const sizes = {
   xxs: '360px',
   xs: '480px',
   sm: '600px',

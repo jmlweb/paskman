@@ -1,4 +1,3 @@
-// @flow
 import React from 'react';
 import { Provider, connect } from 'react-redux';
 import { ConnectedRouter } from 'react-router-redux';
@@ -6,12 +5,6 @@ import { PersistGate } from 'redux-persist/lib/integration/react';
 import App from '../App/App';
 import Loading from '../components/Loading/Loading';
 import isSnapshot from '../utils/isSnapshot';
-
-type Props = {
-  store?: {},
-  history?: {},
-  persistor: any,
-};
 
 const onlyBrowserGate = (persistor, WrappedComponent) => {
   if (isSnapshot()) {
@@ -27,7 +20,7 @@ const onlyBrowserGate = (persistor, WrappedComponent) => {
   );
 }
 
-const Root = (props: Props) => {
+const Root = (props) => {
   const { store, history, persistor } = props;
   return (
     <Provider store={store}>

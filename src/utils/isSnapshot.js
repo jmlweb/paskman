@@ -1,5 +1,4 @@
-// @flow
-function isSnapshot(): boolean {
+function isSnapshot() {
   if (!window || !window.navigator || !window.navigator.userAgent) {
     return false
   };

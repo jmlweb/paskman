@@ -1,4 +1,3 @@
-// @flow
 import * as React from 'react';
 import styled, { injectGlobal } from 'styled-components';
 import { normalize } from 'polished';

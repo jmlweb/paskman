@@ -1,4 +1,3 @@
-// @flow
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {
@@ -6,23 +5,12 @@ import {
 } from './duck';
 import Modal from './Modal';
 
-type Props = {
-  title: string,
-  isOpen: bool,
-  children: mixed,
-  name: string,
-  modal: {},
-  modalClose: (name: string) => void,
-  closeCallback: () => void,
-};
-
-class ModalContainer extends Component<Props> {
-  handleClose: (e: Event) => void;
-  constructor(props: Props) {
+class ModalContainer extends Component {
+  constructor(props) {
     super(props);
     this.handleClose = this.handleClose.bind(this);
   }
-  handleClose(e: Event) {
+  handleClose(e) {
     const { name, modalClose, closeCallback } = this.props;
     modalClose(name);
     if (closeCallback) {
@@ -43,11 +31,7 @@ class ModalContainer extends Component<Props> {
   }
 }
 
-export function mapStateToProps(state: {
-  components: {
-    modal: mixed,
-  }
-}) {
+export function mapStateToProps(state) {
   return { ...state.components };
 };
 

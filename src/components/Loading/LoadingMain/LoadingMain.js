@@ -1,4 +1,3 @@
-// @flow
 import { keyframes } from 'styled-components';
 import FullCover from '../../../components/FullCover';
 

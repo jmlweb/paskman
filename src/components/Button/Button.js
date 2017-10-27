@@ -1,4 +1,3 @@
-// @flow
 import * as React from 'react';
 import styled from 'styled-components';
 import styledMap from 'styled-map';
@@ -6,17 +5,8 @@ import colors from '../../styles/colors';
 import fonts from '../../styles/fonts';
 import spacing from '../../styles/spacing';
 import timings from '../../styles/timings';
-import type { Target } from 'styled-components';
 
-type Props = {
-  tag?: string,
-  color?: string,
-  size?: string,
-  block?: boolean,
-  children?: any,
-}
-
-const StyledBtnTemplate: Target = styled.button`
+const StyledBtnTemplate = styled.button`
   appearance: none;
   background: ${styledMap('color', {
     primary: colors.primary,
@@ -59,9 +49,9 @@ const StyledBtnTemplate: Target = styled.button`
   }
 `;
 
-const createStyledBtn = (tag: string) => StyledBtnTemplate.withComponent(tag);
+const createStyledBtn = (tag) => StyledBtnTemplate.withComponent(tag);
 
-const Btn = (props: Props) => {
+const Btn = (props) => {
   const {
     tag = 'button',
     color = 'secondary',

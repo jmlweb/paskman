@@ -1,22 +1,13 @@
-// @flow
 import React, { Component } from 'react';
 import isSnapshot from '../../utils/isSnapshot';
 
 export default function createDynamicComponent(
-  importComponent: () => {
-    [name: string]: mixed,
-  },
-  requireComponent: () => {default: mixed},
-  importKey: string = 'default',
+  importComponent,
+  requireComponent,
+  importKey = 'default',
 ) {
-  type Props = {
-    [name: string]: mixed,
-  };
-  type State = {
-    component: ?mixed,
-  };
-  class DynamicComponent extends Component<Props, State> {
-    constructor(props: Props) {
+  class DynamicComponent extends Component {
+    constructor(props) {
       super(props);
       let component = null;
        /* istanbul ignore next */
@@ -41,7 +32,7 @@ export default function createDynamicComponent(
     }
 
     render() {
-      const C: ?any = this.state.component;
+      const C = this.state.component;
       return C ? <C {...this.props} /> : null;
     }
   }

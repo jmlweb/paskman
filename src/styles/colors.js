@@ -1,7 +1,6 @@
-// @flow
 import { rgba, shade, tint, darken, lighten } from 'polished';
 
-const baseColors: { [name: string]: string } = {
+const baseColors = {
   primary: '#ffa3a2',
   secondary: '#223177',
   success: '#18ac4c',
@@ -9,9 +8,9 @@ const baseColors: { [name: string]: string } = {
   black: '#000',
 };
 
-const baseKeys: string[] = Object.keys(baseColors);
+const baseKeys = Object.keys(baseColors);
 
-const colors: { [name: string]: string } = {
+const colors = {
   ...baseColors,
 };
 

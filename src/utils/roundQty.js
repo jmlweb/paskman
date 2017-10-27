@@ -1,5 +1,4 @@
-// @flow
 export default (
-  number: number,
-  step: number
-): number => parseInt((number / step), 10) * step;
+  number,
+  step
+) => parseInt((number / step), 10) * step;

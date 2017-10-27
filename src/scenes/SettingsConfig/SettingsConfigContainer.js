@@ -1,4 +1,3 @@
-// @flow
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {
@@ -8,14 +7,9 @@ import {
 } from '../../data/settings/duck';
 import SettingsConfig, { type Props as ComponentProps } from './SettingsConfig';
 
-type Props = {
-  ...ComponentProps,
-  settingsFetch: () => void,
-};
-
-class SettingsConfigContainer extends Component<Props> {
+class SettingsConfigContainer extends Component {
   componentDidMount() {
-    const { settingsFetch }: Props = this.props;
+    const { settingsFetch } = this.props;
     settingsFetch();
   }
   render() {
@@ -31,11 +25,7 @@ class SettingsConfigContainer extends Component<Props> {
   }
 }
 
-export function mapStateToProps(state: {
-  data: {
-    settings: ComponentProps,
-  }
-}) {
+export function mapStateToProps(state) {
   return { ...state.data.settings };
 };
 

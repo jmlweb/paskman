@@ -1,16 +1,10 @@
-// @flow
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { modalOpen } from '../../../components/Modal/duck';
 import constants from '../constants';
 
-type Props = {
-  modalOpen: Function,
-};
-
-const TaskInfoBarConnectedContainer = (WrappedComponent: Function) => {
-  class TaskInfoBarContainer extends Component<Props> {
-    handleAddTask: () => void;
+const TaskInfoBarConnectedContainer = (WrappedComponent) => {
+  class TaskInfoBarContainer extends Component {
     constructor(props) {
       super(props);
       this.handleAddTask = this.handleAddTask.bind(this);

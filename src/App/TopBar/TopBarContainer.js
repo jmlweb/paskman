@@ -1,9 +1,8 @@
-// @flow
 import { connect } from 'react-redux';
 import { topBarToggleMenu } from './duck';
 import TopBar from './TopBar';
 
-export function mapStateToProps(state: any) {
+export function mapStateToProps(state) {
   return {
     menuOpen: state.app.topBar.menuOpen,
   }

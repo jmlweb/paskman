@@ -1,4 +1,3 @@
-// @flow
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { modalToggle } from '../../../components/Modal/duck';
@@ -13,11 +12,7 @@ class AddTaskContainer extends Component {
   }
 }
 
-export function mapStateToProps(state: {
-  components: {
-    modal: mixed,
-  }
-}) {
+export function mapStateToProps(state) {
   return { ...state.components.modal };
 };
 

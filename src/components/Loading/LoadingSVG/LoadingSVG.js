@@ -1,7 +1,6 @@
-// @flow
 import React from 'react';
 
-const LoadingSVG = () => (
+const LoadingSVG = () =>
   <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
     <defs>
       <filter id="goo">
@@ -10,7 +9,6 @@ const LoadingSVG = () => (
         <feBlend in="SourceGraphic" in2="goo" />
         </filter>
     </defs>
-  </svg>
-);
+  </svg>;
 
 export default LoadingSVG;

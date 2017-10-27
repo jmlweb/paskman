@@ -1,9 +1,3 @@
-// @flow
-import { type Node } from 'react';
-
-type Props = {
-  children: Node,
-};
-const SimpleWrapper = (props: Props) => props.children;
+const SimpleWrapper = ({ children }) => children;
 
 export default SimpleWrapper;

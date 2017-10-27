@@ -1,17 +1,4 @@
-// @flow
-type ConstantsMode = {
-  step: number,
-  target: {
-    min: number,
-    max: number,
-  },
-};
-
-type Constants = {
-  ['working'|'resting']: ConstantsMode;
-};
-
-const constants: Constants = {
+const constants = {
   working: {
     step: 5,
     target: {

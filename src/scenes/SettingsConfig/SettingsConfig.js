@@ -1,4 +1,3 @@
-// @flow
 import React, { Component } from 'react';
 import createDynamicComponent from '../../components/DynamicComponent/DynamicComponent';
 import {
@@ -27,33 +26,8 @@ const Button = createDynamicComponent(
   () => require('../../components/Button/Button'),
 );
 
-type State = {
-  target: {
-    working: number,
-    resting: number,
-  },
-  pauseBetween: boolean,
-  confirmEndingTask: boolean,
-};
-
-export type Props = {
-  isLoading: boolean,
-  target: {
-    working: number,
-    resting: number,
-  },
-  pauseBetween: boolean,
-  confirmEndingTask: boolean,
-  settingsSave: ({}) => void,
-};
-
-class SettingsConfig extends Component<Props, State> {
-  handleSubmit: (e: Event) => void;
-  handleTargetChange: (e: Event) => void;
-  handleTargetBlur: (e: Event) => void;
-  handlePauseBetweenChange: (e: Event) => void;
-  handleConfirmEndingTaskChange: (e: Event) => void;
-  constructor(props: Props) {
+class SettingsConfig extends Component {
+  constructor(props) {
     super(props);
     const { target, pauseBetween, confirmEndingTask } = props;
     this.state = {
@@ -65,7 +39,7 @@ class SettingsConfig extends Component<Props, State> {
     this.handleConfirmEndingTaskChange = this.handleConfirmEndingTaskChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
-  componentWillReceiveProps(nextProps: Props) {
+  componentWillReceiveProps(nextProps) {
     const { target, pauseBetween, confirmEndingTask } = nextProps;
     this.setState({
       target,
@@ -73,15 +47,15 @@ class SettingsConfig extends Component<Props, State> {
       confirmEndingTask,
     });
   }
-  handleSubmit = function(e: Event) {
+  handleSubmit = function(e) {
     const { settingsSave } = this.props;
     e.preventDefault();
     settingsSave({
       ...this.state,
     });
   }
-  handleTargetSlider(mode: string) {
-    return (value: number) => {
+  handleTargetSlider(mode) {
+    return (value) => {
       this.setState({
         target: {
           ...this.state.target,
@@ -90,12 +64,12 @@ class SettingsConfig extends Component<Props, State> {
       });
     }
   }
-  handlePauseBetweenChange(e: Event) {
+  handlePauseBetweenChange(e) {
     this.setState({
       pauseBetween: e.target.value === 'true' ? true : false,
     });
   }
-  handleConfirmEndingTaskChange(e: Event) {
+  handleConfirmEndingTaskChange(e) {
     this.setState({
       confirmEndingTask: e.target.value === 'true' ? true : false,
     });

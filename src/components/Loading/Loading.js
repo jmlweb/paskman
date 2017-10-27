@@ -1,4 +1,3 @@
-// @flow
 import React from 'react';
 import LoadingWrapper from './LoadingWrapper/LoadingWrapper';
 import LoadingMain from './LoadingMain/LoadingMain';

@@ -1,4 +1,3 @@
-// @flow
 import styled, { keyframes } from 'styled-components';
 
 const LoadingGroup = styled.div`

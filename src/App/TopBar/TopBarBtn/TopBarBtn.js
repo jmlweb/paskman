@@ -1,4 +1,3 @@
-// @flow
 import React, { PureComponent } from 'react';
 import styled from 'styled-components';
 import { stripUnit } from 'polished';
@@ -7,11 +6,6 @@ import timings from '../../../styles/timings';
 import topBarHeight from '../../../styles/topBarHeight';
 import TopBarBtnOpenSVG from './TopBarBtnOpenSVG';
 import TopBarBtnClosedSVG from './TopBarBtnClosedSVG';
-
-type Props = {
-  menuOpen: boolean,
-  toggleMenu: any,
-};
 
 const StyledTopBarBtn = styled.button`
   align-items: center;
@@ -31,13 +25,13 @@ const StyledTopBarBtn = styled.button`
   }
 `;
 
-class TopBarBtn extends PureComponent<Props> {
+class TopBarBtn extends PureComponent {
   handleClick: any;
-  constructor(props: Props) {
+  constructor(props) {
     super(props);
     this.handleClick = this.handleClick.bind(this);
   }
-  handleClick(e: SyntheticEvent<HTMLButtonElement>) {
+  handleClick(e) {
     const { toggleMenu } = this.props;
     toggleMenu();
   }

@@ -1,4 +1,3 @@
-// @flow
 import styled, { keyframes } from 'styled-components';
 import { stripUnit } from 'polished';
 import colors from '../../../styles/colors';

@@ -46,7 +46,7 @@ exports[`TopBar Matchs snapshot 1`] = `
     >
       <button
         aria-label="Close menu"
-        className="sc-htpNat dhKYni"
+        className="sc-htpNat hMfwUI"
         onClick={[Function]}
       >
         <svg

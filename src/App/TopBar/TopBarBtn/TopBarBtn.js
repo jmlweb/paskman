@@ -1,5 +1,7 @@
 import React, { PureComponent } from 'react';
+import PT from 'prop-types';
 import styled from 'styled-components';
+import styledMap from 'styled-map';
 import { stripUnit } from 'polished';
 import spacing from '../../../styles/spacing';
 import timings from '../../../styles/timings';
@@ -17,16 +19,18 @@ const StyledTopBarBtn = styled.button`
   margin: 0;
   margin-right: ${+stripUnit(spacing.sm) * -1}px;
   outline: 0;
+  transform: ${styledMap({
+    menuOpen: 'rotate(-90deg)',
+    default: 'rotate(-180deg)',
+  })};
   transition: all 0.2s ${timings.easeOutQuad};
   width: 12vh;
-  transform: ${props => props.menuOpen ? 'rotate(-90deg)': 'rotate(-180deg)'};
   &:active {
     opacity: 0.3;
   }
 `;
 
 class TopBarBtn extends PureComponent {
-  handleClick: any;
   constructor(props) {
     super(props);
     this.handleClick = this.handleClick.bind(this);
@@ -46,5 +50,14 @@ class TopBarBtn extends PureComponent {
     );
   }
 }
+
+TopBarBtn.defaultProps = {
+  menuOpen: false,
+};
+
+TopBarBtn.propTypes = {
+  menuOpen: PT.bool,
+  toggleMenu: PT.func.isRequired,
+};
 
 export default TopBarBtn;

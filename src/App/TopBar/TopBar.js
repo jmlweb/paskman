@@ -1,4 +1,5 @@
 import React from 'react';
+import PT from 'prop-types';
 import styled from 'styled-components';
 import colors from '../../styles/colors';
 import spacing from '../../styles/spacing';
@@ -6,6 +7,7 @@ import topBarHeight from '../../styles/topBarHeight';
 import Logo from '../../components/Logo/Logo';
 import TopBarBtn from './TopBarBtn/TopBarBtn';
 import TopBarMenu from './TopBarMenu/TopBarMenu';
+import { RoutesPT } from '../../propTypes';
 
 const StyledTopBar = styled.div`
   background: ${colors.primary};
@@ -33,5 +35,16 @@ const TopBar = ({ menuOpen, routes, topBarToggleMenu }) => (
     </StyledWrapper>
   </StyledTopBar>
 );
+
+TopBar.defaultProps = {
+  menuOpen: false,
+  routes: [],
+};
+
+TopBar.propTypes = {
+  menuOpen: PT.bool,
+  routes: RoutesPT,
+  topBarToggleMenu: PT.func.isRequired,
+};
 
 export default TopBar;

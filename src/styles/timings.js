@@ -1,4 +1,4 @@
-const timings = {
+const timings = Object.freeze({
   easeInQuad:      'cubic-bezier(0.550,  0.085, 0.680, 0.530)',
   easeInCubic:     'cubic-bezier(0.550,  0.055, 0.675, 0.190)',
   easeInQuart:     'cubic-bezier(0.895,  0.030, 0.685, 0.220)',
@@ -23,6 +23,6 @@ const timings = {
   easeInOutExpo:   'cubic-bezier(1.000,  0.000, 0.000, 1.000)',
   easeInOutCirc:   'cubic-bezier(0.785,  0.135, 0.150, 0.860)',
   easeInOutBack:   'cubic-bezier(0.680, -0.550, 0.265, 1.550)',
-}
+});
 
 export default timings;

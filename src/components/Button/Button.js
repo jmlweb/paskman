@@ -57,19 +57,20 @@ const StyledBtnTemplate = styled.button`
 
 const createStyledBtn = tag => StyledBtnTemplate.withComponent(tag);
 
-const Btn = ({
-  tag,
-  color,
-  size,
-  block,
-  children,
-  ...rest
-}) => {
+export default function Button(props) {
+  const {
+    tag,
+    color,
+    size,
+    block,
+    children,
+    ...rest
+  } = props;
   const StyledBtn = createStyledBtn(tag);
   return <StyledBtn color={color} block={block} size={size} {...rest}>{children}</StyledBtn>;
-};
+}
 
-Btn.propTypes = {
+Button.propTypes = {
   tag: PT.string,
   color: PT.string,
   size: PT.string,
@@ -77,11 +78,9 @@ Btn.propTypes = {
   children: PT.string.isRequired,
 };
 
-Btn.defaultProps = {
+Button.defaultProps = {
   tag: 'button',
   color: 'secondary',
   size: 'md',
   block: false,
 };
-
-export default Btn;

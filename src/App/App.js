@@ -1,7 +1,7 @@
-import * as React from 'react';
+import React from 'react';
 import styled, { injectGlobal } from 'styled-components';
 import { normalize } from 'polished';
-import Resizer from './Resizer/ResizerContainer';
+import ConnectedResizer from './Resizer/ResizerContainer';
 import TopBar from './TopBar/TopBarContainer';
 import Router from './Router/Router';
 import routes from '../routes';
@@ -9,18 +9,18 @@ import fonts, { fontSmoothing } from '../styles/fonts';
 
 const { rootFontSize, defaultFontSize, fontFamily } = fonts;
 
-injectGlobal`${normalize()}`;
-
+/* eslint-disable no-unused-expressions */
 injectGlobal`
-html {
-  font-size: ${rootFontSize};
-}
-
-body {
-  font-family: ${fontFamily};
-  ${fontSmoothing()}
-}
+  ${normalize()};
+  html {
+    font-size: ${rootFontSize};
+  }
+  body {
+    font-family: ${fontFamily};
+    ${fontSmoothing()}
+  }
 `;
+/* eslint-enable no-unused-expressions */
 
 const Wrapper = styled.div`
   display: flex;
@@ -32,7 +32,7 @@ const Wrapper = styled.div`
 
 const App = () => (
   <Wrapper>
-    <Resizer />
+    <ConnectedResizer />
     <TopBar routes={routes} />
     <Router routes={routes} />
   </Wrapper>

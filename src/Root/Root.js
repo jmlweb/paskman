@@ -25,11 +25,13 @@ const Root = (props) => {
   const { store, history, persistor } = props;
   return (
     <Provider store={store}>
-      {onlyBrowserGate(persistor, (
-        <ConnectedRouter history={history}>
-          <App />
-        </ConnectedRouter>
-      ))}
+      {onlyBrowserGate(
+        persistor, (
+          <ConnectedRouter history={history}>
+            <App />
+          </ConnectedRouter>
+        ),
+      )}
     </Provider>
   );
 };

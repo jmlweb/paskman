@@ -1,207 +1,73 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`SettingsConfig Matchs snapshot 1`] = `
-<form
-  className="sc-bdVaJa fAoWzh"
-  onSubmit={[Function]}
+<div
+  className="sc-bwzfXH gTtYPo"
 >
-  <fieldset
-    className="sc-bwzfXH gSXRtU"
+  <div
+    className="sc-htpNat QFXkF"
   >
     <div
-      className="sc-htpNat QOKog"
+      className="sc-bxivhb eekEAM"
     >
-      <label
-        className="sc-bxivhb fMASpP"
-      >
-        <b>
-          25
-        </b>
-         minutes working time
-      </label>
       <div
-        aria-orientation="horizontal"
-        aria-valuemax={60}
-        aria-valuemin={5}
-        aria-valuenow={25}
-        className="rangeslider rangeslider-horizontal sc-dnqmqq kGnwsx"
-        onMouseDown={[Function]}
-        onMouseUp={[Function]}
-        onTouchEnd={[Function]}
-        onTouchStart={[Function]}
+        className="sc-EHOje diSSTp"
       >
         <div
-          className="rangeslider__fill"
-          style={
-            Object {
-              "width": "0px",
-            }
-          }
+          className="sc-htoDjs dxoUaj"
         />
         <div
-          className="rangeslider__handle"
-          onKeyDown={[Function]}
-          onMouseDown={[Function]}
-          onTouchEnd={[Function]}
-          onTouchMove={[Function]}
-          style={
-            Object {
-              "left": "0px",
-            }
-          }
-          tabIndex={0}
-        >
-          <div
-            className="rangeslider__handle-label"
-          >
-            
-          </div>
-        </div>
-        <ul
-          className="rangeslider__labels"
+          className="sc-htoDjs dxoUaj"
+        />
+        <div
+          className="sc-htoDjs dxoUaj"
+        />
+      </div>
+      <div
+        className="sc-bZQynM eNpBeE"
+      >
+        <div
+          className="sc-dnqmqq iXWRzM"
+        />
+        <div
+          className="sc-dnqmqq iXWRzM"
+        />
+        <div
+          className="sc-dnqmqq iXWRzM"
         />
       </div>
     </div>
-    <div
-      className="sc-htpNat QOKog"
+    <svg
+      version="1.1"
+      xmlns="http://www.w3.org/2000/svg"
     >
-      <label
-        className="sc-bxivhb fMASpP"
-      >
-        <b>
-          5
-        </b>
-         minutes resting time
-      </label>
-      <div
-        aria-orientation="horizontal"
-        aria-valuemax={15}
-        aria-valuemin={1}
-        aria-valuenow={5}
-        className="rangeslider rangeslider-horizontal sc-dnqmqq kGnwsx"
-        onMouseDown={[Function]}
-        onMouseUp={[Function]}
-        onTouchEnd={[Function]}
-        onTouchStart={[Function]}
-      >
-        <div
-          className="rangeslider__fill"
-          style={
-            Object {
-              "width": "0px",
-            }
-          }
-        />
-        <div
-          className="rangeslider__handle"
-          onKeyDown={[Function]}
-          onMouseDown={[Function]}
-          onTouchEnd={[Function]}
-          onTouchMove={[Function]}
-          style={
-            Object {
-              "left": "0px",
-            }
-          }
-          tabIndex={0}
+      <defs>
+        <filter
+          id="goo"
         >
-          <div
-            className="rangeslider__handle-label"
-          >
-            
-          </div>
-        </div>
-        <ul
-          className="rangeslider__labels"
-        />
-      </div>
-    </div>
-    <div
-      className="sc-htpNat QOKog"
-    >
-      <label
-        className="sc-bxivhb fMASpP"
-      >
-        Pause between pomodoros?
-      </label>
-      <div
-        className="sc-bZQynM kijoyl"
-      >
-        <label
-          className="sc-gzVnrw jpiMBn"
-          selected={false}
-        >
-          <input
-            className="sc-htoDjs kCGYta"
-            id="id-1"
-            onClick={[Function]}
-            type="radio"
-            value={true}
+          <feGaussianBlur
+            in="SourceGraphic"
+            result="blur"
+            stdDeviation="10"
           />
-          <span>
-            Yes
-          </span>
-        </label>
-        <label
-          className="sc-gzVnrw lhwIJl"
-          selected={true}
-        >
-          <input
-            className="sc-htoDjs kCGYta"
-            id="id-0"
-            onClick={[Function]}
-            type="radio"
-            value={false}
+          <feColorMatrix
+            in="blur"
+            mode="matrix"
+            result="goo"
+            values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7"
           />
-          <span>
-            No
-          </span>
-        </label>
-      </div>
-    </div>
-    <div
-      className="sc-htpNat QOKog"
-    >
-      <label
-        className="sc-bxivhb fMASpP"
-      >
-        Require confirm for ending tasks
-      </label>
-      <div
-        className="sc-bZQynM kijoyl"
-      >
-        <label
-          className="sc-gzVnrw lhwIJl"
-          selected={true}
-        >
-          <input
-            className="sc-htoDjs kCGYta"
-            id="id-1"
-            onClick={[Function]}
-            type="radio"
-            value={true}
+          <feBlend
+            in="SourceGraphic"
+            in2="goo"
           />
-          <span>
-            Yes
-          </span>
-        </label>
-        <label
-          className="sc-gzVnrw jpiMBn"
-          selected={false}
-        >
-          <input
-            className="sc-htoDjs kCGYta"
-            id="id-0"
-            onClick={[Function]}
-            type="radio"
-            value={false}
-          />
-          <span>
-            No
-          </span>
-        </label>
-      </div>
-    </div>
-  </fieldset>
-</form>
+        </filter>
+      </defs>
+    </svg>
+  </div>
+  <p
+    className="sc-iwsKbI gwysdJ"
+  >
+    Loading data...
+  </p>
+</div>
 `;

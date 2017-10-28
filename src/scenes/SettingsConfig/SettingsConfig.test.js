@@ -1,39 +1,48 @@
 import React from 'react';
 import { mount } from 'enzyme';
+import renderer from 'react-test-renderer';
 import SettingsConfig from './SettingsConfig';
-
-const baseProps = {
-  isLoading: false,
-  target: {
-    working: 25,
-    resting: 5,
-  },
-  pauseBetween: false,
-  confirmEndingTask: false,
-  settingsSave: jest.fn(),
-};
+import constants from './constants';
 
 describe('Settings Config', () => {
-  it('Render the component without loading', () => {
-    const wrapper = mount(<SettingsConfig {...baseProps} />);
-    expect(wrapper.find('SettingsConfig').length).toEqual(1);
+  const handleSubmit = jest.fn();
+  const handleTargetSlider = jest.fn();
+  const handlePauseBetweenChange = jest.fn();
+  const handleConfirmEndingTaskChange = jest.fn();
+  const props = {
+    target: {
+      working: 25,
+      resting: 5,
+    },
+    pauseBetween: false,
+    confirmEndingTask: false,
+    defaults: constants,
+    handleSubmit,
+    handleTargetSlider,
+    handlePauseBetweenChange,
+    handleConfirmEndingTaskChange,
+  };
+  let wrapper;
+  beforeEach(() => {
+    wrapper = mount(
+      <SettingsConfig
+        {...props}
+      />
+    );
   });
-  it('Render the component when loading', () => {
-    const loadingProps = {...baseProps, isLoading: true};
-    const wrapper = mount(<SettingsConfig {...loadingProps} />);
+  it('Render the component without loading', () => {
     expect(wrapper.find('SettingsConfig').length).toEqual(1);
   });
   it('Handles event', () => {
-    const handleSubmit = jest.fn();
-    const handlePauseBetweenChange = jest.fn();
-    SettingsConfig.prototype.handleSubmit = handleSubmit;
-    const wrapper = mount(<SettingsConfig {...baseProps} />);
-    //wrapper.find('rangeslider').simulate('change');
     wrapper.find('input').first().simulate('change');
     wrapper.find('form').simulate('submit');
     setTimeout(() => {
       expect(handlePauseBetweenChange).toHaveBeenCalled();
       expect(handleSubmit).toHaveBeenCalled();
     }, 500);
+  });
+  it('Matchs snapshot', () => {
+    const tree = renderer.create(wrapper).toJSON();
+    expect(tree).toMatchSnapshot();
   });
 });

@@ -2,16 +2,14 @@ import React from 'react';
 import { mount } from 'enzyme';
 import renderer from 'react-test-renderer';
 import configureStore from 'redux-mock-store';
-import thunk from 'redux-thunk';
 import SettingsConfig from './SettingsConfigContainer';
 import stateMock from '../../stateMock';
 
 describe('SettingsConfig', () => {
-  const middlewares = [thunk];
+  const middlewares = [];
   const mockStore = configureStore(middlewares);
   let wrapper;
   let store;
-  let count = 0;
   const settingsFetch = jest.fn();
   const settingsSave = jest.fn();
   const settingsChange = jest.fn();
@@ -19,16 +17,15 @@ describe('SettingsConfig', () => {
   beforeEach(() => {
     store = mockStore(stateMock);
     SettingsConfig.prototype.componentWillMount = onWillMount;
+    SettingsConfig.prototype.state = stateMock.data.settings;
     wrapper = mount(
       <SettingsConfig
-        key={count}
         settingsFetch={settingsFetch}
         settingsSave={settingsSave}
         settingsChange={settingsChange}
         store={store}
       />
     );
-    count += 1;
   });
   it('Render the component', () => {
     expect(wrapper).toBeDefined();
@@ -47,4 +44,4 @@ describe('SettingsConfig', () => {
     const tree = renderer.create(wrapper).toJSON();
     expect(tree).toMatchSnapshot();
   });
-})
+});

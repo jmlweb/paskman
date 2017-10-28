@@ -22,8 +22,8 @@ export const initialState = stateMock.app.resizer;
 
 const reducer = handleAction(
   APP_SET_DIMENSIONS,
-  (state, {payload}) => ({...state, dimensions: payload}),
-  initialState
+  (state, {payload}) => ({...state, dimensions: payload }),
+  initialState,
 );
 
 export default reducer;

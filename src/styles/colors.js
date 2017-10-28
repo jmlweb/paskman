@@ -1,15 +1,16 @@
 import { rgba, shade, tint, darken, lighten } from 'polished';
 
-const baseColors = {
+const baseColors = Object.freeze({
   primary: '#ffa3a2',
   secondary: '#223177',
   success: '#18ac4c',
   white: '#fff',
   black: '#000',
-};
+});
 
 const baseKeys = Object.keys(baseColors);
 
+// @todo Improve immutability
 const colors = {
   ...baseColors,
 };

@@ -1,8 +1,8 @@
-const fonts = {
+const fonts = Object.freeze({
   rootFontSize: '62.5%',
   defaultFontSize: '1.6rem',
   fontFamily: 'Dosis, sans-serif',
-};
+});
 
 export const fontSmoothing = (antialiased = true) => {
   if (antialiased) {

@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import TasksInfoBar from './TasksInfoBar/TasksInfoBar';
 import createDynamicComponent from '../../components/DynamicComponent/DynamicComponent';
 
@@ -8,7 +8,7 @@ const AddTask = createDynamicComponent(
   () => require('./AddTask/AddTask'),
 );
 
-const Dashboard = ({ match }) => {
+const Dashboard = () => {
   return (
     <div>
       <TasksInfoBar />
@@ -17,4 +17,4 @@ const Dashboard = ({ match }) => {
   );
 };
 
-export default Dashboard
+export default Dashboard;

@@ -1,10 +1,12 @@
 import reducer, {
   SETTINGS_CHANGE,
-  SETTINGS_SET_LOADING,
-  settingsChange,
-  settingsFetch,
-  settingsSetLoading,
-  settingsSave,
+  SETTINGS_FETCH,
+  SETTINGS_SET_FETCHING,
+  SETTINGS_SAVE,
+  settingsChangeAction as settingsChange,
+  settingsFetchAction as settingsFetch,
+  settingsSetFetchingAction as settingsSetFetching,
+  settingsSaveAction as settingsSave,
   initialState,
 } from './duck';
 
@@ -15,18 +17,18 @@ describe('Settings actions', () => {
     });
   });
   it('should create an action to fetch Settings', () => {
-    expect(settingsFetch()).resolves.toEqual({
-      type: SETTINGS_CHANGE,
+    expect(settingsFetch()).toEqual({
+      type: SETTINGS_FETCH,
     });
   });
-  it('should create an action to change loading', () => {
-    expect(settingsSetLoading()).toEqual({
-      type: SETTINGS_SET_LOADING,
+  it('should create an action to change fetching', () => {
+    expect(settingsSetFetching()).toEqual({
+      type: SETTINGS_SET_FETCHING,
     });
   });
   it('should create an action to save', () => {
-    expect(settingsSave()).resolves.toEqual({
-      type: SETTINGS_SET_LOADING,
+    expect(settingsSave()).toEqual({
+      type: SETTINGS_SAVE,
     });
   });
 });
@@ -42,9 +44,9 @@ describe('Settings reducer', () => {
       reducer(initialState, settingsChange({...initialState, pauseBetween: true})).pauseBetween
     ).toEqual(true);
   });
-  it('should set loading', () => {
+  it('should set fetching', () => {
     expect(
-      reducer(initialState, settingsSetLoading(true)).isLoading
+      reducer(initialState, settingsSetFetching(true)).isFetching
     ).toEqual(true);
   });
 });

@@ -1,4 +1,4 @@
-const spacing = {
+const spacing = Object.freeze({
   xxs: '5px',
   xs: '10px',
   sm: '15px',
@@ -6,6 +6,6 @@ const spacing = {
   lg: '25px',
   xl: '30px',
   xxl: '35px',
-};
+});
 
 export default spacing;

@@ -1,4 +1,5 @@
 import React from 'react';
+import PT from 'prop-types';
 import styled from 'styled-components';
 import TaskInfoBarContainer from './TaskInfoBarContainer';
 import AddIconSVG from './AddIconSVG';
@@ -54,29 +55,31 @@ const Btn = styled.button`
   }
 `;
 
-const getPendingTasksText = qty => {
+const getPendingTasksText = (qty) => {
   if (qty === 0) {
     return 'No';
   }
   return qty.toString();
 };
 
-const TaskInfoBar = ({ handleAddTask }) => {
-  return (
-    <StyledTaskInfoBar>
-      <Info>
-        <InfoText>
-          <Accent>{getPendingTasksText(0)}</Accent> tasks pending in your list
-        </InfoText>
-        <InfoText>
-          <Accent>{toClock(0)}</Accent> planned
-        </InfoText>
-      </Info>
-      <Btn onClick={handleAddTask}>
-        <AddIconSVG />
-      </Btn>
-    </StyledTaskInfoBar>
-  );
+const TaskInfoBar = ({ handleAddTask }) => (
+  <StyledTaskInfoBar>
+    <Info>
+      <InfoText>
+        <Accent>{getPendingTasksText(0)}</Accent> tasks pending in your list
+      </InfoText>
+      <InfoText>
+        <Accent>{toClock(0)}</Accent> planned
+      </InfoText>
+    </Info>
+    <Btn onClick={handleAddTask}>
+      <AddIconSVG />
+    </Btn>
+  </StyledTaskInfoBar>
+);
+
+TaskInfoBar.propTypes = {
+  handleAddTask: PT.func.isRequired,
 };
 
 export default TaskInfoBarContainer(TaskInfoBar);

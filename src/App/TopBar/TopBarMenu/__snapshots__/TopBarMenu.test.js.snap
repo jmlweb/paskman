@@ -7,10 +7,10 @@ exports[`Menu Matchs snapshot 1`] = `
   >
     <a
       className="sc-bdVaJa ioMEjV"
-      href="/"
+      href="/dummy"
       onClick={[Function]}
     >
-      Home
+      Dummy
     </a>
   </nav>
   <main />

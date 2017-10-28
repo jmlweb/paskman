@@ -5,8 +5,8 @@ import TopBar from './TopBar';
 export function mapStateToProps(state) {
   return {
     menuOpen: state.app.topBar.menuOpen,
-  }
-};
+  };
+}
 
 const TopBarContainer = connect(mapStateToProps, {
   topBarToggleMenu,

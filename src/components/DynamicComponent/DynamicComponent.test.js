@@ -6,23 +6,23 @@ import createDynamicComponent from './DynamicComponent';
 describe('DynamicComponent', () => {
   it('should render the dynamic component with import', () => {
     const component = createDynamicComponent(
-      () => import('../../scenes/Home'),
-      () => require('../../scenes/Home'),
+      () => import('../Button'),
+      () => require('../Button'),
     );
     expect(mount(<component />)).toBeTruthy();
   });
   it('should render the dynamic component with require', () => {
     const component = createDynamicComponent(
       null,
-      () => require('../../scenes/Home'),
+      () => require('../Button'),
       true,
     );
     expect(mount(<component />)).toBeTruthy();
   });
   it('Matchs snapshot', () => {
     const component = createDynamicComponent(
-      () => import('../../scenes/Home'),
-      () => require('../../scenes/Home'),
+      () => import('../Button'),
+      () => require('../Button'),
       true,
     );
     const wrapper = mount(<component />);

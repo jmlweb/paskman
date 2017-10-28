@@ -1,4 +1,11 @@
 {
   "javascript.validate.enable": false,
-  "eslint.packageManager": "yarn"
+  "eslint.packageManager": "yarn",
+  "files.exclude": {
+    "**/.git": true,
+    "**/.DS_Store": true,
+    "**/node_modules": true,
+    "**/coverage": true,
+    "**/build": true
+  }
 }

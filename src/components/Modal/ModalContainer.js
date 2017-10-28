@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PT from 'prop-types';
 import { connect } from 'react-redux';
 import {
   modalClose,
@@ -11,14 +12,19 @@ class ModalContainer extends Component {
     this.handleClose = this.handleClose.bind(this);
   }
   handleClose(e) {
-    const { name, modalClose, closeCallback } = this.props;
-    modalClose(name);
+    const { name, closeCallback } = this.props;
+    this.props.modalClose(name);
     if (closeCallback) {
       closeCallback();
     }
   }
   render() {
-    const { name, modal, title, children } = this.props;
+    const {
+      name,
+      modal,
+      title,
+      children,
+    } = this.props;
     return (
       <Modal
         title={title}
@@ -31,6 +37,21 @@ class ModalContainer extends Component {
   }
 }
 
+ModalContainer.defaultProps = {
+  modal: {},
+  title: null,
+  closeCallback: null,
+};
+
+ModalContainer.propTypes = {
+  name: PT.string.isRequired,
+  modal: PT.objectOf(PT.bool),
+  title: PT.string,
+  children: PT.element.isRequired,
+  modalClose: PT.func.isRequired,
+  closeCallback: PT.func,
+};
+
 export function mapStateToProps(state) {
   return { ...state.components };
 };
@@ -41,18 +62,7 @@ export const mapDispatchToProps = {
 
 const ModalConnectedContainer = connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
 )(ModalContainer);
-
-// const withModal = (WrappedComponent: Function, props: {
-//   title: string,
-//   name: string,
-//   isOpen?: bool,
-//   closeCallback?: () => void,
-// }) => (
-//   <ModalConnectedContainer {...props}>
-//     <WrappedComponent />
-//   </ModalConnectedContainer>
-// );
 
 export default ModalConnectedContainer;

@@ -10,28 +10,23 @@ import createDynamicComponent from '../../../components/DynamicComponent/Dynamic
 
 const routes = [
   {
-    path: '/',
-    title: 'Home',
-    component: createDynamicComponent(
-      () => import('../../../scenes/Dashboard/Dashboard'),
-      () => require('../../../scenes/Dashboard/Dashboard'),
-    ),
+    path: '/dummy',
+    title: 'Dummy',
+    component: () => <div>Dummy</div>,
   },
 ];
 
 describe('Menu', () => {
   let wrapper;
-  let count = 0;
   beforeEach(() => {
     wrapper = mount(
-      <BrowserRouter key={`b${count}`}>
-        <div key={`d${count}`}>
-          <TopBarMenu key={`m${count}`} routes={routes} />
-          <Router key={`r${count}`} routes={routes} />
+      <BrowserRouter>
+        <div>
+          <TopBarMenu routes={routes} menuOpen={false} toggleMenu={jest.fn()} />
+          <Router routes={routes} />
         </div>
       </BrowserRouter>
     );
-    count += 1;
   });
   it('Render the component', () => {
     expect(wrapper.find('Menu').length).toEqual(1);

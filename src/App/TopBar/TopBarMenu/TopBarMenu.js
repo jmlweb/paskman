@@ -1,9 +1,12 @@
 import React from 'react';
+import PT from 'prop-types';
 import { Link } from 'react-router-dom';
 import styled, { css } from 'styled-components';
+import styledMap from 'styled-map';
 import colors from '../../../styles/colors';
 import timings from '../../../styles/timings';
 import topBarHeight from '../../../styles/topBarHeight';
+import { RoutesPT } from '../../../propTypes';
 
 const StyledLink = styled(Link)`
   align-items: center;
@@ -53,16 +56,37 @@ const StyledMenu = styled.nav`
   right: 0;
   top: ${topBarHeight};
   z-index: 5;
-  ${props => props.menuOpen ? openMenu : closedMenu};
+  ${styledMap({
+    menuOpen: openMenu,
+    default: closedMenu,
+  })};
   ${StyledLink} {
     filter: blur(0);
-    opacity: ${props => props.menuOpen ? 1 : 0};
+    opacity: ${styledMap({
+    menuOpen: 1,
+    default: 0,
+  })};
   }
 `;
 
-const Menu = ({ menuOpen, toggleMenu, routes }) =>
+const getLink = toggleMenu => route =>
+  <StyledLink key={`link${route.title}`} to={route.path} onClick={toggleMenu}>{route.title}</StyledLink>;
+
+const Menu = ({ menuOpen, toggleMenu, routes }) => (
   <StyledMenu menuOpen={menuOpen}>
-    {routes.map(route => <StyledLink key={`link${route.title}`} to={route.path} onClick={toggleMenu}>{route.title}</StyledLink>)}
-  </StyledMenu>;
+    {routes.map(getLink(toggleMenu))}
+  </StyledMenu>
+);
+
+Menu.defaultProps = {
+  menuOpen: false,
+  routes: [],
+};
+
+Menu.propTypes = {
+  menuOpen: PT.bool,
+  toggleMenu: PT.func.isRequired,
+  routes: RoutesPT,
+};
 
 export default Menu;

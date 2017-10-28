@@ -1,4 +1,4 @@
-const stateMock = {
+const stateMock = Object.freeze({
   app: {
     resizer: {
       dimensions: {
@@ -15,7 +15,8 @@ const stateMock = {
   },
   data: {
     settings: {
-      isLoading: false,
+      isFetching: false,
+      isSaving: false,
       target: {
         working: 25,
         resting: 5,
@@ -24,6 +25,6 @@ const stateMock = {
       confirmEndingTask: true,
     },
   },
-};
+});
 
 export default stateMock;

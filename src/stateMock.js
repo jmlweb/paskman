@@ -13,6 +13,21 @@ const stateMock = Object.freeze({
   components: {
     modal: {},
   },
+  scenes: {
+    dashboard: {
+      addTask: {
+        name: {
+          hasChanged: false,
+          value: '',
+          isValid: false,
+        },
+        description: '',
+        timeRequired: {
+          value: 25,
+        },
+      },
+    },
+  },
   data: {
     settings: {
       isFetching: false,

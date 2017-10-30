@@ -3,9 +3,9 @@ import TasksInfoBar from './TasksInfoBar/TasksInfoBar';
 import createDynamicComponent from '../../components/DynamicComponent/DynamicComponent';
 
 const AddTask = createDynamicComponent(
-  () => import('./AddTask/AddTask'),
+  () => import('./AddTask/AddTaskContainer'),
   /* istanbul ignore next */
-  () => require('./AddTask/AddTask'),
+  () => require('./AddTask/AddTaskContainer'),
 );
 
 const Dashboard = () => {

@@ -1,6 +1,15 @@
+import { combineEpics } from 'redux-observable';
 import { combineReducers } from 'redux';
-import addTask from './AddTask/duck';
+import addTask, {
+  addTaskNameChangeEpic,
+  addTaskSaveEpic,
+} from './AddTask/duck';
 
-export default combineReducers({
+export const dashboardEpic = combineEpics(
+  addTaskNameChangeEpic,
+  addTaskSaveEpic,
+);
+
+export const dashboardReducer = combineReducers({
   addTask,
 });

@@ -47,6 +47,7 @@ exports[`AddTaskContainer Matchs snapshot 1`] = `
   >
     <form
       className="sc-bZQynM hSufOU"
+      noValidate={true}
     >
       <fieldset
         className="sc-gzVnrw cJCIgP"
@@ -63,9 +64,11 @@ exports[`AddTaskContainer Matchs snapshot 1`] = `
             className="sc-iwsKbI WHWzN"
             id="name"
             minLength="3"
+            onChange={[Function]}
             placeholder="Try to be concise"
             required={true}
             type="text"
+            value=""
           />
         </div>
         <div
@@ -178,6 +181,7 @@ exports[`AddTaskContainer Matchs snapshot 1`] = `
               className="sc-jKJlTe cHiUNk"
               color="primary"
               size="sm"
+              type="button"
             >
               Change to time
             </button>

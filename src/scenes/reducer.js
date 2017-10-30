@@ -1,6 +1,12 @@
+import { combineEpics } from 'redux-observable';
 import { combineReducers } from 'redux';
-import dashboard from './Dashboard/reducer';
+import {
+  dashboardEpic,
+  dashboardReducer,
+} from './Dashboard/reducer';
 
-export default combineReducers({
-  dashboard,
+export const scenesEpic = combineEpics(dashboardEpic);
+
+export const scenesReducer = combineReducers({
+  dashboard: dashboardReducer,
 });

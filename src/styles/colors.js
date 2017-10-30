@@ -4,6 +4,7 @@ const baseColors = Object.freeze({
   primary: '#ffa3a2',
   secondary: '#223177',
   success: '#18ac4c',
+  error: '#e63d3d',
   white: '#fff',
   black: '#000',
 });

@@ -43,6 +43,7 @@ export const settingsSaveEpic = action$ =>
       Rx.Observable.concat(
         Rx.Observable.of(settingsSetSavingAction(true)),
         Rx.Observable.of(settingsChangeAction(action.payload))
+          .debounceTime(1000)
           .delay(2000),
         Rx.Observable.of(settingsSetSavingAction(false)),
       ));
@@ -51,11 +52,8 @@ export const settingsSaveEpic = action$ =>
  */
 export const initialState = stateMock.data.settings;
 
-const reducer = handleActions({
+export default handleActions({
   [SETTINGS_CHANGE]: (state, { payload }) => ({ ...state, ...payload }),
   [SETTINGS_SET_FETCHING]: (state, { payload }) => ({ ...state, isFetching: payload }),
   [SETTINGS_SET_SAVING]: (state, { payload }) => ({ ...state, isSaving: payload }),
 }, initialState);
-
-export default reducer;
-

@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+import PT from 'prop-types';
 import Modal from '../../../components/Modal/ModalContainer';
 import {
   FieldSet,
@@ -7,32 +8,24 @@ import {
   Label,
   OptionsSwitcher,
   RangeSlider,
-  TextArea,
   TextField,
 } from '../../../components/Form';
 import ButtonBar from '../../../components/ButtonBar/ButtonBar';
 import Button from '../../../components/Button/Button';
 import constants from '../constants';
 
-/**
- * <div className={style.slider}>
-    <Slider
-      min={5}
-      max={125}
-      step={5}
-      value={timeRequired}
-      onChange={handleTimeRequiredChange}
-      format={value => `${value} min`}
-    />
-  </div>
- */
-
 function dummy() {
   return false;
 }
 
-export const AddTask = () => (
-  <Form noSpacing>
+export const AddTask = ({
+  name,
+  description,
+  handleNameChange,
+  handleNameBlur,
+  handleDescriptionChange,
+}) => (
+  <Form noSpacing noValidate>
     <FieldSet>
       <FormGroup>
         <Label>Name (3 chars min)</Label>
@@ -41,16 +34,23 @@ export const AddTask = () => (
           type="text"
           minLength="3"
           placeholder="Try to be concise"
+          value={name.value}
+          onChange={handleNameChange}
+          onBlur={handleNameBlur}
+          error={!name.isValid && name.hasChanged && 'Please, enter 3 characters at least'}
           required
         />
       </FormGroup>
       <FormGroup>
         <Label>Description</Label>
-        <TextArea
+        <TextField
+          textarea
           id="description"
           placeholder="Describe the task"
           cols="80"
           rows="4"
+          value={description}
+          onChange={handleDescriptionChange}
         />
       </FormGroup>
       {(
@@ -65,7 +65,7 @@ export const AddTask = () => (
             onChange={dummy}
           />
           <ButtonBar right>
-            <Button color="primary" size="sm">Change to time</Button>
+            <Button type="button" color="primary" size="sm">Change to time</Button>
           </ButtonBar>
         </FormGroup>
       )}
@@ -80,7 +80,7 @@ export const AddTask = () => (
             onChange={dummy}
           />
           <ButtonBar right>
-            <Button color="primary" size="sm">Change to pomodoros</Button>
+            <Button type="button" color="primary" size="sm">Change to pomodoros</Button>
           </ButtonBar>
         </FormGroup>
       )}
@@ -89,9 +89,21 @@ export const AddTask = () => (
   </Form>
 );
 
-const AddTaskWithModal = () => (
+AddTask.propTypes = {
+  name: PT.shape({
+    hasChanged: PT.bool,
+    value: PT.string,
+    isValid: PT.bool,
+  }).isRequired,
+  description: PT.string.isRequired,
+  handleNameChange: PT.func.isRequired,
+  handleNameBlur: PT.func.isRequired,
+  handleDescriptionChange: PT.func.isRequired,
+};
+
+const AddTaskWithModal = props => (
   <Modal name={constants.addTaskModalName} title="Add new task">
-    <AddTask />
+    <AddTask {...props} />
   </Modal>
 );
 

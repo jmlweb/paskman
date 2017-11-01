@@ -8,7 +8,7 @@ const ButtonBar = styled.div`
     left: 'flex-start',
     right: 'flex-end',
     center: 'center',
-    justify: 'justify-content',
+    spaceBetween: 'space-between',
   })};
 `;
 

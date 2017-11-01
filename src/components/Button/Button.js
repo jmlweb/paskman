@@ -31,6 +31,10 @@ const StyledBtnTemplate = styled.button`
   })};
   font-weight: 700;
   outline: 0;
+  opacity: ${styledMap({
+    disabled: 0.5,
+    default: 1,
+  })};
   padding: ${styledMap('size', {
     xs: spacing.xs,
     sm: spacing.xs,
@@ -39,7 +43,7 @@ const StyledBtnTemplate = styled.button`
     xl: spacing.lg,
   })};
   text-transform: uppercase;
-  transition: background 0.4s ${timings.easeOutQuad};
+  transition: all 0.4s ${timings.easeOutQuad};
   width: ${(props) => {
     if (props.block) {
       return '100%';

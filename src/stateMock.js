@@ -22,9 +22,9 @@ const stateMock = Object.freeze({
           isValid: false,
         },
         description: '',
-        timeRequired: {
-          value: 25,
-        },
+        timeRequired: 25,
+        timeMode: false,
+        isSaving: false,
       },
     },
   },
@@ -38,6 +38,18 @@ const stateMock = Object.freeze({
       },
       pauseBetween: false,
       confirmEndingTask: true,
+    },
+    tasks: {
+      pending: {
+        list: [],
+        page: 1,
+        perPage: 25,
+      },
+      finished: {
+        list: [],
+        page: 1,
+        perPage: 25,
+      },
     },
   },
 });

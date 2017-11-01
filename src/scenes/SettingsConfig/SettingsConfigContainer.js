@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PT from 'prop-types';
 import { connect } from 'react-redux';
+import isEqual from 'lodash.isequal';
 import {
   settingsFetchAction,
   settingsSaveAction,
@@ -11,12 +12,23 @@ import SettingsConfig from './SettingsConfig';
 import constants from './constants';
 
 class SettingsConfigContainer extends Component {
-  constructor(props) {
-    super(props);
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleTargetSlider = this.handleTargetSlider.bind(this);
-    this.handleConfirmEndingTaskChange = this.handleConfirmEndingTaskChange.bind(this);
-    this.handlePauseBetweenChange = this.handlePauseBetweenChange.bind(this);
+  static defaultProps = {
+    isFetching: false,
+    isSaving: false,
+    pauseBetween: false,
+    confirmEndingTask: false,
+  }
+  static propTypes = {
+    isFetching: PT.bool,
+    isSaving: PT.bool,
+    target: PT.shape({
+      working: PT.number,
+      resting: PT.number,
+    }).isRequired,
+    pauseBetween: PT.bool,
+    confirmEndingTask: PT.bool,
+    settingsFetch: PT.func.isRequired,
+    settingsSave: PT.func.isRequired,
   }
   state = {
     isFetching: true,
@@ -39,15 +51,21 @@ class SettingsConfigContainer extends Component {
       confirmEndingTask,
     });
   }
-  handleSubmit(e) {
+  shouldComponentUpdate(newProps, newState) {
+    return (
+      !isEqual(newState, this.state)
+      || newProps.isSaving !== this.props.isSaving
+    );
+  }
+  handleSubmit = (e) => {
     const { settingsSave } = this.props;
     e.preventDefault();
     settingsSave({
       ...this.state,
     });
   }
-  handleTargetSlider(mode) {
-    return (value) => {
+  handleTargetSlider = mode =>
+    (value) => {
       this.setState({
         target: {
           ...this.state.target,
@@ -55,19 +73,18 @@ class SettingsConfigContainer extends Component {
         },
       });
     };
-  }
-  handleConfirmEndingTaskChange(e) {
+  handleConfirmEndingTaskChange = (e) => {
     this.setState({
       confirmEndingTask: e.target.value === 'true' && true,
     });
   }
-  handlePauseBetweenChange(e) {
+  handlePauseBetweenChange = (e) => {
     this.setState({
       pauseBetween: e.target.value === 'true' && true,
     });
   }
   render() {
-    if (this.props.isFetching || this.state.isFetching) {
+    if (this.state.isFetching) {
       return <Loading text="Loading data..." />;
     }
     return (
@@ -87,26 +104,6 @@ class SettingsConfigContainer extends Component {
     );
   }
 }
-
-SettingsConfigContainer.defaultProps = {
-  isFetching: false,
-  isSaving: false,
-  pauseBetween: false,
-  confirmEndingTask: false,
-};
-
-SettingsConfigContainer.propTypes = {
-  isFetching: PT.bool,
-  isSaving: PT.bool,
-  target: PT.shape({
-    working: PT.number,
-    resting: PT.number,
-  }).isRequired,
-  pauseBetween: PT.bool,
-  confirmEndingTask: PT.bool,
-  settingsFetch: PT.func.isRequired,
-  settingsSave: PT.func.isRequired,
-};
 
 export function mapStateToProps(state) {
   return { ...state.data.settings };

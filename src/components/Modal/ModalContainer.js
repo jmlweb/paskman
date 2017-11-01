@@ -7,11 +7,20 @@ import {
 import Modal from './Modal';
 
 class ModalContainer extends Component {
-  constructor(props) {
-    super(props);
-    this.handleClose = this.handleClose.bind(this);
+  static defaultProps = {
+    modal: {},
+    title: null,
+    closeCallback: null,
   }
-  handleClose(e) {
+  static propTypes = {
+    name: PT.string.isRequired,
+    modal: PT.objectOf(PT.bool),
+    title: PT.string,
+    children: PT.oneOfType([PT.element, PT.array]).isRequired,
+    modalClose: PT.func.isRequired,
+    closeCallback: PT.func,
+  }
+  handleClose = () => {
     const { name, closeCallback } = this.props;
     this.props.modalClose(name);
     if (closeCallback) {
@@ -36,21 +45,6 @@ class ModalContainer extends Component {
     );
   }
 }
-
-ModalContainer.defaultProps = {
-  modal: {},
-  title: null,
-  closeCallback: null,
-};
-
-ModalContainer.propTypes = {
-  name: PT.string.isRequired,
-  modal: PT.objectOf(PT.bool),
-  title: PT.string,
-  children: PT.element.isRequired,
-  modalClose: PT.func.isRequired,
-  closeCallback: PT.func,
-};
 
 export function mapStateToProps(state) {
   return { ...state.components };

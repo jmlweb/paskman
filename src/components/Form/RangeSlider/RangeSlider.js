@@ -23,11 +23,12 @@ const StyledRangeSlider = styled(Slider)`
     cursor: pointer;
     display: inline-block;
     position: absolute;
-    .rangeslider__tooltip {
+    .rangeslider__handle-tooltip {
       width: 80px;
       height: 40px;
       text-align: center;
       position: absolute;
+      top: 25px;
       background-color: ${colors.blackA8};
       font-weight: normal;
       font-size: 14px;
@@ -35,10 +36,7 @@ const StyledRangeSlider = styled(Slider)`
       border-radius: 4px;
       display: inline-block;
       color: white;
-      opacity: 0;
-      &:hover & {
-        opacity: 1;
-      }
+      opacity: 1;
       &:after {
         content: ' ';
         position: absolute;
@@ -67,7 +65,7 @@ const StyledRangeSlider = styled(Slider)`
       border-radius: 100%;
       top: -6px;
     }
-    .rangeslider__tooltip {
+    .rangeslider__handle-tooltip {
       top: -55px;
       left: -27px;
       &:after {

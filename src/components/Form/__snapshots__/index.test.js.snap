@@ -15,18 +15,20 @@ exports[`Button Matchs snapshot 1`] = `
       >
         Dummy
       </label>
-      <input
-        className="sc-ifAKCX fPNPKI"
-      />
+      <div>
+        <input
+          className="sc-ifAKCX hPHOvr"
+        />
+      </div>
       <div
-        className="sc-EHOje erXxej"
+        className="sc-gzVnrw jIpdIZ"
       >
         <label
-          className="sc-bZQynM bXIApl"
+          className="sc-htoDjs eWVknn"
           selected={true}
         >
           <input
-            className="sc-gzVnrw bLHfQE"
+            className="sc-dnqmqq hSYACe"
             id="id-1"
             onClick={[Function]}
             type="radio"
@@ -42,7 +44,7 @@ exports[`Button Matchs snapshot 1`] = `
         aria-valuemax={10}
         aria-valuemin={1}
         aria-valuenow={5}
-        className="rangeslider rangeslider-horizontal sc-htoDjs llmQDG"
+        className="rangeslider rangeslider-horizontal sc-iwsKbI wCcns"
         onMouseDown={[Function]}
         onMouseUp={[Function]}
         onTouchEnd={[Function]}

@@ -17,11 +17,7 @@ const TaskInfoBarConnectedContainer = (WrappedComponent) => {
     static propTypes = {
       modalOpen: PT.func.isRequired,
     }
-    constructor(props) {
-      super(props);
-      this.handleAddTask = this.handleAddTask.bind(this);
-    }
-    handleAddTask() {
+    handleAddTask = () => {
       this.props.modalOpen(constants.addTaskModalName);
     }
     render() {

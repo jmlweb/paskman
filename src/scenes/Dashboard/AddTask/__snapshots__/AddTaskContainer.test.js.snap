@@ -8,7 +8,7 @@ exports[`AddTaskContainer Matchs snapshot 1`] = `
     className="sc-bxivhb iRWXmO"
   >
     <h1
-      className="sc-ifAKCX ckbHNo sc-ckVGcZ kliXPK"
+      className="sc-ifAKCX ckbHNo sc-jKJlTe iHyiIu"
     >
       Add new task
     </h1>
@@ -60,16 +60,19 @@ exports[`AddTaskContainer Matchs snapshot 1`] = `
           >
             Name (3 chars min)
           </label>
-          <input
-            className="sc-iwsKbI WHWzN"
-            id="name"
-            minLength="3"
-            onChange={[Function]}
-            placeholder="Try to be concise"
-            required={true}
-            type="text"
-            value=""
-          />
+          <div>
+            <input
+              className="sc-iwsKbI jHpRxx"
+              id="name"
+              minLength="3"
+              onBlur={[Function]}
+              onChange={[Function]}
+              placeholder="Try to be concise"
+              required={true}
+              type="text"
+              value=""
+            />
+          </div>
         </div>
         <div
           className="sc-htoDjs hpWqMX"
@@ -79,13 +82,17 @@ exports[`AddTaskContainer Matchs snapshot 1`] = `
           >
             Description
           </label>
-          <textarea
-            className="sc-gZMcBi jEvzYf"
-            cols="80"
-            id="description"
-            placeholder="Describe the task"
-            rows="4"
-          />
+          <div>
+            <textarea
+              className="sc-gqjmRU dKYjvS"
+              cols="80"
+              id="description"
+              onChange={[Function]}
+              placeholder="Describe the task"
+              rows="4"
+              value=""
+            />
+          </div>
         </div>
         <div
           className="sc-htoDjs hpWqMX"
@@ -96,14 +103,14 @@ exports[`AddTaskContainer Matchs snapshot 1`] = `
             Pomodoros required
           </label>
           <div
-            className="sc-gqjmRU hpLqBK"
+            className="sc-VigVT sfwJv"
           >
             <label
-              className="sc-VigVT dzzzHZ"
+              className="sc-jTzLTM fVnClL"
               selected={true}
             >
               <input
-                className="sc-jTzLTM hbqTmN"
+                className="sc-fjdhpX cfbRaV"
                 id="id-25"
                 onClick={[Function]}
                 type="radio"
@@ -114,11 +121,11 @@ exports[`AddTaskContainer Matchs snapshot 1`] = `
               </span>
             </label>
             <label
-              className="sc-VigVT cnzhie"
+              className="sc-jTzLTM DGJws"
               selected={false}
             >
               <input
-                className="sc-jTzLTM hbqTmN"
+                className="sc-fjdhpX cfbRaV"
                 id="id-50"
                 onClick={[Function]}
                 type="radio"
@@ -129,11 +136,11 @@ exports[`AddTaskContainer Matchs snapshot 1`] = `
               </span>
             </label>
             <label
-              className="sc-VigVT cnzhie"
+              className="sc-jTzLTM DGJws"
               selected={false}
             >
               <input
-                className="sc-jTzLTM hbqTmN"
+                className="sc-fjdhpX cfbRaV"
                 id="id-75"
                 onClick={[Function]}
                 type="radio"
@@ -144,11 +151,11 @@ exports[`AddTaskContainer Matchs snapshot 1`] = `
               </span>
             </label>
             <label
-              className="sc-VigVT cnzhie"
+              className="sc-jTzLTM DGJws"
               selected={false}
             >
               <input
-                className="sc-jTzLTM hbqTmN"
+                className="sc-fjdhpX cfbRaV"
                 id="id-100"
                 onClick={[Function]}
                 type="radio"
@@ -159,11 +166,11 @@ exports[`AddTaskContainer Matchs snapshot 1`] = `
               </span>
             </label>
             <label
-              className="sc-VigVT cnzhie"
+              className="sc-jTzLTM DGJws"
               selected={false}
             >
               <input
-                className="sc-jTzLTM hbqTmN"
+                className="sc-fjdhpX cfbRaV"
                 id="id-125"
                 onClick={[Function]}
                 type="radio"
@@ -175,10 +182,10 @@ exports[`AddTaskContainer Matchs snapshot 1`] = `
             </label>
           </div>
           <div
-            className="sc-jzJRlG bzLuwb"
+            className="sc-cSHVUG gTKmj"
           >
             <button
-              className="sc-jKJlTe cHiUNk"
+              className="sc-eNQAEJ jMMGZy"
               color="primary"
               size="sm"
               type="button"
@@ -189,7 +196,7 @@ exports[`AddTaskContainer Matchs snapshot 1`] = `
         </div>
       </fieldset>
       <button
-        className="sc-eNQAEJ iaXIpL"
+        className="sc-hMqMXs hMuMPs"
         color="success"
         size="md"
         type="submit"

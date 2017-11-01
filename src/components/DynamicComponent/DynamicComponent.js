@@ -21,7 +21,6 @@ export default function createDynamicComponent(
         component,
       };
     }
-
     componentDidMount() {
       (async () => {
         const { [`${importKey}`]: component } = await importComponent();
@@ -30,7 +29,9 @@ export default function createDynamicComponent(
         });
       })();
     }
-
+    shouldComponentUpdate(newProps, newState) {
+      return newState.component !== this.state.component;
+    }
     render() {
       const C = this.state.component;
       return C ? <C {...this.props} /> : null;

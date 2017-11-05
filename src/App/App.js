@@ -4,8 +4,8 @@ import { normalize } from 'polished';
 import ConnectedResizer from './Resizer/ResizerContainer';
 import TopBar from './TopBar/TopBarContainer';
 import Router from './Router/Router';
-import routes from '../routes';
 import fonts, { fontSmoothing } from '../styles/fonts';
+import { RoutesPT } from '../propTypes';
 
 const { rootFontSize, defaultFontSize, fontFamily } = fonts;
 
@@ -30,12 +30,20 @@ const Wrapper = styled.div`
   width: 100%;
 `;
 
-const App = () => (
+const App = ({ routes }) => (
   <Wrapper>
     <ConnectedResizer />
     <TopBar routes={routes} />
     <Router routes={routes} />
   </Wrapper>
 );
+
+App.defaultProps = {
+  routes: [],
+};
+
+App.propTypes = {
+  routes: RoutesPT,
+};
 
 export default App;

@@ -18,11 +18,11 @@ export const SETTINGS_SAVE = 'SETTINGS/SAVE';
  * ACTIONS
  */
 
-export const settingsChangeAction = createAction(SETTINGS_CHANGE, settings => settings);
-export const settingsSetFetchingAction = createAction(SETTINGS_SET_FETCHING, value => value);
-export const settingsFetchAction = createAction(SETTINGS_FETCH);
-export const settingsSaveAction = createAction(SETTINGS_SAVE, newSettings => newSettings);
-export const settingsSetSavingAction = createAction(SETTINGS_SET_SAVING, value => value);
+export const settingsChange = createAction(SETTINGS_CHANGE, settings => settings);
+export const settingsSetFetching = createAction(SETTINGS_SET_FETCHING, value => value);
+export const settingsFetch = createAction(SETTINGS_FETCH);
+export const settingsSave = createAction(SETTINGS_SAVE, newSettings => newSettings);
+export const settingsSetSaving = createAction(SETTINGS_SET_SAVING, value => value);
 
 /**
  * EPICS
@@ -32,8 +32,8 @@ export const settingsFetchEpic = action$ =>
   action$.ofType(SETTINGS_FETCH)
     .mergeMap(() =>
       Rx.Observable.concat(
-        Rx.Observable.of(settingsSetFetchingAction(true)),
-        Rx.Observable.of(settingsSetFetchingAction(false))
+        Rx.Observable.of(settingsSetFetching(true)),
+        Rx.Observable.of(settingsSetFetching(false))
           .delay(2000),
       ));
 
@@ -41,11 +41,11 @@ export const settingsSaveEpic = action$ =>
   action$.ofType(SETTINGS_SAVE)
     .mergeMap(action =>
       Rx.Observable.concat(
-        Rx.Observable.of(settingsSetSavingAction(true)),
-        Rx.Observable.of(settingsChangeAction(action.payload))
+        Rx.Observable.of(settingsSetSaving(true)),
+        Rx.Observable.of(settingsChange(action.payload))
           .debounceTime(1000)
           .delay(2000),
-        Rx.Observable.of(settingsSetSavingAction(false)),
+        Rx.Observable.of(settingsSetSaving(false)),
       ));
 /**
  * REDUCER

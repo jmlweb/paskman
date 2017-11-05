@@ -3,7 +3,7 @@ import PT from 'prop-types';
 import { Provider, connect } from 'react-redux';
 import { ConnectedRouter } from 'react-router-redux';
 import { PersistGate } from 'redux-persist/lib/integration/react';
-import App from '../App/App';
+import App from '../App/AppContainer';
 import Loading from '../components/Loading/Loading';
 import isSnapshot from '../utils/isSnapshot';
 

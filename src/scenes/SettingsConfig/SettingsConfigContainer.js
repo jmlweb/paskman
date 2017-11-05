@@ -3,9 +3,8 @@ import PT from 'prop-types';
 import { connect } from 'react-redux';
 import isEqual from 'lodash.isequal';
 import {
-  settingsFetchAction,
-  settingsSaveAction,
-  settingsChangeAction,
+  settingsSave,
+  settingsChange,
 } from '../../data/settings/duck';
 import Loading from '../../components/Loading/Loading';
 import SettingsConfig from './SettingsConfig';
@@ -13,44 +12,42 @@ import constants from './constants';
 
 class SettingsConfigContainer extends Component {
   static defaultProps = {
-    isFetching: false,
     isSaving: false,
+    target: {
+      working: 25,
+      resting: 5,
+    },
     pauseBetween: false,
     confirmEndingTask: false,
   }
   static propTypes = {
-    isFetching: PT.bool,
     isSaving: PT.bool,
     target: PT.shape({
       working: PT.number,
       resting: PT.number,
-    }).isRequired,
+    }),
     pauseBetween: PT.bool,
     confirmEndingTask: PT.bool,
-    settingsFetch: PT.func.isRequired,
     settingsSave: PT.func.isRequired,
   }
   state = {
-    isFetching: true,
+    isSaving: this.props.isSaving,
+    target: this.props.target,
+    pauseBetween: this.props.pauseBetween,
+    confirmEndingTask: this.props.confirmEndingTask,
   }
-  componentDidMount() {
-    const { settingsFetch } = this.props;
-    settingsFetch();
-  }
-  componentWillReceiveProps(nextProps) {
-    const {
-      isFetching,
-      target,
-      pauseBetween,
-      confirmEndingTask,
-    } = nextProps;
-    this.setState({
-      isFetching,
-      target,
-      pauseBetween,
-      confirmEndingTask,
-    });
-  }
+  // componentWillReceiveProps(nextProps) {
+  //   const {
+  //     target,
+  //     pauseBetween,
+  //     confirmEndingTask,
+  //   } = nextProps;
+  //   this.setState({
+  //     target,
+  //     pauseBetween,
+  //     confirmEndingTask,
+  //   });
+  // }
   shouldComponentUpdate(newProps, newState) {
     return (
       !isEqual(newState, this.state)
@@ -58,9 +55,8 @@ class SettingsConfigContainer extends Component {
     );
   }
   handleSubmit = (e) => {
-    const { settingsSave } = this.props;
     e.preventDefault();
-    settingsSave({
+    this.props.settingsSave({
       ...this.state,
     });
   }
@@ -84,9 +80,6 @@ class SettingsConfigContainer extends Component {
     });
   }
   render() {
-    if (this.state.isFetching) {
-      return <Loading text="Loading data..." />;
-    }
     return (
       <div>
         {this.props.isSaving && <Loading text="Saving data..." />}
@@ -110,9 +103,8 @@ export function mapStateToProps(state) {
 }
 
 export const mapDispatchToProps = {
-  settingsFetch: settingsFetchAction,
-  settingsSave: settingsSaveAction,
-  settingsChange: settingsChangeAction,
+  settingsSave,
+  settingsChange,
 };
 
 const SettingsConfigConnectedContainer = connect(

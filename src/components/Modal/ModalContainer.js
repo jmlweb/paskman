@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PT from 'prop-types';
 import { connect } from 'react-redux';
 import {
@@ -6,7 +6,7 @@ import {
 } from './duck';
 import Modal from './Modal';
 
-class ModalContainer extends Component {
+class ModalContainer extends PureComponent {
   static defaultProps = {
     modal: {},
     title: null,

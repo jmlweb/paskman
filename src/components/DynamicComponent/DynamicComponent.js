@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import isSnapshot from '../../utils/isSnapshot';
 
 export default function createDynamicComponent(
@@ -6,7 +6,7 @@ export default function createDynamicComponent(
   requireComponent,
   importKey = 'default',
 ) {
-  class DynamicComponent extends Component {
+  class DynamicComponent extends PureComponent {
     constructor(props) {
       super(props);
       let component = null;
@@ -28,9 +28,6 @@ export default function createDynamicComponent(
           component,
         });
       })();
-    }
-    shouldComponentUpdate(newProps, newState) {
-      return newState.component !== this.state.component;
     }
     render() {
       const C = this.state.component;

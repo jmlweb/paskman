@@ -8,29 +8,25 @@ import Loading from '../components/Loading/Loading';
 import isSnapshot from '../utils/isSnapshot';
 
 const onlyBrowserGate = (persistor, WrappedComponent) => {
-  if (isSnapshot()) {
+  if (isSnapshot() || !persistor) {
     return WrappedComponent;
   }
   return (
-    <PersistGate
-      persistor={persistor}
-      loading={<Loading />}
-    >
+    <PersistGate persistor={persistor} loading={<Loading />}>
       {WrappedComponent}
     </PersistGate>
   );
-}
+};
 
 const Root = (props) => {
   const { store, history, persistor } = props;
   return (
     <Provider store={store}>
       {onlyBrowserGate(
-        persistor, (
-          <ConnectedRouter history={history}>
-            <App />
-          </ConnectedRouter>
-        ),
+        persistor,
+        <ConnectedRouter history={history}>
+          <App />
+        </ConnectedRouter>,
       )}
     </Provider>
   );
@@ -42,5 +38,4 @@ Root.propTypes = {
   persistor: PT.objectOf(PT.any).isRequired,
 };
 
-export default connect(() => ({}), {
-})(Root);
+export default connect(() => ({}), {})(Root);

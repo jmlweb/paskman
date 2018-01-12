@@ -12,10 +12,7 @@ const epicMiddleware = createEpicMiddleware(rootEpic);
 
 const initialState = {};
 const enhancers = [];
-const middleware = [
-  epicMiddleware,
-  routerMiddleware(history),
-];
+const middleware = [epicMiddleware, routerMiddleware(history)];
 let persistLog = false;
 
 /* istanbul ignore next */
@@ -35,10 +32,7 @@ const persistConfig = {
   debug: persistLog,
 };
 
-const composedEnhancers = compose(
-  applyMiddleware(...middleware),
-  ...enhancers,
-);
+const composedEnhancers = compose(applyMiddleware(...middleware), ...enhancers);
 
 export const configureStore = () => {
   const store = createStore(

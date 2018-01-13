@@ -7,6 +7,6 @@ import registerServiceWorker from './registerServiceWorker';
 const target = document.querySelector('#root');
 const { store, persistor } = configureStore();
 
-render(<Root store={store} history={history} />, target);
+render(<Root store={store} history={history} persistor={persistor} />, target);
 
 registerServiceWorker();

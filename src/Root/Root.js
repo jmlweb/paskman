@@ -38,4 +38,4 @@ Root.propTypes = {
   persistor: PT.objectOf(PT.any).isRequired,
 };
 
-export default connect(() => ({}), {})(Root);
+export default Root;

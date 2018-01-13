@@ -1,36 +1,21 @@
 import React from 'react';
 import PT from 'prop-types';
-import { Provider, connect } from 'react-redux';
+import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'react-router-redux';
-import { PersistGate } from 'redux-persist/lib/integration/react';
+
+import OnlyBrowserGate from './OnlyBrowserGate';
 import App from '../App/AppContainer';
-import Loading from '../components/Loading/Loading';
-import isSnapshot from '../utils/isSnapshot';
 
-const onlyBrowserGate = (persistor, WrappedComponent) => {
-  if (isSnapshot() || !persistor) {
-    return WrappedComponent;
-  }
-  return (
-    <PersistGate persistor={persistor} loading={<Loading />}>
-      {WrappedComponent}
-    </PersistGate>
-  );
-};
-
-const Root = (props) => {
-  const { store, history, persistor } = props;
-  return (
-    <Provider store={store}>
-      {onlyBrowserGate(
-        persistor,
-        <ConnectedRouter history={history}>
-          <App />
-        </ConnectedRouter>,
-      )}
-    </Provider>
-  );
-};
+const Root = ({ store, history, persistor }) => (
+  <Provider store={store}>
+    {OnlyBrowserGate(
+      persistor,
+      <ConnectedRouter history={history}>
+        <App />
+      </ConnectedRouter>,
+    )}
+  </Provider>
+);
 
 Root.propTypes = {
   store: PT.objectOf(PT.any).isRequired,

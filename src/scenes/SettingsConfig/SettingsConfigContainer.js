@@ -2,10 +2,7 @@ import React, { Component } from 'react';
 import PT from 'prop-types';
 import { connect } from 'react-redux';
 import isEqual from 'lodash.isequal';
-import {
-  settingsSave,
-  settingsChange,
-} from '../../data/settings/duck';
+import { settingsSave, settingsChange } from '../../data/settings/duck';
 import Loading from '../../components/Loading/Loading';
 import SettingsConfig from './SettingsConfig';
 import constants from './constants';
@@ -19,7 +16,7 @@ class SettingsConfigContainer extends Component {
     },
     pauseBetween: false,
     confirmEndingTask: false,
-  }
+  };
   static propTypes = {
     isSaving: PT.bool,
     target: PT.shape({
@@ -29,56 +26,40 @@ class SettingsConfigContainer extends Component {
     pauseBetween: PT.bool,
     confirmEndingTask: PT.bool,
     settingsSave: PT.func.isRequired,
-  }
+  };
   state = {
     isSaving: this.props.isSaving,
     target: this.props.target,
     pauseBetween: this.props.pauseBetween,
     confirmEndingTask: this.props.confirmEndingTask,
-  }
-  // componentWillReceiveProps(nextProps) {
-  //   const {
-  //     target,
-  //     pauseBetween,
-  //     confirmEndingTask,
-  //   } = nextProps;
-  //   this.setState({
-  //     target,
-  //     pauseBetween,
-  //     confirmEndingTask,
-  //   });
-  // }
+  };
   shouldComponentUpdate(newProps, newState) {
-    return (
-      !isEqual(newState, this.state)
-      || newProps.isSaving !== this.props.isSaving
-    );
+    return !isEqual(newState, this.state) || newProps.isSaving !== this.props.isSaving;
   }
   handleSubmit = (e) => {
     e.preventDefault();
     this.props.settingsSave({
       ...this.state,
     });
-  }
-  handleTargetSlider = mode =>
-    (value) => {
-      this.setState({
-        target: {
-          ...this.state.target,
-          [`${mode}`]: value,
-        },
-      });
-    };
+  };
+  handleTargetSlider = mode => (value) => {
+    this.setState({
+      target: {
+        ...this.state.target,
+        [`${mode}`]: value,
+      },
+    });
+  };
   handleConfirmEndingTaskChange = (e) => {
     this.setState({
       confirmEndingTask: e.target.value === 'true' && true,
     });
-  }
+  };
   handlePauseBetweenChange = (e) => {
     this.setState({
       pauseBetween: e.target.value === 'true' && true,
     });
-  }
+  };
   render() {
     return (
       <div>
@@ -107,9 +88,4 @@ export const mapDispatchToProps = {
   settingsChange,
 };
 
-const SettingsConfigConnectedContainer = connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(SettingsConfigContainer);
-
-export default SettingsConfigConnectedContainer;
+export default connect(mapStateToProps, mapDispatchToProps)(SettingsConfigContainer);

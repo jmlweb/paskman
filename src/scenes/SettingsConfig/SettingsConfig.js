@@ -1,15 +1,10 @@
 import React from 'react';
-import {
-  Form,
-  FieldSet,
-  FormGroup,
-  Label,
-  OptionsSwitcher,
-  RangeSlider,
-} from '../../components/Form';
+import { Form, FieldSet } from '../../components/Form';
 import Heading from '../../components/Heading/Heading';
 import Button from '../../components/Button/Button';
 import { SettingsPT } from '../../propTypes';
+
+import { buildTimeGroup, BoolGroup } from './SettingsGroups';
 
 const SettingsConfig = ({
   target,
@@ -20,74 +15,31 @@ const SettingsConfig = ({
   handleTargetSlider,
   handlePauseBetweenChange,
   handleConfirmEndingTaskChange,
-}) => (
-  <Form onSubmit={handleSubmit}>
-    <Heading>Settings Config</Heading>
-    <FieldSet>
-      <FormGroup>
-        <Label><b>{target.working}</b> minutes working time</Label>
-        <RangeSlider
-          tooltip={false}
-          min={defaults.working.target.min}
-          max={defaults.working.target.max}
-          step={defaults.working.step}
-          value={target.working}
-          onChange={handleTargetSlider('working')}
-        />
-      </FormGroup>
-      <FormGroup>
-        <Label><b>{target.resting}</b> minutes resting time</Label>
-        <RangeSlider
-          tooltip={false}
-          min={defaults.resting.target.min}
-          max={defaults.resting.target.max}
-          step={defaults.resting.step}
-          value={target.resting}
-          onChange={handleTargetSlider('resting')}
-        />
-      </FormGroup>
-      <FormGroup>
-        <Label>Pause between pomodoros?</Label>
-        <OptionsSwitcher
-          options={
-            [
-              {
-                value: true,
-                description: 'Yes',
-              },
-              {
-                value: false,
-                description: 'No',
-              },
-            ]
-          }
+}) => {
+  const TimeGroup = buildTimeGroup({ target, defaults, handleTargetSlider });
+  return (
+    <Form onSubmit={handleSubmit}>
+      <Heading>Settings Config</Heading>
+      <FieldSet>
+        <TimeGroup mode="working" />
+        <TimeGroup mode="resting" />
+        <BoolGroup
+          title="Pause between pomodoros?"
           value={pauseBetween}
-          onChange={handlePauseBetweenChange}
+          handleChange={handlePauseBetweenChange}
         />
-      </FormGroup>
-      <FormGroup>
-        <Label>Require confirm for ending tasks</Label>
-        <OptionsSwitcher
-          options={
-            [
-              {
-                value: true,
-                description: 'Yes',
-              },
-              {
-                value: false,
-                description: 'No',
-              },
-            ]
-          }
+        <BoolGroup
+          title="Require confirm for ending tasks"
           value={confirmEndingTask}
-          onChange={handleConfirmEndingTaskChange}
+          handleChange={handleConfirmEndingTaskChange}
         />
-      </FormGroup>
-    </FieldSet>
-    <Button type="submit" color="success" block>Save</Button>
-  </Form>
-);
+      </FieldSet>
+      <Button type="submit" color="success" block>
+        Save
+      </Button>
+    </Form>
+  );
+};
 
 SettingsConfig.propTypes = SettingsPT;
 

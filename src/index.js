@@ -1,6 +1,7 @@
 import React from 'react';
 import { render } from 'react-snapshot';
-import { configureStore, history } from './store';
+import configureStore from './store';
+import history from './store/history';
 import Root from './Root/Root';
 import registerServiceWorker from './registerServiceWorker';
 
